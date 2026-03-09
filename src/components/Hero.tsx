@@ -27,7 +27,7 @@ export default function Hero() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 0.5, duration: 1 }}
-        className="font-sans text-body-sm text-secondary mt-8 max-w-lg text-center z-30 leading-relaxed md:text-base selection:bg-glow-green selection:text-black"
+        className="font-sans text-body-sm text-glow-silver mt-8 max-w-lg text-center z-30 leading-relaxed md:text-base selection:bg-glow-green selection:text-black font-medium tracking-wide drop-shadow-md"
       >
         I am Jamal Nadeem. A full-stack developer and AI integration specialist building intelligent, scalable systems that eliminate manual work.
       </motion.p>

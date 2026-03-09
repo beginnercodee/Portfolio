@@ -40,7 +40,7 @@ export default function CaseStudies() {
             </div>
             
             <div className="md:w-1/2 flex justify-center md:justify-end">
-              <div className="font-display text-4xl md:text-6xl text-glow-green font-extrabold text-center md:text-right drop-shadow-[0_0_15px_rgba(57,255,20,0.5)]">
+              <div className="font-display text-xl md:text-3xl text-glow-green font-extrabold text-center md:text-right drop-shadow-[0_0_15px_rgba(57,255,20,0.5)]">
                 {cs.metric}
               </div>
             </div>
