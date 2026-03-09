@@ -87,7 +87,7 @@ export default function Contact() {
               System ready. Awaiting input...
             </div>
             <div className="mt-2 text-secondary opacity-70">
-              # You can also reach me directly at <a href="mailto:jamal.nadeem@example.com" className="text-glow-green underline hover:text-white">jamal.nadeem@example.com</a>
+              # You can also reach me directly at <a href="mailto:jamal.nadeem@example.com" className="text-glow-green underline hover:text-white">jamalnadeem2004@gmail.com</a>
             </div>
             <div className="mt-4">
               <span className="text-glow-green font-bold">jamal@sys</span>:
@@ -98,9 +98,9 @@ export default function Contact() {
       </div>
 
       <div className="font-mono text-xs text-secondary flex gap-8 justify-center w-full mt-32 z-10">
-        <a href="#" className="hover:text-glow-green transition-colors">github://jamal-nadeem</a>
-        <a href="#" className="hover:text-glow-green transition-colors">linkedin://in/jamalnadeem</a>
-        <a href="#" className="hover:text-glow-green transition-colors">x://@jamal_codes</a>
+        <a href="#" className="hover:text-glow-green transition-colors">github:github.com/beginnercodee</a>
+        <a href="#" className="hover:text-glow-green transition-colors">linkedin:linkedin.com/in/jamal-nadeem</a>
+        <a href="#" className="hover:text-glow-green transition-colors">x:x.com/Nadeem7Jamal</a>
       </div>
     </section>
   );
