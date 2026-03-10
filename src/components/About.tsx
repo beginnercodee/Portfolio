@@ -50,35 +50,35 @@ export default function About() {
   }, [currentLineIndex, currentCharIndex]);
 
   return (
-    <section id="about" className="max-w-[1440px] mx-auto px-12 py-32 grid grid-cols-1 md:grid-cols-2 gap-16 relative z-30">
-      <div className="relative border border-white/10 p-10 bg-white/5 backdrop-blur-sm rounded-xl shadow-inner overflow-hidden flex flex-col justify-between min-h-[450px]">
+    <section id="about" className="max-w-[1440px] mx-auto px-6 md:px-12 py-20 md:py-32 grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16 relative z-30">
+      <div className="relative border border-white/10 p-6 md:p-10 bg-white/5 backdrop-blur-sm rounded-xl shadow-inner overflow-hidden flex flex-col justify-between min-h-[350px] md:min-h-[450px]">
         <div className="absolute inset-0 bg-glow-green/10 blur-3xl opacity-20 pointer-events-none" />
         
         {/* Terminal Execution Overlay */}
-        <div className="relative z-30 font-mono text-sm md:text-base leading-loose flex-grow">
+        <div className="relative z-30 font-mono text-xs md:text-base leading-relaxed md:leading-loose flex-grow">
           {/* Mac window dots */}
-          <div className="flex items-center gap-2 mb-6 opacity-40">
-            <div className="w-3 h-3 rounded-full bg-red-500" />
-            <div className="w-3 h-3 rounded-full bg-yellow-500" />
-            <div className="w-3 h-3 rounded-full bg-green-500" />
+          <div className="flex items-center gap-2 mb-4 md:mb-6 opacity-40">
+            <div className="w-2.5 h-2.5 md:w-3 md:h-3 rounded-full bg-red-500" />
+            <div className="w-2.5 h-2.5 md:w-3 md:h-3 rounded-full bg-yellow-500" />
+            <div className="w-2.5 h-2.5 md:w-3 md:h-3 rounded-full bg-green-500" />
           </div>
           
           {displayedLines.map((line, i) => (
             <div key={i} className={i === terminalLines.length - 1 && line === terminalLines[i] ? "text-glow-green font-bold drop-shadow-[0_0_8px_rgba(57,255,20,0.8)] mt-2" : "text-gray-300 font-medium"}>
               {line}
               {i === currentLineIndex && (
-                <span className="inline-block w-2 h-4 bg-white animate-pulse ml-1 align-middle" />
+                <span className="inline-block w-1.5 h-3 md:w-2 md:h-4 bg-white animate-pulse ml-1 align-middle" />
               )}
             </div>
           ))}
           {/* Blinking cursor when finished typing */}
           {currentLineIndex >= terminalLines.length && (
-            <div className="mt-2"><span className="inline-block w-2 h-4 bg-glow-green animate-pulse align-middle" /></div>
+            <div className="mt-2"><span className="inline-block w-1.5 h-3 md:w-2 md:h-4 bg-glow-green animate-pulse align-middle" /></div>
           )}
         </div>
 
         {/* Huge Watermark Text */}
-        <h2 className="font-display text-5xl md:text-7xl lg:text-8xl text-glow-green uppercase font-bold opacity-15 tracking-tighter text-right leading-none mt-12 w-full pointer-events-none">
+        <h2 className="font-display text-4xl sm:text-5xl md:text-7xl lg:text-8xl text-glow-green uppercase font-bold opacity-15 tracking-tighter text-right leading-none mt-8 md:mt-12 w-full pointer-events-none">
           THE /<br />MINDSET
         </h2>
       </div>
