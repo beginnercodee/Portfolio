@@ -87,7 +87,7 @@ export default function Contact() {
               System ready. Awaiting input...
             </div>
             <div className="mt-2 text-secondary opacity-70 flex flex-wrap gap-1 leading-[1.8]">
-              # You can also reach me directly at <a href="mailto:jamal.nadeem@example.com" className="text-glow-green underline hover:text-white break-all">jamalnadeem2004@gmail.com</a>
+              # You can also reach me directly at <a href="mailto:jamalnadeem2004@gmail.com" className="text-glow-green underline hover:text-white break-all">jamalnadeem2004@gmail.com</a>
             </div>
             <div className="mt-4 flex flex-wrap gap-1 items-center">
               <div>
