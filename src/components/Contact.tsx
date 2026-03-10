@@ -87,7 +87,7 @@ export default function Contact() {
               System ready. Awaiting input...
             </div>
             <div className="mt-2 text-secondary opacity-70">
-              # You can also reach me directly at <a href="mailto:jamal.nadeem@example.com" className="text-glow-green underline hover:text-white">jamal.nadeem@example.com</a>
+              # You can also reach me directly at <a href="mailto:jamal.nadeem@example.com" className="text-glow-green underline hover:text-white">jamalnadeem2004@gmail.com</a>
             </div>
             <div className="mt-4">
               <span className="text-glow-green font-bold">jamal@sys</span>:
