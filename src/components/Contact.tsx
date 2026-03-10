@@ -6,10 +6,40 @@ import ThankYouOverlay from "./ThankYouOverlay";
 
 export default function Contact() {
   const [isOverlayOpen, setIsOverlayOpen] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState("");
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setIsOverlayOpen(true);
+    setIsSubmitting(true);
+    setSubmitError("");
+
+    const formData = new FormData(e.currentTarget);
+    
+    // REPLACE THIS KEY with your actual Web3Forms Access Key
+    formData.append("access_key", "bdc6e8c4-25f2-4a6a-a0ba-6d7fc7806d93"); 
+    formData.append("subject", "New Contact from JN LABS Portfolio");
+    formData.append("from_name", "JN LABS Terminal");
+
+    try {
+      const res = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        body: formData
+      });
+
+      const data = await res.json();
+
+      if (data.success) {
+        setIsOverlayOpen(true);
+        (e.target as HTMLFormElement).reset();
+      } else {
+        setSubmitError("Transaction Failed: " + data.message);
+      }
+    } catch (err) {
+      setSubmitError("Network Error. Please try again or use direct email.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -36,25 +66,48 @@ export default function Contact() {
         >
           <input 
             type="text" 
+            name="name"
             placeholder="your.name" 
-            className="w-full bg-transparent border-b border-surface text-primary font-sans p-3 md:p-4 focus:outline-none focus:border-glow-green focus:shadow-[0_4px_15px_-3px_rgba(57,255,20,0.3)] transition-all placeholder:text-secondary/50 text-sm md:text-base" 
+            className="w-full bg-transparent border-b border-surface !text-glow-green font-sans p-3 md:p-4 focus:outline-none focus:border-glow-green focus:shadow-[0_4px_15px_-3px_rgba(57,255,20,0.3)] transition-all placeholder:text-secondary/50 text-sm md:text-base disabled:opacity-50" 
             required
+            disabled={isSubmitting}
           />
           <input 
             type="email" 
+            name="email"
             placeholder="your.email@domain.com" 
-            className="w-full bg-transparent border-b border-surface text-primary font-sans p-3 md:p-4 focus:outline-none focus:border-glow-green focus:shadow-[0_4px_15px_-3px_rgba(57,255,20,0.3)] transition-all placeholder:text-secondary/50 text-sm md:text-base" 
+            className="w-full bg-transparent border-b border-surface !text-glow-green font-sans p-3 md:p-4 focus:outline-none focus:border-glow-green focus:shadow-[0_4px_15px_-3px_rgba(57,255,20,0.3)] transition-all placeholder:text-secondary/50 text-sm md:text-base disabled:opacity-50" 
             required
+            disabled={isSubmitting}
           />
           <textarea 
+            name="message"
             placeholder="[enter_message]" 
             rows={4}
-            className="w-full bg-transparent border-b border-surface text-primary font-sans p-3 md:p-4 focus:outline-none focus:border-glow-green focus:shadow-[0_4px_15px_-3px_rgba(57,255,20,0.3)] transition-all resize-none placeholder:text-secondary/50 text-sm md:text-base" 
+            className="w-full bg-transparent border-b border-surface !text-glow-green font-sans p-3 md:p-4 focus:outline-none focus:border-glow-green focus:shadow-[0_4px_15px_-3px_rgba(57,255,20,0.3)] transition-all resize-none placeholder:text-secondary/50 text-sm md:text-base disabled:opacity-50" 
             required
+            disabled={isSubmitting}
           />
           
-          <button type="submit" className="mt-2 md:mt-4 w-full py-3 md:py-4 uppercase font-display tracking-widest bg-glow-green/10 text-glow-green border border-glow-green rounded hover:bg-glow-green hover:text-black transition-colors duration-300 font-bold text-sm md:text-base">
-            EXECUTE.SEND()
+          {submitError && (
+            <div className="font-mono text-xs text-red-500 mt-2 px-2 bg-red-500/10 py-2 border border-red-500/20 rounded">
+              &gt; error: {submitError}
+            </div>
+          )}
+          
+          <button 
+            type="submit" 
+            disabled={isSubmitting}
+            className="mt-2 md:mt-4 w-full py-3 md:py-4 uppercase font-display tracking-widest bg-glow-green/10 text-glow-green border border-glow-green rounded hover:bg-glow-green hover:text-black transition-colors duration-300 font-bold text-sm md:text-base disabled:opacity-50 disabled:cursor-not-allowed group flex items-center justify-center gap-2"
+          >
+            {isSubmitting ? (
+              <>
+                <span className="w-2 h-2 rounded-full bg-glow-green/50 animate-ping inline-block" />
+                TRANSMITTING...
+              </>
+            ) : (
+              "EXECUTE.SEND()"
+            )}
           </button>
         </motion.form>
 
