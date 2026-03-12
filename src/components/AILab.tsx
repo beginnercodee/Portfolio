@@ -10,15 +10,16 @@ const experiments = [
   },
   {
     status: "○ ARCHIVED",
-    title: "Sentiment Trading Bot V1",
-    desc: "A lightweight Python script piping real-time X (Twitter) financial sentiment into a basic predictive model. Proof of concept for automated data ingestion.",
+    title: "Headless UI Automation Suite",
+    desc: "Python and Selenium test scripts designed to navigate complex user journeys, including automated authentication and media interaction. Utilizes Smart Waits to reliably handle dynamic DOM elements and bypass interaction exceptions.",
   },
   {
-    status: "● TRAINING...",
-    title: "Local GenAI Coding Assistant",
-    desc: "Fine-tuning a small LLaMA model locally to act as a specialized rubber-duck debugging assistant focused purely on React/Next.js edge cases.",
+    status: "● IN_PROGRESS...",
+    title: "Resume Evaluation Algorithm",
+    desc: "Currently architecting the core parsing and matching logic for an AI Resume Tailor. Experimenting with real-time data syncing via Supabase to dynamically score candidate profiles against strict job parameters.",
   },
 ];
+
 
 export default function AILab() {
   return (
