@@ -23,12 +23,12 @@ const experiments = [
 
 export default function AILab() {
   return (
-    <section className="max-w-[1440px] mx-auto py-32 px-12 z-30 relative">
-      <h2 className="font-display text-4xl text-primary mb-12 opacity-80 uppercase tracking-widest text-center md:text-left">
+    <section className="max-w-[1440px] mx-auto py-20 md:py-32 px-6 md:px-12 z-30 relative">
+      <h2 className="font-display text-3xl md:text-4xl text-primary mb-8 md:mb-12 opacity-80 uppercase tracking-widest text-center md:text-left">
         AI LAB / EXPERIMENTS
       </h2>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
         {experiments.map((exp, idx) => (
           <motion.div
             key={idx}
@@ -36,7 +36,7 @@ export default function AILab() {
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.4, delay: idx * 0.1 }}
-            className="group bg-transparent border border-dashed border-surface p-8 hover:border-solid hover:border-glow-green transition-all duration-300 relative overflow-hidden rounded-xl"
+            className="group bg-transparent border border-dashed border-surface p-6 md:p-8 hover:border-solid hover:border-glow-green transition-all duration-300 relative overflow-hidden rounded-xl"
           >
             {/* Status Indicator */}
             <div className="flex items-center gap-2 font-mono text-xs text-glow-green mb-6">

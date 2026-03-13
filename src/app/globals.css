@@ -17,7 +17,7 @@
   --font-mono: var(--font-jetbrains-mono), monospace;
 
   /* Use exact clamp as string or custom text size utility in v4 */
-  --text-hero: clamp(4rem, 10vw, 10rem);
+  --text-hero: clamp(2rem, 8vw, 6.5rem);
   --text-nav: 13px;
   --text-body-sm: 14px;
         
@@ -39,11 +39,6 @@
 }
 
 @layer utilities {
-  .text-hero {
-    font-size: clamp(2.5rem, 12vw, 10rem);
-    line-height: 0.9;
-    letter-spacing: -0.02em;
-  }
   .text-nav {
     font-size: 13px;
     letter-spacing: 0.05em;

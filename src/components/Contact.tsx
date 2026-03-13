@@ -98,7 +98,7 @@ export default function Contact() {
           <button 
             type="submit" 
             disabled={isSubmitting}
-            className="mt-2 md:mt-4 w-full py-3 md:py-4 uppercase font-display tracking-widest bg-glow-green/10 text-glow-green border border-glow-green rounded hover:bg-glow-green hover:text-black transition-colors duration-300 font-bold text-sm md:text-base disabled:opacity-50 disabled:cursor-not-allowed group flex items-center justify-center gap-2"
+            className="mt-2 md:mt-4 w-full py-3 md:py-4 uppercase font-display tracking-widest bg-glow-green/20 !text-glow-green border border-glow-green rounded hover:bg-glow-green hover:!text-black hover:shadow-[0_0_20px_rgba(57,255,20,0.6)] shadow-[0_0_10px_rgba(57,255,20,0.2)] transition-all duration-300 font-bold text-sm md:text-base disabled:opacity-50 disabled:cursor-not-allowed group flex items-center justify-center gap-2"
           >
             {isSubmitting ? (
               <>
