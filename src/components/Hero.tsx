@@ -3,6 +3,9 @@
 import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 
+const ENGINEER_CHARS = "ENGINEER.".split("");
+const AUTOMATE_CHARS = "AUTOMATE.".split("");
+
 export default function Hero() {
   const containerRef = useRef<HTMLElement>(null);
   
@@ -28,7 +31,7 @@ export default function Hero() {
       >
         <h1 className="font-display text-hero uppercase tracking-tighter leading-none font-extrabold mix-blend-lighten flex flex-col items-center cursor-default">
           <div className="flex">
-            {"ENGINEER.".split("").map((char, i) => (
+            {ENGINEER_CHARS.map((char, i) => (
               <motion.span
                 key={`eng-${i}`}
                 initial={{ y: 80, opacity: 0, rotateX: -90 }}
@@ -41,7 +44,7 @@ export default function Hero() {
             ))}
           </div>
           <div className="flex md:mt-[-0.5rem]">
-            {"AUTOMATE.".split("").map((char, i) => (
+            {AUTOMATE_CHARS.map((char, i) => (
               <motion.span
                 key={`auto-${i}`}
                 initial={{ y: 80, opacity: 0, rotateX: -90 }}
