@@ -2,21 +2,31 @@
 
 import Link from "next/link";
 import { cn } from "@/lib/utils";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import { motion } from "framer-motion";
 
 export default function NavigationBar() {
   const [scrolled, setScrolled] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
 
-  useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 50);
-    };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+  // O(1) functional referencing across renders
+  const handleScroll = useCallback(() => {
+    setScrolled(window.scrollY > 50);
   }, []);
 
-  const [isOpen, setIsOpen] = useState(false);
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [handleScroll]);
+
+  // O(1) toggle execution
+  const toggleMenu = useCallback(() => {
+    setIsOpen((prev) => !prev);
+  }, []);
+
+  const closeMenu = useCallback(() => {
+    setIsOpen(false);
+  }, []);
 
   return (
     <>
@@ -51,14 +61,15 @@ export default function NavigationBar() {
             <Link href="#skills" className="hover:text-primary transition-colors">skills</Link>
           </div>
 
-          {/* Mobile Hamburger Toggle */}
+          {/* Mobile Hamburger Toggle (Hardware Accelerated O(1) Rendering) */}
           <button 
             className="md:hidden flex flex-col justify-center items-center w-8 h-8 gap-1.5 z-50 absolute right-6"
-            onClick={() => setIsOpen(!isOpen)}
+            onClick={toggleMenu}
+            aria-label="Toggle Menu"
           >
-            <motion.div animate={{ rotate: isOpen ? 45 : 0, y: isOpen ? 8 : 0 }} className="w-6 h-0.5 bg-primary rounded-full transition-transform" />
-            <motion.div animate={{ opacity: isOpen ? 0 : 1 }} className="w-6 h-0.5 bg-primary rounded-full transition-opacity" />
-            <motion.div animate={{ rotate: isOpen ? -45 : 0, y: isOpen ? -8 : 0 }} className="w-6 h-0.5 bg-primary rounded-full transition-transform" />
+            <div className={cn("w-6 h-0.5 bg-primary rounded-full transition-transform duration-300 origin-center", isOpen ? "translate-y-[8px] rotate-45" : "")} />
+            <div className={cn("w-6 h-0.5 bg-primary rounded-full transition-opacity duration-300", isOpen ? "opacity-0" : "opacity-100")} />
+            <div className={cn("w-6 h-0.5 bg-primary rounded-full transition-transform duration-300 origin-center", isOpen ? "-translate-y-[8px] -rotate-45" : "")} />
           </button>
         </div>
       </motion.nav>
@@ -72,10 +83,10 @@ export default function NavigationBar() {
           className="fixed inset-0 z-40 bg-black/95 backdrop-blur-xl flex flex-col items-center justify-center gap-8 md:hidden h-screen w-screen border-b border-glow-green/20"
         >
           <div className="absolute inset-0 bg-glow-green/5 blur-3xl opacity-20 pointer-events-none" />
-          <Link href="#about" onClick={() => setIsOpen(false)} className="font-display uppercase tracking-[0.2em] text-2xl text-secondary hover:text-glow-green transition-all">About</Link>
-          <Link href="#experience" onClick={() => setIsOpen(false)} className="font-display uppercase tracking-[0.2em] text-2xl text-secondary hover:text-glow-green transition-all">Experience</Link>
-          <Link href="#projects" onClick={() => setIsOpen(false)} className="font-display uppercase tracking-[0.2em] text-2xl text-secondary hover:text-glow-green transition-all">Projects</Link>
-          <Link href="#skills" onClick={() => setIsOpen(false)} className="font-display uppercase tracking-[0.2em] text-2xl text-secondary hover:text-glow-green transition-all">Skills</Link>
+          <Link href="#about" onClick={closeMenu} className="font-display uppercase tracking-[0.2em] text-2xl text-secondary hover:text-glow-green transition-all">About</Link>
+          <Link href="#experience" onClick={closeMenu} className="font-display uppercase tracking-[0.2em] text-2xl text-secondary hover:text-glow-green transition-all">Experience</Link>
+          <Link href="#projects" onClick={closeMenu} className="font-display uppercase tracking-[0.2em] text-2xl text-secondary hover:text-glow-green transition-all">Projects</Link>
+          <Link href="#skills" onClick={closeMenu} className="font-display uppercase tracking-[0.2em] text-2xl text-secondary hover:text-glow-green transition-all">Skills</Link>
         </motion.div>
       )}
     </>
