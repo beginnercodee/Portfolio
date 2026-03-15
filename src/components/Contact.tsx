@@ -154,9 +154,9 @@ export default function Contact() {
       </div>
 
       <div className="font-mono text-[10px] md:text-xs text-secondary flex flex-col md:flex-row items-center gap-4 md:gap-8 justify-center w-full mt-20 md:mt-32 z-10">
-        <a href="https://github.com/beginnercodee" className="hover:text-glow-green transition-colors">github://jamal-nadeem</a>
-        <a href="https://www.linkedin.com/in/jamal-nadeem/" className="hover:text-glow-green transition-colors">linkedin://in/jamalnadeem</a>
-        <a href="https://x.com/Nadeem7Jamal" className="hover:text-glow-green transition-colors">x://@jamal_codes</a>
+        <a href="https://github.com/beginnercodee" className="hover:text-glow-green transition-colors" target="_blank">github://jamal-nadeem</a>
+        <a href="https://www.linkedin.com/in/jamal-nadeem/" className="hover:text-glow-green transition-colors" target="_blank">linkedin://in/jamalnadeem</a>
+        <a href="https://x.com/Nadeem7Jamal" className="hover:text-glow-green transition-colors" target="_blank">x://@jamal_codes</a>
       </div>
     </section>
   );
