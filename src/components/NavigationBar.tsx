@@ -74,21 +74,19 @@ export default function NavigationBar() {
         </div>
       </motion.nav>
 
-      {/* Mobile Menu Overlay */}
-      {isOpen && (
-        <motion.div 
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: -20 }}
-          className="fixed inset-0 z-40 bg-black/95 backdrop-blur-xl flex flex-col items-center justify-center gap-8 md:hidden h-screen w-screen border-b border-glow-green/20"
-        >
-          <div className="absolute inset-0 bg-glow-green/5 blur-3xl opacity-20 pointer-events-none" />
-          <Link href="#about" onClick={closeMenu} className="font-display uppercase tracking-[0.2em] text-2xl text-secondary hover:text-glow-green transition-all">About</Link>
-          <Link href="#experience" onClick={closeMenu} className="font-display uppercase tracking-[0.2em] text-2xl text-secondary hover:text-glow-green transition-all">Experience</Link>
-          <Link href="#projects" onClick={closeMenu} className="font-display uppercase tracking-[0.2em] text-2xl text-secondary hover:text-glow-green transition-all">Projects</Link>
-          <Link href="#skills" onClick={closeMenu} className="font-display uppercase tracking-[0.2em] text-2xl text-secondary hover:text-glow-green transition-all">Skills</Link>
-        </motion.div>
-      )}
+      {/* Mobile Menu Overlay (Pre-rendered for O(1) mounting) */}
+      <div 
+        className={cn(
+          "fixed inset-0 z-40 bg-black/95 backdrop-blur-xl flex flex-col items-center justify-center gap-8 md:hidden h-screen w-screen border-b border-glow-green/20 transition-all duration-300 ease-out",
+          isOpen ? "opacity-100 pointer-events-auto translate-y-0" : "opacity-0 pointer-events-none -translate-y-8"
+        )}
+      >
+        <div className="absolute inset-0 bg-glow-green/5 blur-3xl opacity-20 pointer-events-none" />
+        <Link href="#about" onClick={closeMenu} className="font-display uppercase tracking-[0.2em] text-2xl text-secondary hover:text-glow-green transition-all">About</Link>
+        <Link href="#experience" onClick={closeMenu} className="font-display uppercase tracking-[0.2em] text-2xl text-secondary hover:text-glow-green transition-all">Experience</Link>
+        <Link href="#projects" onClick={closeMenu} className="font-display uppercase tracking-[0.2em] text-2xl text-secondary hover:text-glow-green transition-all">Projects</Link>
+        <Link href="#skills" onClick={closeMenu} className="font-display uppercase tracking-[0.2em] text-2xl text-secondary hover:text-glow-green transition-all">Skills</Link>
+      </div>
     </>
   );
 }
