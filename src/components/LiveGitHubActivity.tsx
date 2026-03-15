@@ -112,14 +112,12 @@ export default function LiveGitHubActivity() {
           <div className="absolute inset-0 bg-gradient-to-b from-transparent via-glow-green/5 to-transparent h-[10px] w-full animate-[scan_2s_linear_infinite] pointer-events-none" />
           
           {logs.map((log, i) => (
-            <motion.div
+            <div
               key={i + log}
-              initial={{ opacity: 0, x: -10 }}
-              animate={{ opacity: i === logs.length - 1 ? 1 : 0.6, x: 0 }}
-              className="whitespace-normal sm:whitespace-nowrap overflow-hidden text-ellipsis flex flex-wrap sm:flex-nowrap items-start sm:items-center leading-relaxed"
+              className={`whitespace-normal sm:whitespace-nowrap overflow-hidden text-ellipsis flex flex-wrap sm:flex-nowrap items-start sm:items-center leading-relaxed transition-opacity duration-300 ${i === logs.length - 1 ? 'opacity-100 animate-pulse' : 'opacity-60'}`}
             >
               <span className="mr-2 text-glow-silver shrink-0">&gt;</span><span className="break-all sm:break-normal">{log}</span>
-            </motion.div>
+            </div>
           ))}
           <motion.div 
             animate={{ opacity: [0, 1, 0] }} 

@@ -1,5 +1,6 @@
 "use client";
 
+import { useMemo } from "react";
 import { motion } from "framer-motion";
 
 const skills = {
@@ -9,6 +10,30 @@ const skills = {
 };
 
 export default function Skills() {
+  const memoizedSkills = useMemo(() => Object.entries(skills).map(([category, items], idx) => (
+    <motion.div
+      key={category}
+      initial={{ opacity: 0, x: -20 }}
+      whileInView={{ opacity: 1, x: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.5, delay: idx * 0.1 }}
+    >
+      <h3 className="font-sans font-bold text-xs md:text-sm text-secondary mb-3 md:mb-4 uppercase tracking-widest">
+        {category}
+      </h3>
+      <div className="flex flex-wrap gap-2 md:gap-3">
+        {items.map((skill) => (
+          <span
+            key={skill}
+            className="inline-block px-4 py-2 md:px-6 md:py-3 border border-surface rounded-full text-primary font-sans text-[11px] md:text-[13px] hover:bg-glow-green hover:text-black hover:border-glow-green transition-all duration-300 cursor-default shadow-sm"
+          >
+            {skill}
+          </span>
+        ))}
+      </div>
+    </motion.div>
+  )), []);
+
   return (
     <section id="skills" className="py-20 md:py-32 px-6 md:px-12 max-w-[1440px] mx-auto z-30 grid lg:grid-cols-2 gap-12 md:gap-16 items-center">
       {/* Left Column - Skills List */}
@@ -17,29 +42,7 @@ export default function Skills() {
           TECHNICAL ARSENAL /
         </h2>
 
-        {Object.entries(skills).map(([category, items], idx) => (
-          <motion.div
-            key={category}
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: idx * 0.1 }}
-          >
-            <h3 className="font-sans font-bold text-xs md:text-sm text-secondary mb-3 md:mb-4 uppercase tracking-widest">
-              {category}
-            </h3>
-            <div className="flex flex-wrap gap-2 md:gap-3">
-              {items.map((skill) => (
-                <span
-                  key={skill}
-                  className="inline-block px-4 py-2 md:px-6 md:py-3 border border-surface rounded-full text-primary font-sans text-[11px] md:text-[13px] hover:bg-glow-green hover:text-black hover:border-glow-green transition-all duration-300 cursor-default shadow-sm"
-                >
-                  {skill}
-                </span>
-              ))}
-            </div>
-          </motion.div>
-        ))}
+        {memoizedSkills}
       </div>
 
       {/* Right Column - Technical Radar Chart */}

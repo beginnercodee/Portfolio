@@ -20,9 +20,9 @@ export default function Hero() {
 
   return (
     <section ref={containerRef} className="relative min-h-screen flex flex-col justify-center items-center overflow-hidden pt-32 pb-24 px-12 z-10">
-      {/* Background Glows (z-0) */}
-      <motion.div style={{ y: yBg }} className="absolute top-[-10%] left-[-10%] w-[50vw] h-[50vw] bg-glow-green rounded-full blur-[120px] opacity-30 z-0 pointer-events-none" />
-      <motion.div style={{ y: yBg }} className="absolute bottom-[-10%] right-[-10%] w-[50vw] h-[50vw] bg-glow-silver rounded-full blur-[120px] opacity-20 z-0 pointer-events-none" />
+      {/* Background Glows (Static rendering, O(1) scroll execution) */}
+      <div className="absolute top-[-10%] left-[-10%] w-[50vw] h-[50vw] bg-glow-green rounded-full blur-[120px] opacity-30 z-0 pointer-events-none translate-z-0 will-change-transform" />
+      <div className="absolute bottom-[-10%] right-[-10%] w-[50vw] h-[50vw] bg-glow-silver rounded-full blur-[120px] opacity-20 z-0 pointer-events-none translate-z-0 will-change-transform" />
 
       {/* Hero Text */}
       <motion.div
