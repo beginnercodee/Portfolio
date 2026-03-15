@@ -32,28 +32,28 @@ export default function Hero() {
         <h1 className="font-display text-hero uppercase tracking-tighter leading-none font-extrabold mix-blend-lighten flex flex-col items-center cursor-default">
           <div className="flex">
             {ENGINEER_CHARS.map((char, i) => (
-              <span
+              <motion.span
                 key={`eng-${i}`}
-                className="inline-block opacity-0 animate-hero-reveal"
-                style={{ animationDelay: `${i * 0.06}s` }}
+                initial={{ y: 80, opacity: 0, rotateX: -90 }}
+                animate={{ y: 0, opacity: 1, rotateX: 0 }}
+                transition={{ duration: 0.9, delay: i * 0.06, ease: [0.16, 1, 0.3, 1] }}
+                className="text-primary inline-block origin-bottom hover:text-glow-green hover:-translate-y-3 hover:rotate-6 hover:scale-110 transition-all duration-300"
               >
-                <span className="text-primary inline-block origin-bottom hover:text-glow-green hover:-translate-y-3 hover:rotate-6 hover:scale-110 transition-all duration-300">
-                  {char}
-                </span>
-              </span>
+                {char}
+              </motion.span>
             ))}
           </div>
           <div className="flex md:mt-[-0.5rem]">
             {AUTOMATE_CHARS.map((char, i) => (
-              <span
+              <motion.span
                 key={`auto-${i}`}
-                className="inline-block opacity-0 animate-hero-reveal"
-                style={{ animationDelay: `${0.4 + (i * 0.06)}s` }}
+                initial={{ y: 80, opacity: 0, rotateX: -90 }}
+                animate={{ y: 0, opacity: 1, rotateX: 0 }}
+                transition={{ duration: 0.9, delay: 0.4 + i * 0.06, ease: [0.16, 1, 0.3, 1] }}
+                className="text-primary inline-block origin-bottom hover:text-glow-green hover:-translate-y-3 hover:rotate-6 hover:scale-110 transition-all duration-300"
               >
-                <span className="text-primary inline-block origin-bottom hover:text-glow-green hover:-translate-y-3 hover:rotate-6 hover:scale-110 transition-all duration-300">
-                  {char}
-                </span>
-              </span>
+                {char}
+              </motion.span>
             ))}
           </div>
         </h1>

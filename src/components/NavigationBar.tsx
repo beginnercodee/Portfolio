@@ -30,9 +30,12 @@ export default function NavigationBar() {
 
   return (
     <>
-      <nav 
+      <motion.nav 
+        initial={{ y: -100 }}
+        animate={{ y: 0 }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
         className={cn(
-          "fixed top-0 left-0 right-0 z-50 flex justify-center p-4 md:py-4 transition-all duration-300 animate-fade-in-up",
+          "fixed top-0 left-0 right-0 z-50 flex justify-center p-4 md:py-4 transition-all duration-300",
           scrolled ? "md:py-2" : "md:py-6"
         )}
       >
@@ -69,7 +72,7 @@ export default function NavigationBar() {
             <div className={cn("w-6 h-0.5 bg-primary rounded-full transition-transform duration-300 origin-center", isOpen ? "-translate-y-[8px] -rotate-45" : "")} />
           </button>
         </div>
-      </nav>
+      </motion.nav>
 
       {/* Mobile Menu Overlay (Pre-rendered for O(1) mounting) */}
       <div 
