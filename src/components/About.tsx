@@ -63,18 +63,21 @@ export default function About() {
             <div className="w-2.5 h-2.5 md:w-3 md:h-3 rounded-full bg-green-500" />
           </div>
           
-          {displayedLines.map((line, i) => (
-            <div key={i} className={i === terminalLines.length - 1 && line === terminalLines[i] ? "text-glow-green font-bold drop-shadow-[0_0_8px_rgba(57,255,20,0.8)] mt-2" : "text-gray-300 font-medium"}>
-              {line}
-              {i === currentLineIndex && (
-                <span className="inline-block w-1.5 h-3 md:w-2 md:h-4 bg-white animate-pulse ml-1 align-middle" />
-              )}
-            </div>
-          ))}
-          {/* Blinking cursor when finished typing */}
-          {currentLineIndex >= terminalLines.length && (
-            <div className="mt-2"><span className="inline-block w-1.5 h-3 md:w-2 md:h-4 bg-glow-green animate-pulse align-middle" /></div>
-          )}
+          {/* Fixed height container to completely eliminate layout shifts during typing animation */}
+          <div className="h-[140px] md:h-[180px] w-full">
+            {displayedLines.map((line, i) => (
+              <div key={i} className={i === terminalLines.length - 1 && line === terminalLines[i] ? "text-glow-green font-bold drop-shadow-[0_0_8px_rgba(57,255,20,0.8)] mt-2" : "text-gray-300 font-medium"}>
+                {line}
+                {i === currentLineIndex && (
+                  <span className="inline-block w-1.5 h-3 md:w-2 md:h-4 bg-white animate-pulse ml-1 align-middle" />
+                )}
+              </div>
+            ))}
+            {/* Blinking cursor when finished typing */}
+            {currentLineIndex >= terminalLines.length && (
+              <div className="mt-2"><span className="inline-block w-1.5 h-3 md:w-2 md:h-4 bg-glow-green animate-pulse align-middle" /></div>
+            )}
+          </div>
         </div>
 
         {/* Huge Watermark Text */}
