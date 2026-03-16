@@ -35,7 +35,7 @@ export default function Services() {
       className="group p-6 md:p-8 border border-surface bg-[#0D0D0D] rounded-2xl hover:border-glow-green hover:shadow-[0_0_20px_rgba(57,255,20,0.1)] transition-all duration-500 cursor-default relative overflow-hidden"
     >
       <div className="font-mono text-glow-green text-xs md:text-sm mb-4 md:mb-6 relative z-10">{service.id} //</div>
-      <h3 className="font-display text-xl md:text-2xl text-primary font-bold mb-3 md:mb-4 relative z-10">{service.title}</h3>
+      <h3 className="font-display text-xl md:text-2xl text-primary font-bold mb-3 md:mb-4 relative z-10 group-hover:text-glow-green transition-colors duration-300">{service.title}</h3>
       <p className="font-sans text-secondary text-sm mb-8 leading-relaxed relative z-10">
         {service.desc}
       </p>
