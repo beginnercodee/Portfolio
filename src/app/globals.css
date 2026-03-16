@@ -59,6 +59,9 @@
     font-size: 14px;
     line-height: 1.6;
   }
+  .opacity-0-init {
+    opacity: 0;
+  }
 }
 
 body {

@@ -35,7 +35,7 @@ export default function Hero() {
               <span
                 key={`eng-${i}`}
                 style={{ animationDelay: `${i * 0.06}s` }}
-                className="text-primary inline-block origin-bottom hover:text-glow-green hover:-translate-y-3 hover:rotate-6 hover:scale-110 transition-all duration-300 animate-slide-up-fade opacity-0"
+                className="text-primary inline-block origin-bottom hover:text-glow-green hover:-translate-y-3 hover:rotate-6 hover:scale-110 transition-all duration-300 animate-slide-up-fade opacity-0-init"
               >
                 {char}
               </span>
@@ -46,7 +46,7 @@ export default function Hero() {
               <span
                 key={`auto-${i}`}
                 style={{ animationDelay: `${0.4 + i * 0.06}s` }}
-                className="text-primary inline-block origin-bottom hover:text-glow-green hover:-translate-y-3 hover:rotate-6 hover:scale-110 transition-all duration-300 animate-slide-up-fade opacity-0"
+                className="text-primary inline-block origin-bottom hover:text-glow-green hover:-translate-y-3 hover:rotate-6 hover:scale-110 transition-all duration-300 animate-slide-up-fade opacity-0-init"
               >
                 {char}
               </span>
