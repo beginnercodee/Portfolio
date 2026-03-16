@@ -32,7 +32,7 @@ export default function Services() {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.5, delay: idx * 0.1 }}
-      className="group p-6 md:p-8 border border-surface bg-[#0D0D0D] hover:border-glow-green hover:shadow-[0_0_20px_rgba(57,255,20,0.1)] transition-all cursor-default relative overflow-hidden"
+      className="group p-6 md:p-8 border border-surface bg-[#0D0D0D] rounded-2xl hover:border-glow-green hover:shadow-[0_0_20px_rgba(57,255,20,0.1)] transition-all duration-500 cursor-default relative overflow-hidden"
     >
       <div className="font-mono text-glow-green text-xs md:text-sm mb-4 md:mb-6 relative z-10">{service.id} //</div>
       <h3 className="font-display text-xl md:text-2xl text-primary font-bold mb-3 md:mb-4 relative z-10">{service.title}</h3>
