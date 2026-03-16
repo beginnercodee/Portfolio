@@ -6,7 +6,7 @@ import dynamic from "next/dynamic";
 const About = dynamic(() => import("@/components/About"), { ssr: true });
 const Services = dynamic(() => import("@/components/Services"), { ssr: true });
 const Experience = dynamic(() => import("@/components/Experience"), { ssr: true });
-const LiveGitHubActivity = dynamic(() => import("@/components/LiveGitHubActivity"), { ssr: false }); // Requires client-side APIs
+const LiveGitHubActivity = dynamic(() => import("@/components/LiveGitHubActivity")); // Requires client-side APIs
 const Projects = dynamic(() => import("@/components/Projects"), { ssr: true });
 const CaseStudies = dynamic(() => import("@/components/CaseStudies"), { ssr: true });
 const Testimonials = dynamic(() => import("@/components/Testimonials"), { ssr: true });
