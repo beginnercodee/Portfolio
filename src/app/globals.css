@@ -31,6 +31,18 @@
       transform: translateY(120px);
     }
   }
+
+  @keyframes slideUpFade {
+    0% {
+      opacity: 0;
+      transform: translateY(80px) rotateX(-90deg);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0) rotateX(0);
+    }
+  }
+  --animate-slide-up-fade: slideUpFade 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
 :root {
