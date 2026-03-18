@@ -45,7 +45,7 @@ export default function Testimonials() {
 
   return (
     <section className="px-12 py-32 max-w-[1000px] mx-auto z-30 relative">
-      <h2 className="font-display text-4xl text-primary mb-16 opacity-80 uppercase tracking-widest text-center md:text-left">
+      <h2 className="font-display text-4xl text-primary mb-16 opacity-80 uppercase tracking-widest text-center md:text-left hover:text-glow-green hover:opacity-100 transition-all duration-500 cursor-pointer">
         CLIENT_LOGS / TESTIMONIALS
       </h2>
       <div className="flex flex-col gap-8">

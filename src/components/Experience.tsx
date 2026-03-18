@@ -56,7 +56,7 @@ export default function Experience() {
 
   return (
     <section id="experience" className="flex flex-col max-w-[1000px] mx-auto py-20 md:py-32 px-6 md:px-12 z-30 relative overflow-hidden">
-      <h2 className="font-display text-3xl md:text-4xl text-primary mb-16 md:mb-24 opacity-80 uppercase tracking-widest text-center">
+      <h2 className="font-display text-3xl md:text-4xl text-primary mb-16 md:mb-24 opacity-80 uppercase tracking-widest text-center hover:text-glow-green hover:opacity-100 transition-all duration-500 cursor-pointer">
         EXPERIENCE / EXECUTION_LOG
       </h2>
 

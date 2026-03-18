@@ -43,7 +43,7 @@ export default function CaseStudies() {
 
   return (
     <section className="max-w-[1440px] mx-auto py-16 md:py-24 px-6 md:px-12 z-30 relative">
-      <h2 className="font-display text-3xl md:text-4xl text-primary mb-10 md:mb-12 opacity-80 uppercase tracking-widest text-center md:text-left">
+      <h2 className="font-display text-3xl md:text-4xl text-primary mb-10 md:mb-12 opacity-80 uppercase tracking-widest text-center md:text-left hover:text-glow-green hover:opacity-100 transition-all duration-500 cursor-pointer">
         CASE STUDIES / ROI ARCHITECTURE
       </h2>
 

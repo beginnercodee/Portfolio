@@ -52,7 +52,7 @@ export default function Services() {
 
   return (
     <section id="services" className="px-6 md:px-12 py-20 md:py-32 max-w-[1440px] mx-auto z-30 relative">
-      <h2 className="font-display text-3xl md:text-4xl text-primary mb-12 md:mb-16 opacity-80 uppercase tracking-widest text-center md:text-left">
+      <h2 className="font-display text-3xl md:text-4xl text-primary mb-12 md:mb-16 opacity-80 uppercase tracking-widest text-center md:text-left hover:text-glow-green hover:opacity-100 transition-all duration-500 cursor-pointer">
         SERVICES / CAPABILITIES
       </h2>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-8">
