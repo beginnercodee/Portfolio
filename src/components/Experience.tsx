@@ -8,7 +8,7 @@ const experiences = [
     role: "Team Lead, CRM & Agentic AI",
     meta: "[master] EditVista LTD // Mar 2026 — Present",
     desc: "Leading a department focused on orchestrating intelligent agentic workflows, complex CRM integrations, and massive-scale operational automation.",
-  },
+  }, 
   {
     role: "Agentic AI & Automation Intern",
     meta: "[v1.1.0] EditVista LTD // Jan 2026 — Feb 2026",
