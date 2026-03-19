@@ -35,7 +35,7 @@ export default function Skills() {
   )), []);
 
   return (
-    <section id="skills" className="py-20 md:py-32 px-6 md:px-12 max-w-[1440px] mx-auto z-30 grid lg:grid-cols-2 gap-12 md:gap-16 items-center">
+    <section id="skills" className="py-16 md:py-24 px-6 md:px-12 max-w-[1440px] mx-auto z-30 grid lg:grid-cols-2 gap-12 md:gap-16 items-center">
       {/* Left Column - Skills List */}
       <div className="flex flex-col gap-10 md:gap-12">
         <h2 className="font-display text-3xl md:text-4xl text-primary opacity-80 uppercase tracking-widest text-center lg:text-left hover:text-glow-green hover:opacity-100 transition-all duration-500 cursor-pointer">

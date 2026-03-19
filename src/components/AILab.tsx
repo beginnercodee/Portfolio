@@ -51,7 +51,7 @@ export default function AILab() {
   )), []);
 
   return (
-    <section className="max-w-[1440px] mx-auto py-20 md:py-32 px-6 md:px-12 z-30 relative">
+    <section className="max-w-[1440px] mx-auto py-16 md:py-24 px-6 md:px-12 z-30 relative">
       <h2 className="font-display text-3xl md:text-4xl text-primary mb-8 md:mb-12 opacity-80 uppercase tracking-widest text-center md:text-left hover:text-glow-green hover:opacity-100 transition-all duration-500 cursor-pointer">
         AI LAB / EXPERIMENTS
       </h2>

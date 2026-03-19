@@ -19,10 +19,36 @@ export default function Hero() {
   const opacityText = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
 
   return (
-    <section ref={containerRef} className="relative min-h-screen flex flex-col justify-center items-center overflow-hidden pt-32 pb-24 px-12 z-10">
+    <section ref={containerRef} className="relative min-h-screen flex flex-col justify-center items-center overflow-hidden pt-24 pb-16 px-12 z-10">
       {/* Background Glows (Static rendering, O(1) scroll execution) */}
       <div className="absolute top-[-10%] left-[-10%] w-[50vw] h-[50vw] bg-glow-green rounded-full blur-[120px] opacity-30 z-0 pointer-events-none translate-z-0 will-change-transform" />
       <div className="absolute bottom-[-10%] right-[-10%] w-[50vw] h-[50vw] bg-glow-silver rounded-full blur-[120px] opacity-20 z-0 pointer-events-none translate-z-0 will-change-transform" />
+
+      {/* Profile Picture Placeholder */}
+      <motion.div style={{ y: yText, opacity: opacityText }} className="mb-8 md:mb-12 z-30">
+        <motion.div
+           initial={{ opacity: 0, scale: 0.8 }}
+           animate={{ opacity: 1, scale: 1 }}
+           transition={{ delay: 0.2, duration: 0.8 }}
+           className="relative w-32 h-32 md:w-40 md:h-40 rounded-full border-2 border-white/10 p-1 overflow-hidden backdrop-blur-md group hover:border-glow-green/50 transition-colors duration-500"
+        >
+          <div className="w-full h-full rounded-full bg-[#111] overflow-hidden relative flex items-center justify-center">
+            {/* INSTRUCTION FOR USER: Add profile.jpg or profile.png to the 'public' folder */}
+            <img 
+              src="/profile.jpg" 
+              alt="Jamal Nadeem" 
+              className="absolute w-full h-full object-cover filter grayscale group-hover:grayscale-0 transition-all duration-800 opacity-80 group-hover:opacity-100 object-top"
+              onError={(e) => {
+                e.currentTarget.style.display = 'none';
+              }}
+            />
+            {/* Fallback Initials */}
+            <span className="text-secondary tracking-widest font-mono text-xl group-hover:text-glow-green transition-colors">
+              [ J_N ]
+            </span>
+          </div>
+        </motion.div>
+      </motion.div>
 
       {/* Hero Text */}
       <motion.div

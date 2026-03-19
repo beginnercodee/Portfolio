@@ -50,7 +50,7 @@ export default function About() {
   }, [currentLineIndex, currentCharIndex]);
 
   return (
-    <section id="about" className="max-w-[1440px] mx-auto px-6 md:px-12 py-20 md:py-32 grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16 relative z-30">
+    <section id="about" className="max-w-[1440px] mx-auto px-6 md:px-12 py-16 md:py-24 grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16 relative z-30">
       <div className="relative border border-white/10 p-6 md:p-10 bg-white/5 backdrop-blur-sm rounded-xl shadow-inner overflow-hidden flex flex-col justify-between min-h-[350px] md:min-h-[450px]">
         <div className="absolute inset-0 bg-glow-green/10 blur-3xl opacity-20 pointer-events-none" />
         

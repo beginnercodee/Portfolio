@@ -43,7 +43,7 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact" className="min-h-[80vh] flex border-t border-surface flex-col items-center justify-center pb-20 md:pb-32 pt-20 md:pt-32 px-6 md:px-12 z-30 relative overflow-hidden">
+    <section id="contact" className="min-h-[80vh] flex border-t border-surface flex-col items-center justify-center pb-16 md:pb-24 pt-16 md:pt-24 px-6 md:px-12 z-30 relative overflow-hidden">
       <ThankYouOverlay isOpen={isOverlayOpen} onClose={() => setIsOverlayOpen(false)} />
       
       {/* Background Glow Spotlight */}
