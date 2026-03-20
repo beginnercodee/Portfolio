@@ -1,7 +1,5 @@
-"use client";
-
-import { useMemo } from "react";
-import { motion } from "framer-motion";
+import { ScrollFade } from "./animations/ScrollFade";
+import { ScrollScale } from "./animations/ScrollScale";
 
 const skills = {
   Frontend: ["React.js", "Next.js", "Tailwind CSS", "Shadcn UI", "Framer Motion"],
@@ -10,30 +8,6 @@ const skills = {
 };
 
 export default function Skills() {
-  const memoizedSkills = useMemo(() => Object.entries(skills).map(([category, items], idx) => (
-    <motion.div
-      key={category}
-      initial={{ opacity: 0, x: -20 }}
-      whileInView={{ opacity: 1, x: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.5, delay: idx * 0.1 }}
-    >
-      <h3 className="font-sans font-bold text-xs md:text-sm text-secondary mb-3 md:mb-4 uppercase tracking-widest">
-        {category}
-      </h3>
-      <div className="flex flex-wrap gap-2 md:gap-3">
-        {items.map((skill) => (
-          <span
-            key={skill}
-            className="inline-block px-4 py-2 md:px-6 md:py-3 border border-surface rounded-full text-primary font-sans text-[11px] md:text-[13px] hover:bg-glow-green hover:text-black hover:border-glow-green transition-all duration-300 cursor-default shadow-sm"
-          >
-            {skill}
-          </span>
-        ))}
-      </div>
-    </motion.div>
-  )), []);
-
   return (
     <section id="skills" className="py-16 md:py-24 px-6 md:px-12 max-w-[1440px] mx-auto z-30 grid lg:grid-cols-2 gap-12 md:gap-16 items-center">
       {/* Left Column - Skills List */}
@@ -42,15 +16,33 @@ export default function Skills() {
           TECHNICAL ARSENAL /
         </h2>
 
-        {memoizedSkills}
+        {Object.entries(skills).map(([category, items], idx) => (
+          <ScrollFade
+            key={category}
+            x={-20}
+            duration={0.5}
+            delay={idx * 0.1}
+          >
+            <h3 className="font-sans font-bold text-xs md:text-sm text-secondary mb-3 md:mb-4 uppercase tracking-widest">
+              {category}
+            </h3>
+            <div className="flex flex-wrap gap-2 md:gap-3">
+              {items.map((skill) => (
+                <span
+                  key={skill}
+                  className="inline-block px-4 py-2 md:px-6 md:py-3 border border-surface rounded-full text-primary font-sans text-[11px] md:text-[13px] hover:bg-glow-green hover:text-black hover:border-glow-green transition-all duration-300 cursor-default shadow-sm"
+                >
+                  {skill}
+                </span>
+              ))}
+            </div>
+          </ScrollFade>
+        ))}
       </div>
 
       {/* Right Column - Technical Radar Chart */}
-      <motion.div
-        initial={{ opacity: 0, scale: 0.9 }}
-        whileInView={{ opacity: 1, scale: 1 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.7 }}
+      <ScrollScale
+        duration={0.7}
         className="relative w-full aspect-square flex items-center justify-center p-4 md:p-8 bg-[#0D0D0D] border border-surface rounded-3xl group overflow-hidden mt-8 md:mt-0"
       >
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(57,255,20,0.05),transparent_70%)] opacity-0 group-hover:opacity-100 transition-opacity duration-1000" />
@@ -87,7 +79,7 @@ export default function Skills() {
         <div className="absolute right-2 md:right-4 top-1/2 -translate-y-1/2 font-mono text-[8px] md:text-[10px] text-glow-green uppercase tracking-widest text-center rotate-[90deg] origin-center">
           Data &<br/>Automation
         </div>
-      </motion.div>
+      </ScrollScale>
     </section>
   );
 }
