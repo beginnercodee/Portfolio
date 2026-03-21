@@ -12,7 +12,7 @@ export default function SystemStatusFooter() {
   useEffect(() => {
     setMounted(true);
     
-    // Current time
+    
     const updateTime = () => {
       const date = new Date();
       setTime(
