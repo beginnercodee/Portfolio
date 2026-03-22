@@ -12,7 +12,6 @@ export default function SystemStatusFooter() {
   useEffect(() => {
     setMounted(true);
     
-    
     const updateTime = () => {
       const date = new Date();
       setTime(
