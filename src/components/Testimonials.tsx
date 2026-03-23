@@ -39,7 +39,7 @@ export default function Testimonials() {
             </div>
             <div className="md:w-2/3">
               <p className="font-mono text-sm text-secondary italic leading-relaxed">
-                "{t.log}"
+                &quot;{t.log}&quot;
               </p>
             </div>
           </ScrollFade>
