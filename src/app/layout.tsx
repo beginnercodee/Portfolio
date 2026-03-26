@@ -20,6 +20,8 @@ const jetbrainsMono = JetBrains_Mono({
   subsets: ["latin"],
 });
 
+import CommandPalette from "@/components/CommandPalette";
+
 export const metadata: Metadata = {
   title: "Jamal Nadeem | Automation Engineer",
   description: "Portfolio of Jamal Nadeem, a full-stack developer and AI automation expert.",
@@ -34,6 +36,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${inter.variable} ${spaceGrotesk.variable} ${jetbrainsMono.variable} antialiased bg-background text-primary`}>
         {children}
+        <CommandPalette />
         <Analytics />
         <SpeedInsights />
       </body>
