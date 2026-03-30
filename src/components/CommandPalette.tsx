@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Search, Terminal, ArrowRight, Github, Linkedin, Mail } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 type Command = {
   id: string;
@@ -14,11 +15,12 @@ type Command = {
 export default function CommandPalette() {
   const [isOpen, setIsOpen] = useState(false);
   const [query, setQuery] = useState("");
+  const [selectedIndex, setSelectedIndex] = useState(0);
   const inputRef = useRef<HTMLInputElement>(null);
 
   // Toggle palette on CMD+K or CTRL+K
   useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
+    const handleGlobalKeyDown = (e: KeyboardEvent) => {
       if ((e.metaKey || e.ctrlKey) && e.key === "k") {
         e.preventDefault();
         setIsOpen((open) => !open);
@@ -28,8 +30,8 @@ export default function CommandPalette() {
       }
     };
 
-    window.addEventListener("keydown", handleKeyDown);
-    return () => window.removeEventListener("keydown", handleKeyDown);
+    window.addEventListener("keydown", handleGlobalKeyDown);
+    return () => window.removeEventListener("keydown", handleGlobalKeyDown);
   }, []);
 
   // Auto-focus input when opened
@@ -38,6 +40,7 @@ export default function CommandPalette() {
       setTimeout(() => inputRef.current?.focus(), 50);
     } else {
       setQuery(""); // Reset query on close
+      setSelectedIndex(0);
     }
   }, [isOpen]);
 
@@ -112,6 +115,26 @@ export default function CommandPalette() {
     cmd.id.toLowerCase().includes(query.toLowerCase())
   );
 
+  // Reset selected index when query results change
+  useEffect(() => {
+    setSelectedIndex(0);
+  }, [query]);
+
+  const handleInputKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "ArrowDown") {
+      e.preventDefault();
+      setSelectedIndex((prev) => (prev < filteredCommands.length - 1 ? prev + 1 : prev));
+    } else if (e.key === "ArrowUp") {
+      e.preventDefault();
+      setSelectedIndex((prev) => (prev > 0 ? prev - 1 : prev));
+    } else if (e.key === "Enter") {
+      e.preventDefault();
+      if (filteredCommands.length > 0) {
+        filteredCommands[selectedIndex].action();
+      }
+    }
+  };
+
   return (
     <AnimatePresence>
       {isOpen && (
@@ -140,6 +163,7 @@ export default function CommandPalette() {
                 ref={inputRef}
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
+                onKeyDown={handleInputKeyDown}
                 placeholder="Type a command or search..."
                 className="flex-1 bg-transparent text-primary placeholder:text-secondary/50 font-mono text-sm focus:outline-none"
                 autoComplete="off"
@@ -153,19 +177,31 @@ export default function CommandPalette() {
             {/* Command List */}
             <div className="max-h-[300px] overflow-y-auto p-2 scrollbar-thin scrollbar-thumb-glow-green/20 scrollbar-track-transparent">
               {filteredCommands.length > 0 ? (
-                filteredCommands.map((cmd) => (
+                filteredCommands.map((cmd, index) => (
                   <button
                     key={cmd.id}
                     onClick={cmd.action}
-                    className="w-full flex items-center justify-between gap-3 px-4 py-3 rounded-lg hover:bg-glow-green/10 text-secondary hover:text-glow-green transition-all group group-focus:bg-glow-green/10 outline-none focus:bg-glow-green/10"
+                    className={cn(
+                      "w-full flex items-center justify-between gap-3 px-4 py-3 rounded-lg transition-all outline-none",
+                      index === selectedIndex 
+                        ? "bg-glow-green/10 text-glow-green" 
+                        : "text-secondary hover:bg-glow-green/5 hover:text-glow-green/80",
+                      "group"
+                    )}
                   >
                     <div className="flex items-center gap-3 font-mono text-xs md:text-sm">
-                      <span className="opacity-50 group-hover:opacity-100 transition-opacity">
+                      <span className={cn(
+                        "transition-opacity",
+                        index === selectedIndex ? "opacity-100" : "opacity-50 group-hover:opacity-100"
+                      )}>
                         {cmd.icon}
                       </span>
                       {cmd.name}
                     </div>
-                    <ArrowRight className="w-4 h-4 opacity-0 group-hover:opacity-50 transition-all -translate-x-2 group-hover:translate-x-0" />
+                    <ArrowRight className={cn(
+                      "w-4 h-4 transition-all",
+                      index === selectedIndex ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-2 group-hover:opacity-50 group-hover:translate-x-0"
+                    )} />
                   </button>
                 ))
               ) : (
