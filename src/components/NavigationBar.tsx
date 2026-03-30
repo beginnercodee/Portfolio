@@ -8,6 +8,12 @@ import { motion } from "framer-motion";
 export default function NavigationBar() {
   const [scrolled, setScrolled] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
+  const [isMac, setIsMac] = useState(false);
+
+  // Check OS for correct shortcut key display
+  useEffect(() => {
+    setIsMac(navigator.userAgent.toLowerCase().includes('mac'));
+  }, []);
 
   // O(1) functional referencing across renders
   const handleScroll = useCallback(() => {
@@ -28,6 +34,11 @@ export default function NavigationBar() {
     setIsOpen(false);
   }, []);
 
+  const openCommandPalette = useCallback(() => {
+    window.dispatchEvent(new KeyboardEvent('keydown', { key: 'k', metaKey: true, bubbles: true }));
+    closeMenu();
+  }, [closeMenu]);
+
   return (
     <>
       <motion.nav 
@@ -46,31 +57,53 @@ export default function NavigationBar() {
             : "bg-transparent border-transparent"
         )}>
           {/* Desktop Left Links */}
-          <div className="hidden md:flex gap-8 font-sans text-nav lowercase text-secondary transition-colors duration-300">
-            <Link href="#about" className="hover:text-primary transition-colors">about</Link>
-            <Link href="#experience" className="hover:text-primary transition-colors">experience</Link>
+          <div className="hidden md:flex gap-8 font-sans text-nav lowercase text-secondary transition-colors duration-300 items-center">
+            <Link href="/#about" className="hover:text-primary transition-colors">about</Link>
+            <Link href="/#experience" className="hover:text-primary transition-colors">experience</Link>
+            <Link href="/logs" className="hover:text-glow-green text-glow-green/80 flex items-center gap-1 transition-colors group">
+              <span className="w-1.5 h-1.5 rounded-full bg-glow-green/50 group-hover:bg-glow-green animate-pulse" />
+              logs
+            </Link>
           </div>
           
-          <div className="font-display uppercase tracking-widest text-primary text-xl font-bold hover:text-glow-green transition-colors cursor-pointer w-full text-center md:w-auto md:text-left z-50">
+          <Link href="/" className="font-display uppercase tracking-widest text-primary text-xl font-bold hover:text-glow-green transition-colors cursor-pointer w-full text-center md:w-auto md:text-left z-50">
             JN LABS
-          </div>
+          </Link>
           
           {/* Desktop Right Links */}
-          <div className="hidden md:flex gap-8 font-sans text-nav lowercase text-secondary transition-colors duration-300">
-            <Link href="#projects" className="hover:text-primary transition-colors">projects</Link>
-            <Link href="#skills" className="hover:text-primary transition-colors">skills</Link>
+          <div className="hidden md:flex gap-8 font-sans text-nav lowercase text-secondary transition-colors duration-300 items-center">
+            <Link href="/#projects" className="hover:text-primary transition-colors">projects</Link>
+            <Link href="/#skills" className="hover:text-primary transition-colors">skills</Link>
+            <button 
+              onClick={openCommandPalette}
+              className="flex items-center gap-2 px-3 py-1.5 rounded-md border border-white/10 bg-white/5 hover:bg-glow-green/10 hover:border-glow-green/30 hover:text-glow-green transition-all"
+            >
+              <span className="font-mono text-[10px] tracking-widest opacity-70">SEARCH</span>
+              <kbd className="font-mono text-[9px] bg-black/50 px-1.5 py-0.5 rounded border border-white/5 text-glow-silver">
+                {isMac ? '⌘K' : 'CTRL+K'}
+              </kbd>
+            </button>
           </div>
 
           {/* Mobile Hamburger Toggle (Hardware Accelerated O(1) Rendering) */}
-          <button 
-            className="md:hidden flex flex-col justify-center items-center w-8 h-8 gap-1.5 z-50 absolute right-6"
-            onClick={toggleMenu}
-            aria-label="Toggle Menu"
-          >
-            <div className={cn("w-6 h-0.5 bg-primary rounded-full transition-transform duration-300 origin-center", isOpen ? "translate-y-[8px] rotate-45" : "")} />
-            <div className={cn("w-6 h-0.5 bg-primary rounded-full transition-opacity duration-300", isOpen ? "opacity-0" : "opacity-100")} />
-            <div className={cn("w-6 h-0.5 bg-primary rounded-full transition-transform duration-300 origin-center", isOpen ? "-translate-y-[8px] -rotate-45" : "")} />
-          </button>
+          <div className="md:hidden flex items-center gap-4 z-50 absolute right-6">
+            <button 
+              onClick={openCommandPalette}
+              className="flex items-center justify-center p-2 rounded-md border border-white/10 bg-white/5 text-secondary hover:text-glow-green transition-colors"
+              aria-label="Search"
+            >
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+            </button>
+            <button 
+              className="flex flex-col justify-center items-center w-6 h-6 gap-1.5"
+              onClick={toggleMenu}
+              aria-label="Toggle Menu"
+            >
+              <div className={cn("w-6 h-0.5 bg-primary rounded-full transition-transform duration-300 origin-center", isOpen ? "translate-y-[8px] rotate-45" : "")} />
+              <div className={cn("w-6 h-0.5 bg-primary rounded-full transition-opacity duration-300", isOpen ? "opacity-0" : "opacity-100")} />
+              <div className={cn("w-6 h-0.5 bg-primary rounded-full transition-transform duration-300 origin-center", isOpen ? "-translate-y-[8px] -rotate-45" : "")} />
+            </button>
+          </div>
         </div>
       </motion.nav>
 
@@ -82,10 +115,15 @@ export default function NavigationBar() {
         )}
       >
         <div className="absolute inset-0 bg-glow-green/5 blur-3xl opacity-20 pointer-events-none" />
-        <Link href="#about" onClick={closeMenu} className="font-display uppercase tracking-[0.2em] text-2xl text-secondary hover:text-glow-green transition-all">About</Link>
-        <Link href="#experience" onClick={closeMenu} className="font-display uppercase tracking-[0.2em] text-2xl text-secondary hover:text-glow-green transition-all">Experience</Link>
-        <Link href="#projects" onClick={closeMenu} className="font-display uppercase tracking-[0.2em] text-2xl text-secondary hover:text-glow-green transition-all">Projects</Link>
-        <Link href="#skills" onClick={closeMenu} className="font-display uppercase tracking-[0.2em] text-2xl text-secondary hover:text-glow-green transition-all">Skills</Link>
+        <Link href="/#about" onClick={closeMenu} className="font-display uppercase tracking-[0.2em] text-2xl text-secondary hover:text-glow-green transition-all">About</Link>
+        <Link href="/#experience" onClick={closeMenu} className="font-display uppercase tracking-[0.2em] text-2xl text-secondary hover:text-glow-green transition-all">Experience</Link>
+        <Link href="/#projects" onClick={closeMenu} className="font-display uppercase tracking-[0.2em] text-2xl text-secondary hover:text-glow-green transition-all">Projects</Link>
+        <Link href="/#skills" onClick={closeMenu} className="font-display uppercase tracking-[0.2em] text-2xl text-secondary hover:text-glow-green transition-all">Skills</Link>
+        <div className="w-12 h-px bg-white/10 my-2" />
+        <Link href="/logs" onClick={closeMenu} className="font-display uppercase tracking-[0.2em] text-2xl text-glow-green hover:text-white transition-all flex items-center gap-3">
+          <span className="w-2 h-2 rounded-full bg-glow-green animate-pulse" />
+          Execution Logs
+        </Link>
       </div>
     </>
   );
