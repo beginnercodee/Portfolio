@@ -57,7 +57,7 @@ export default function NavigationBar() {
             : "bg-transparent border-transparent"
         )}>
           {/* Desktop Left Links */}
-          <div className="hidden md:flex flex-1 justify-start gap-8 font-sans text-nav lowercase text-secondary transition-colors duration-300 items-center">
+          <div className="hidden md:flex w-1/3 justify-start gap-8 font-sans text-nav lowercase text-secondary transition-colors duration-300 items-center">
             <Link href="/#about" className="hover:text-primary transition-colors">about</Link>
             <Link href="/#experience" className="hover:text-primary transition-colors">experience</Link>
             <Link href="/logs" className="hover:text-glow-green text-glow-green/80 flex items-center gap-1 transition-colors group">
@@ -66,12 +66,15 @@ export default function NavigationBar() {
             </Link>
           </div>
           
-          <Link href="/" className="font-display uppercase tracking-widest text-primary text-xl font-bold hover:text-glow-green transition-colors cursor-pointer w-full text-center md:flex-none flex-shrink-0 z-50">
-            JN LABS
-          </Link>
+          {/* Logo Center */}
+          <div className="flex w-full md:w-1/3 justify-start md:justify-center z-50">
+            <Link href="/" className="font-display uppercase tracking-widest text-primary text-xl font-bold hover:text-glow-green transition-colors">
+              JN LABS
+            </Link>
+          </div>
           
           {/* Desktop Right Links */}
-          <div className="hidden md:flex flex-1 justify-end gap-8 font-sans text-nav lowercase text-secondary transition-colors duration-300 items-center">
+          <div className="hidden md:flex w-1/3 justify-end gap-8 font-sans text-nav lowercase text-secondary transition-colors duration-300 items-center">
             <Link href="/#projects" className="hover:text-primary transition-colors">projects</Link>
             <Link href="/#skills" className="hover:text-primary transition-colors">skills</Link>
             <button 
