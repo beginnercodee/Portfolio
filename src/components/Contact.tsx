@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import ThankYouOverlay from "./ThankYouOverlay";
+import { Github, Linkedin, Twitter } from "lucide-react";
 
 export default function Contact() {
   const [isOverlayOpen, setIsOverlayOpen] = useState(false);
@@ -153,10 +154,40 @@ export default function Contact() {
         </motion.div>
       </div>
 
-      <div className="font-mono text-[10px] md:text-xs text-secondary flex flex-col md:flex-row items-center gap-4 md:gap-8 justify-center w-full mt-20 md:mt-32 z-10">
-        <a href="https://github.com/beginnercodee" className="hover:text-glow-green transition-colors" target="_blank">github://jamal-nadeem</a>
-        <a href="https://www.linkedin.com/in/jamal-nadeem/" className="hover:text-glow-green transition-colors" target="_blank">linkedin://in/jamalnadeem</a>
-        <a href="https://x.com/Nadeem7Jamal" className="hover:text-glow-green transition-colors" target="_blank">x://@jamal_codes</a>
+      {/* Prominent Social Links */}
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 md:gap-6 w-full max-w-[900px] mt-20 md:mt-32 z-10">
+        <a 
+          href="https://github.com/beginnercodee" 
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex flex-col items-center justify-center p-6 rounded-xl border border-white/10 bg-black/40 hover:bg-glow-green/10 hover:border-glow-green/50 text-secondary hover:text-glow-green hover:-translate-y-2 hover:shadow-[0_10px_30px_-10px_rgba(57,255,20,0.3)] transition-all duration-300 group"
+        >
+          <Github className="w-8 h-8 mb-4 opacity-70 group-hover:opacity-100 group-hover:scale-110 transition-all duration-300" />
+          <span className="font-mono text-sm tracking-widest uppercase">github://</span>
+          <span className="font-sans font-bold text-white group-hover:text-glow-green mt-1">jamal-nadeem</span>
+        </a>
+        
+        <a 
+          href="https://www.linkedin.com/in/jamal-nadeem/" 
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex flex-col items-center justify-center p-6 rounded-xl border border-white/10 bg-black/40 hover:bg-glow-green/10 hover:border-glow-green/50 text-secondary hover:text-glow-green hover:-translate-y-2 hover:shadow-[0_10px_30px_-10px_rgba(57,255,20,0.3)] transition-all duration-300 group"
+        >
+          <Linkedin className="w-8 h-8 mb-4 opacity-70 group-hover:opacity-100 group-hover:scale-110 transition-all duration-300" />
+          <span className="font-mono text-sm tracking-widest uppercase">linkedin://</span>
+          <span className="font-sans font-bold text-white group-hover:text-glow-green mt-1">in/jamalnadeem</span>
+        </a>
+
+        <a 
+          href="https://x.com/Nadeem7Jamal" 
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex flex-col items-center justify-center p-6 rounded-xl border border-white/10 bg-black/40 hover:bg-glow-green/10 hover:border-glow-green/50 text-secondary hover:text-glow-green hover:-translate-y-2 hover:shadow-[0_10px_30px_-10px_rgba(57,255,20,0.3)] transition-all duration-300 group"
+        >
+          <Twitter className="w-8 h-8 mb-4 opacity-70 group-hover:opacity-100 group-hover:scale-110 transition-all duration-300" />
+          <span className="font-mono text-sm tracking-widest uppercase">x://</span>
+          <span className="font-sans font-bold text-white group-hover:text-glow-green mt-1">@jamal_codes</span>
+        </a>
       </div>
     </section>
   );
