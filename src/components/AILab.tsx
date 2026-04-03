@@ -1,4 +1,5 @@
 import { ScrollScale } from "./animations/ScrollScale";
+import HackerText from "./animations/HackerText";
 
 const experiments = [
   {
@@ -41,9 +42,7 @@ export default function AILab() {
               </span>
             </div>
 
-            <h3 className="font-sans text-xl font-bold text-primary mb-3 group-hover:text-glow-green transition-colors">
-              {exp.title}
-            </h3>
+            <HackerText text={exp.title} />
             
             <p className="font-mono text-xs text-secondary leading-relaxed">
               {exp.desc}
