@@ -1,5 +1,7 @@
 import Image from "next/image";
 import { ScrollScale } from "./animations/ScrollScale";
+import ProjectCursor from "./animations/ProjectCursor";
+import Link from "next/link"; // For upcoming routing implementations
 
 const projects = [
   {
@@ -31,6 +33,7 @@ const projects = [
 export default function Projects() {
   return (
     <section id="projects" className="px-6 md:px-12 py-16 md:py-24 max-w-[1440px] mx-auto z-30 relative">
+      <ProjectCursor />
       <h2 className="font-display text-3xl md:text-4xl text-primary mb-12 md:mb-16 opacity-80 uppercase tracking-widest text-center md:text-left hover:text-glow-green hover:opacity-100 transition-all duration-500 cursor-pointer">
         SELECTED WORKS /
       </h2>
@@ -41,8 +44,10 @@ export default function Projects() {
             key={idx}
             delay={idx * 0.1}
             duration={0.5}
-            className="relative aspect-[4/5] md:aspect-[4/3] bg-base border border-surface md:hover:border-white/20 md:hover:shadow-[0_0_30px_rgba(255,255,255,0.05)] overflow-hidden group rounded-2xl md:cursor-pointer transition-all duration-500"
+            className="w-full h-full"
           >
+            {/* Added data attribute and custom cursor wrapper */}
+            <div data-project-id={idx} className="relative aspect-[4/5] md:aspect-[4/3] bg-base border border-surface md:hover:border-glow-green/30 md:hover:shadow-[0_0_30px_rgba(57,255,20,0.1)] overflow-hidden group rounded-2xl md:cursor-none transition-all duration-500">
             {/* Added subtle glow on hover */}
             <div className="absolute inset-0 bg-glow-green/20 opacity-0 md:group-hover:opacity-10 blur-3xl transition-opacity duration-700 z-10 pointer-events-none" />
             
@@ -73,6 +78,7 @@ export default function Projects() {
                   {proj.desc}
                 </p>
               </div>
+            </div>
             </div>
           </ScrollScale>
         ))}
