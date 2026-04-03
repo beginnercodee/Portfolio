@@ -6,7 +6,11 @@ import { useInView } from "framer-motion";
 const LETTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%&*";
 
 export default function HackerText({ text }: { text: string }) {
-  const [displayText, setDisplayText] = useState(text);
+  // Initialize with completely garbled text matching the exact length of the original title
+  const [displayText, setDisplayText] = useState(() => 
+    text.split('').map(c => c === ' ' ? ' ' : LETTERS[Math.floor(Math.random() * LETTERS.length)]).join('')
+  );
+  
   const containerRef = useRef<HTMLHeadingElement>(null);
   const isInView = useInView(containerRef, { once: true, margin: "0px 0px -50px 0px" });
   const [hasRun, setHasRun] = useState(false);
