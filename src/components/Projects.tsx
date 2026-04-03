@@ -9,24 +9,28 @@ const projects = [
     tech: "React, GenAI, Web Sockets",
     desc: "An AI-tutoring system for coding competitions. Evaluates logic in real-time, providing immediate, intelligent feedback to competitors.",
     image: "/projects/codesprint.png",
+    link: "https://github.com/beginnercodee",
   },
   {
     title: "Automated Outreach Engine.",
     tech: "GoHighLevel, n8n, Supabase",
     desc: "End-to-end client acquisition system built for a Consulting Agency and a dental clinic, completely removing manual pipeline management.",
     image: "/projects/outreach-engine.png",
+    link: "/logs",
   },
   {
     title: "Custom Quote Generator.",
     tech: "Next.js, Supabase, Tailwind",
     desc: "A dynamic, high-performance web tool engineered to replace legacy Excel-based quoting flows with real-time database synchronization.",
     image: "/projects/quote-generator.png",
+    link: "https://github.com/beginnercodee",
   },
   {
     title: "Intelligent PDF Engine.",
     tech: "Python, Flask, Webhooks",
     desc: "Automated PDF generation system integrating directly with GoHighLevel via webhooks to instantly update CRM contact records.",
     image: "/projects/pdf-engine.png",
+    link: "https://github.com/beginnercodee",
   },
 ];
 
@@ -61,7 +65,35 @@ export default function Projects() {
             />
             
             {/* Lower gradient overlay for text readability */}
-            <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/70 md:via-black/50 to-transparent flex flex-col justify-end p-6 md:p-8 z-20">
+            <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/70 md:via-black/50 to-transparent flex flex-col justify-end p-6 md:p-8 z-20 pointer-events-none">
+              
+              {/* Floating Action Link */}
+              <div className="absolute top-6 right-6 md:top-8 md:right-8 z-30 pointer-events-auto">
+                 {proj.link.startsWith("http") ? (
+                   <a 
+                     href={proj.link} 
+                     target="_blank" 
+                     rel="noopener noreferrer"
+                     className="font-mono text-[10px] md:text-xs flex items-center gap-2 bg-black/80 backdrop-blur-md border border-white/20 px-3 py-1.5 rounded-sm hover:border-glow-green hover:text-glow-green transition-all duration-300 md:opacity-0 md:group-hover:opacity-100 group/btn"
+                   >
+                     <span className="opacity-0 group-hover/btn:opacity-100 transition-opacity -mr-1 hidden md:inline-block">↗ </span>
+                     <span className="md:hidden group-hover/btn:hidden">[ ... ]</span>
+                     <span className="hidden md:inline-block group-hover/btn:hidden">[ RUN ]</span>
+                     <span className="hidden group-hover/btn:inline-block">EXECUTE SYS</span>
+                   </a>
+                 ) : (
+                   <Link 
+                     href={proj.link} 
+                     className="font-mono text-[10px] md:text-xs flex items-center gap-2 bg-black/80 backdrop-blur-md border border-white/20 px-3 py-1.5 rounded-sm hover:border-glow-green hover:text-glow-green transition-all duration-300 md:opacity-0 md:group-hover:opacity-100 group/btn"
+                   >
+                     <span className="opacity-0 group-hover/btn:opacity-100 transition-opacity -mr-1 hidden md:inline-block">↗ </span>
+                     <span className="md:hidden group-hover/btn:hidden">[ ... ]</span>
+                     <span className="hidden md:inline-block group-hover/btn:hidden">[ LOG ]</span>
+                     <span className="hidden group-hover/btn:inline-block">VIEW DATA</span>
+                   </Link>
+                 )}
+              </div>
+
               <h3 className="font-display text-2xl sm:text-3xl md:text-4xl text-primary mb-2 md:mb-3 font-bold tracking-tight shadow-black drop-shadow-lg">
                 {proj.title}
               </h3>
