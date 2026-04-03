@@ -1,5 +1,6 @@
 import { ScrollScale } from "./animations/ScrollScale";
 import HackerText from "./animations/HackerText";
+import ASCIIProgress from "./animations/ASCIIProgress";
 
 const experiments = [
   {
@@ -36,10 +37,11 @@ export default function AILab() {
             className="group bg-transparent border border-dashed border-surface p-6 md:p-8 hover:border-solid hover:border-glow-green transition-all duration-300 relative overflow-hidden rounded-xl"
           >
             {/* Status Indicator */}
-            <div className="flex items-center gap-2 font-mono text-xs text-glow-green mb-6">
-              <span className={exp.status.includes("ACTIVE") ? "animate-pulse" : ""}>
-                {exp.status}
-              </span>
+            <div className="mb-6 border-b border-surface/50 pb-3">
+              <ASCIIProgress 
+                status={exp.status} 
+                isActive={exp.status.includes("ACTIVE") || exp.status.includes("IN_PROGRESS")} 
+              />
             </div>
 
             <HackerText text={exp.title} />
