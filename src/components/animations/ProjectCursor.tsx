@@ -6,7 +6,6 @@ import { motion, useMotionValue, useSpring } from "framer-motion";
 export default function ProjectCursor() {
   const [isHovering, setIsHovering] = useState(false);
   
-  // Motion values for ultra-fast, 60fps tracking without React re-renders
   const mouseX = useMotionValue(-100);
   const mouseY = useMotionValue(-100);
 
