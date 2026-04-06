@@ -9,7 +9,6 @@ export default function ProjectCursor() {
   const mouseX = useMotionValue(-100);
   const mouseY = useMotionValue(-100);
 
-  // Smooth springs to trail behind the physical mouse slightly
   const springX = useSpring(mouseX, { damping: 25, stiffness: 200, mass: 0.5 });
   const springY = useSpring(mouseY, { damping: 25, stiffness: 200, mass: 0.5 });
 
