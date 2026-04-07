@@ -21,6 +21,7 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 import CommandPalette from "@/components/CommandPalette";
+import TerminalOverlay from "@/components/TerminalOverlay";
 
 export const metadata: Metadata = {
   title: "Jamal Nadeem | Automation Engineer",
@@ -37,6 +38,7 @@ export default function RootLayout({
       <body className={`${inter.variable} ${spaceGrotesk.variable} ${jetbrainsMono.variable} antialiased bg-background text-primary`}>
         {children}
         <CommandPalette />
+        <TerminalOverlay />
         <Analytics />
         <SpeedInsights />
       </body>
