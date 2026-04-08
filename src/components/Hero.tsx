@@ -59,30 +59,26 @@ export default function Hero() {
         className="z-10 text-center flex flex-col items-center"
       >
         <h1 className="font-display text-hero uppercase tracking-tighter leading-none font-extrabold mix-blend-lighten flex flex-col items-center cursor-default">
-          <div className="flex">
+          <div className="flex flex-nowrap inline-flex min-w-max whitespace-nowrap">
             {ENGINEER_CHARS.map((char, i) => (
-              <motion.span
+              <span
                 key={`eng-${i}`}
-                initial={{ opacity: 0, y: 80, rotateX: -90 }}
-                animate={{ opacity: 1, y: 0, rotateX: 0 }}
-                transition={{ duration: 0.9, delay: i * 0.06, ease: [0.16, 1, 0.3, 1] }}
-                className="text-primary inline-block origin-bottom hover:text-glow-green hover:-translate-y-3 hover:rotate-6 hover:scale-110 transition-all duration-300"
+                style={{ animationDelay: `${i * 0.06}s` }}
+                className="text-primary inline-block origin-bottom hover:text-glow-green hover:-translate-y-3 hover:rotate-6 hover:scale-110 transition-all duration-300 animate-slide-up-fade opacity-0-init"
               >
                 {char}
-              </motion.span>
+              </span>
             ))}
           </div>
-          <div className="flex md:mt-[-0.5rem]">
+          <div className="flex flex-nowrap inline-flex min-w-max whitespace-nowrap md:mt-[-0.5rem]">
             {AUTOMATE_CHARS.map((char, i) => (
-              <motion.span
+              <span
                 key={`auto-${i}`}
-                initial={{ opacity: 0, y: 80, rotateX: -90 }}
-                animate={{ opacity: 1, y: 0, rotateX: 0 }}
-                transition={{ duration: 0.9, delay: 0.4 + (i * 0.06), ease: [0.16, 1, 0.3, 1] }}
-                className="text-primary inline-block origin-bottom hover:text-glow-green hover:-translate-y-3 hover:rotate-6 hover:scale-110 transition-all duration-300"
+                style={{ animationDelay: `${0.4 + i * 0.06}s` }}
+                className="text-primary inline-block origin-bottom hover:text-glow-green hover:-translate-y-3 hover:rotate-6 hover:scale-110 transition-all duration-300 animate-slide-up-fade opacity-0-init"
               >
                 {char}
-              </motion.span>
+              </span>
             ))}
           </div>
         </h1>
