@@ -9,7 +9,6 @@ type Log = {
   text: string;
   type: "input" | "output" | "error" | "system";
 };
-
 export default function TerminalOverlay() {
   const [isOpen, setIsOpen] = useState(false);
   const [inputMessage, setInputMessage] = useState("");

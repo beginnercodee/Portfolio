@@ -42,7 +42,7 @@
       transform: translateY(0) rotateX(0);
     }
   }
-  --animate-slide-up-fade: slideUpFade 0.9s cubic-bezier(0.16, 1, 0.3, 1) both;
+  --animate-slide-up-fade: slideUpFade 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
 :root {
