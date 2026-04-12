@@ -56,9 +56,13 @@ export default function TerminalOverlay() {
         newLogs.push({ id: Date.now() + 1, text: "AVAILABLE COMMANDS:", type: "output" });
         newLogs.push({ id: Date.now() + 2, text: "  whoami      - display current user identity", type: "output" });
         newLogs.push({ id: Date.now() + 3, text: "  skills      - list core technical competencies", type: "output" });
-        newLogs.push({ id: Date.now() + 4, text: "  clear       - wipe terminal output", type: "output" });
-        newLogs.push({ id: Date.now() + 5, text: "  sudo rm -rf - [DANGEROUS] do not run", type: "output" });
-        newLogs.push({ id: Date.now() + 6, text: "  exit        - close terminal interface", type: "output" });
+        newLogs.push({ id: Date.now() + 4, text: "  date        - print system date and time", type: "output" });
+        newLogs.push({ id: Date.now() + 5, text: "  clear       - wipe terminal output", type: "output" });
+        newLogs.push({ id: Date.now() + 6, text: "  sudo rm -rf - [DANGEROUS] do not run", type: "output" });
+        newLogs.push({ id: Date.now() + 7, text: "  exit        - close terminal interface", type: "output" });
+        break;
+      case "date":
+        newLogs.push({ id: Date.now() + 1, text: new Date().toString(), type: "output" });
         break;
       case "whoami":
         newLogs.push({ id: Date.now() + 1, text: "Jamal Nadeem - Team Lead, CRM & Agentic AI at EditVista LTD.", type: "output" });
