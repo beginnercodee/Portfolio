@@ -50,6 +50,14 @@ export default function TerminalOverlay() {
     // Echo input
     const newLogs: Log[] = [...logs, { id: Date.now(), text: `jamal@sys:~$ ${cmd}`, type: "input" }];
 
+    // Handle generic dynamic commands first
+    if (pureCmd.startsWith("echo ")) {
+      const outputText = cmd.trim().substring(5);
+      newLogs.push({ id: Date.now() + 1, text: outputText, type: "output" });
+      setLogs(newLogs);
+      return;
+    }
+
     // Processing Logic
     switch (pureCmd) {
       case "help":
@@ -58,9 +66,10 @@ export default function TerminalOverlay() {
         newLogs.push({ id: Date.now() + 3, text: "  skills      - list core technical competencies", type: "output" });
         newLogs.push({ id: Date.now() + 4, text: "  date        - print system date and time", type: "output" });
         newLogs.push({ id: Date.now() + 5, text: "  pwd         - print working directory", type: "output" });
-        newLogs.push({ id: Date.now() + 6, text: "  clear       - wipe terminal output", type: "output" });
-        newLogs.push({ id: Date.now() + 7, text: "  sudo rm -rf - [DANGEROUS] do not run", type: "output" });
-        newLogs.push({ id: Date.now() + 8, text: "  exit        - close terminal interface", type: "output" });
+        newLogs.push({ id: Date.now() + 6, text: "  echo [arg]  - print arguments to output", type: "output" });
+        newLogs.push({ id: Date.now() + 7, text: "  clear       - wipe terminal output", type: "output" });
+        newLogs.push({ id: Date.now() + 8, text: "  sudo rm -rf - [DANGEROUS] do not run", type: "output" });
+        newLogs.push({ id: Date.now() + 9, text: "  exit        - close terminal interface", type: "output" });
         break;
       case "date":
         newLogs.push({ id: Date.now() + 1, text: new Date().toString(), type: "output" });
