@@ -67,15 +67,19 @@ export default function TerminalOverlay() {
         newLogs.push({ id: Date.now() + 4, text: "  date        - print system date and time", type: "output" });
         newLogs.push({ id: Date.now() + 5, text: "  pwd         - print working directory", type: "output" });
         newLogs.push({ id: Date.now() + 6, text: "  echo [arg]  - print arguments to output", type: "output" });
-        newLogs.push({ id: Date.now() + 7, text: "  clear       - wipe terminal output", type: "output" });
-        newLogs.push({ id: Date.now() + 8, text: "  sudo rm -rf - [DANGEROUS] do not run", type: "output" });
-        newLogs.push({ id: Date.now() + 9, text: "  exit        - close terminal interface", type: "output" });
+        newLogs.push({ id: Date.now() + 7, text: "  ping        - check network connectivity", type: "output" });
+        newLogs.push({ id: Date.now() + 8, text: "  clear       - wipe terminal output", type: "output" });
+        newLogs.push({ id: Date.now() + 9, text: "  sudo rm -rf - [DANGEROUS] do not run", type: "output" });
+        newLogs.push({ id: Date.now() + 10, text: "  exit        - close terminal interface", type: "output" });
         break;
       case "date":
         newLogs.push({ id: Date.now() + 1, text: new Date().toString(), type: "output" });
         break;
       case "pwd":
         newLogs.push({ id: Date.now() + 1, text: "/home/jamal/system/portfolio", type: "output" });
+        break;
+      case "ping":
+        newLogs.push({ id: Date.now() + 1, text: "PONG! (12ms) - connection stable.", type: "output" });
         break;
       case "whoami":
         newLogs.push({ id: Date.now() + 1, text: "Jamal Nadeem - Team Lead, CRM & Agentic AI at EditVista LTD.", type: "output" });
