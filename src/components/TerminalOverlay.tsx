@@ -68,9 +68,10 @@ export default function TerminalOverlay() {
         newLogs.push({ id: Date.now() + 5, text: "  pwd         - print working directory", type: "output" });
         newLogs.push({ id: Date.now() + 6, text: "  echo [arg]  - print arguments to output", type: "output" });
         newLogs.push({ id: Date.now() + 7, text: "  ping        - check network connectivity", type: "output" });
-        newLogs.push({ id: Date.now() + 8, text: "  clear       - wipe terminal output", type: "output" });
-        newLogs.push({ id: Date.now() + 9, text: "  sudo rm -rf - [DANGEROUS] do not run", type: "output" });
-        newLogs.push({ id: Date.now() + 10, text: "  exit        - close terminal interface", type: "output" });
+        newLogs.push({ id: Date.now() + 8, text: "  uptime      - tell how long the system has been running", type: "output" });
+        newLogs.push({ id: Date.now() + 9, text: "  clear       - wipe terminal output", type: "output" });
+        newLogs.push({ id: Date.now() + 10, text: "  sudo rm -rf - [DANGEROUS] do not run", type: "output" });
+        newLogs.push({ id: Date.now() + 11, text: "  exit        - close terminal interface", type: "output" });
         break;
       case "date":
         newLogs.push({ id: Date.now() + 1, text: new Date().toString(), type: "output" });
@@ -80,6 +81,9 @@ export default function TerminalOverlay() {
         break;
       case "ping":
         newLogs.push({ id: Date.now() + 1, text: "PONG! (12ms) - connection stable.", type: "output" });
+        break;
+      case "uptime":
+        newLogs.push({ id: Date.now() + 1, text: "up 14 days, 3 hours, 42 minutes. load average: 0.01, 0.03, 0.05", type: "output" });
         break;
       case "whoami":
         newLogs.push({ id: Date.now() + 1, text: "Jamal Nadeem - Team Lead, CRM & Agentic AI at EditVista LTD.", type: "output" });
