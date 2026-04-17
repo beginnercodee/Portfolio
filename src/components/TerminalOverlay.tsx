@@ -64,14 +64,24 @@ export default function TerminalOverlay() {
         newLogs.push({ id: Date.now() + 1, text: "AVAILABLE COMMANDS:", type: "output" });
         newLogs.push({ id: Date.now() + 2, text: "  whoami      - display current user identity", type: "output" });
         newLogs.push({ id: Date.now() + 3, text: "  skills      - list core technical competencies", type: "output" });
-        newLogs.push({ id: Date.now() + 4, text: "  date        - print system date and time", type: "output" });
-        newLogs.push({ id: Date.now() + 5, text: "  pwd         - print working directory", type: "output" });
-        newLogs.push({ id: Date.now() + 6, text: "  echo [arg]  - print arguments to output", type: "output" });
-        newLogs.push({ id: Date.now() + 7, text: "  ping        - check network connectivity", type: "output" });
-        newLogs.push({ id: Date.now() + 8, text: "  uptime      - tell how long the system has been running", type: "output" });
-        newLogs.push({ id: Date.now() + 9, text: "  clear       - wipe terminal output", type: "output" });
-        newLogs.push({ id: Date.now() + 10, text: "  sudo rm -rf - [DANGEROUS] do not run", type: "output" });
-        newLogs.push({ id: Date.now() + 11, text: "  exit        - close terminal interface", type: "output" });
+        newLogs.push({ id: Date.now() + 4, text: "  ls          - list directory contents", type: "output" });
+        newLogs.push({ id: Date.now() + 5, text: "  date        - print system date and time", type: "output" });
+        newLogs.push({ id: Date.now() + 6, text: "  pwd         - print working directory", type: "output" });
+        newLogs.push({ id: Date.now() + 7, text: "  echo [arg]  - print arguments to output", type: "output" });
+        newLogs.push({ id: Date.now() + 8, text: "  ping        - check network connectivity", type: "output" });
+        newLogs.push({ id: Date.now() + 9, text: "  uptime      - tell how long the system has been running", type: "output" });
+        newLogs.push({ id: Date.now() + 10, text: "  clear       - wipe terminal output", type: "output" });
+        newLogs.push({ id: Date.now() + 11, text: "  sudo rm -rf - [DANGEROUS] do not run", type: "output" });
+        newLogs.push({ id: Date.now() + 12, text: "  exit        - close terminal interface", type: "output" });
+        break;
+      case "ls":
+      case "ls -la":
+      case "ll":
+        newLogs.push({ id: Date.now() + 1, text: "drwxr-xr-x  jamal  jamal  hero_module/", type: "output" });
+        newLogs.push({ id: Date.now() + 2, text: "drwxr-xr-x  jamal  jamal  ai_lab_research/", type: "output" });
+        newLogs.push({ id: Date.now() + 3, text: "-rw-r--r--  jamal  jamal  about.md", type: "output" });
+        newLogs.push({ id: Date.now() + 4, text: "-rw-r--r--  jamal  jamal  skills.json", type: "output" });
+        newLogs.push({ id: Date.now() + 5, text: "-rwxr-xr-x  root   root   deploy.sh", type: "output" });
         break;
       case "date":
         newLogs.push({ id: Date.now() + 1, text: new Date().toString(), type: "output" });
