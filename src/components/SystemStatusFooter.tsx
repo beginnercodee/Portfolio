@@ -28,10 +28,13 @@ export default function SystemStatusFooter() {
     updateTime();
     const timeInterval = setInterval(updateTime, 60000);
 
-    // CPU Simulator (5% to 15%)
+    // CPU Simulator (5% to 15%, with 5% chance of severe load spikes)
     setCpu(Math.floor(Math.random() * 10 + 5).toString());
     const metricsInterval = setInterval(() => {
-      setCpu(Math.floor(Math.random() * 10 + 5).toString());
+      const isSpike = Math.random() < 0.05;
+      const newCpu = isSpike ? Math.floor(Math.random() * 40 + 50) : Math.floor(Math.random() * 10 + 5);
+      setCpu(newCpu.toString());
+
       setLatency(prev => {
         const diff = Math.floor(Math.random() * 5) - 2; // -2 to +2
         return Math.max(8, Math.min(25, prev + diff));
@@ -95,7 +98,7 @@ export default function SystemStatusFooter() {
       <div className="flex-2 flex gap-4 font-mono text-[10px] text-secondary tracking-widest uppercase justify-end items-center">
         <span className="hidden md:inline-block">SYNCED: {mounted ? time : "--:--"} UTC</span>
         <span className="hidden sm:inline-block border-l border-white/10 pl-4">LATENCY: {mounted ? latency : "--"}MS</span>
-        <span className="hidden sm:inline-block border-l border-white/10 pl-4 text-glow-green">CPU: {mounted ? cpu : "--"}%</span>
+        <span className={`hidden sm:inline-block border-l border-white/10 pl-4 transition-colors duration-300 ${mounted && parseInt(cpu) >= 50 ? 'text-red-400' : 'text-glow-green'}`}>CPU: {mounted ? cpu : "--"}%</span>
         <span className="hidden lg:inline-block border-l border-white/10 pl-4 text-glow-silver">RAM: {mounted ? ram.toFixed(2) : "-.--"}GB ALLOCATED</span>
       </div>
     </footer>
