@@ -75,9 +75,21 @@ export default function SystemStatusFooter() {
 
     fetchBuildData();
 
+    // Easter Egg: Tab Visibility Tracker
+    const handleVisibilityChange = () => {
+      if (document.hidden) {
+        document.title = "System Waiting...";
+      } else {
+        document.title = "Jamal Nadeem | Automation Engineer";
+      }
+    };
+    
+    document.addEventListener("visibilitychange", handleVisibilityChange);
+
     return () => {
       clearInterval(timeInterval);
       clearInterval(metricsInterval);
+      document.removeEventListener("visibilitychange", handleVisibilityChange);
     };
   }, []);
 
