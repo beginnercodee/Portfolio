@@ -86,6 +86,13 @@ export default function SystemStatusFooter() {
     
     document.addEventListener("visibilitychange", handleVisibilityChange);
 
+    // Easter Egg: Developer Console Message
+    console.info(
+      "%c[ SYSTEM ONLINE ]\n%cLooking under the hood? I specialize in building heavy, autonomous architectures and scalable AI integrations. Let's build something massive together.", 
+      "color: #39ff14; font-size: 20px; font-weight: bold; background: #0a0a0a; padding: 10px; border-radius: 5px;", 
+      "color: #C0C0C0; font-size: 14px; padding-top: 10px; display: block;"
+    );
+
     return () => {
       clearInterval(timeInterval);
       clearInterval(metricsInterval);
