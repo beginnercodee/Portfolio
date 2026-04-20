@@ -6,16 +6,23 @@ import { useInView } from "framer-motion";
 const LETTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%&*";
 
 export default function HackerText({ text }: { text: string }) {
-  // Initialize with completely garbled text matching the exact length of the original title
-  const [displayText, setDisplayText] = useState(() => 
-    text.split('').map(c => c === ' ' ? ' ' : LETTERS[Math.floor(Math.random() * LETTERS.length)]).join('')
-  );
+  // Initialize with plain text to match SSR and prevent Hydration #418 Error
+  const [displayText, setDisplayText] = useState(text);
+  const [isEncrypted, setIsEncrypted] = useState(false);
   
   const containerRef = useRef<HTMLHeadingElement>(null);
   const isInView = useInView(containerRef, { once: true, margin: "0px 0px -50px 0px" });
   const hasRunRef = useRef(false);
 
   useEffect(() => {
+    // Stage 1: Fast-encrypt on Client Mount (safely bypasses SSR Hydration checks)
+    if (!isEncrypted) {
+      setDisplayText(text.split('').map(c => c === ' ' ? ' ' : LETTERS[Math.floor(Math.random() * LETTERS.length)]).join(''));
+      setIsEncrypted(true);
+      return;
+    }
+
+    // Stage 2: Wait until user scrolls the element into view
     if (!isInView || hasRunRef.current) return;
 
     hasRunRef.current = true;
@@ -46,7 +53,7 @@ export default function HackerText({ text }: { text: string }) {
     }, 30);
 
     return () => clearInterval(interval);
-  }, [isInView, text]);
+  }, [isInView, text, isEncrypted]);
 
   return (
     <h3 
