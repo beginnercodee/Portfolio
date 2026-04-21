@@ -8,7 +8,7 @@ export default function SystemStatusFooter() {
   const [latency, setLatency] = useState(12);
   const [ram, setRam] = useState(1.26);
   const [mounted, setMounted] = useState(false);
-  const [buildInfo, setBuildInfo] = useState<{ hash: string; timeAgo: string } | null>(null);
+  const [buildInfo, setBuildInfo] = useState<{ hash: string; timeAgo: string; url: string } | null>(null);
 
   useEffect(() => {
     setMounted(true);
@@ -64,7 +64,8 @@ export default function SystemStatusFooter() {
 
           setBuildInfo({
             hash: data.sha.substring(0, 7).toUpperCase(),
-            timeAgo
+            timeAgo,
+            url: data.html_url
           });
         }
       } catch (err) {
@@ -108,9 +109,15 @@ export default function SystemStatusFooter() {
           SYSTEM: ONLINE
         </span>
         {mounted && buildInfo && (
-          <span className="hidden sm:inline-flex items-center gap-2 opacity-70 border-l border-white/10 pl-4">
+          <a 
+            href={buildInfo.url} 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="hidden sm:inline-flex items-center gap-2 opacity-70 hover:opacity-100 hover:text-white transition-opacity border-l border-white/10 pl-4"
+            title="View Live Deployment Commit"
+          >
             BUILD_{buildInfo.hash} <span className="text-glow-green/80">// DEPLOYED {buildInfo.timeAgo}</span>
-          </span>
+          </a>
         )}
       </div>
       
