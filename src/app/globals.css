@@ -77,3 +77,15 @@ body {
 html {
   scroll-behavior: smooth;
 }
+
+/* Custom UI Highlighting (Terminal Aesthetic) */
+::selection {
+  background-color: #39ff14;
+  color: #000000;
+  text-shadow: none;
+}
+::-moz-selection {
+  background-color: #39ff14;
+  color: #000000;
+  text-shadow: none;
+}
