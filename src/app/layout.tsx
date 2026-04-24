@@ -31,6 +31,10 @@ export const metadata: Metadata = {
   description: "Portfolio of Jamal Nadeem, a full-stack developer and AI automation expert.",
 };
 
+export const viewport: import("next").Viewport = {
+  themeColor: "#000000",
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{
