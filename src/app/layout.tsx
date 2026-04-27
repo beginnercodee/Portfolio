@@ -27,8 +27,48 @@ import CommandPalette from "@/components/CommandPalette";
 import TerminalOverlay from "@/components/TerminalOverlay";
 
 export const metadata: Metadata = {
-  title: "Jamal Nadeem | Automation Engineer",
-  description: "Portfolio of Jamal Nadeem, a full-stack developer and AI automation expert.",
+  metadataBase: new URL("https://jamalnadeem.com"),
+  title: {
+    default: "Jamal Nadeem | Automation Engineer",
+    template: "%s | Jamal Nadeem",
+  },
+  description: "Portfolio of Jamal Nadeem, a full-stack developer and AI automation expert specializing in building massive architecture and autonomous systems.",
+  keywords: ["Software Engineer", "AI Integrations", "Full-Stack Developer", "Next.js", "Automation", "Jamal Nadeem"],
+  authors: [{ name: "Jamal Nadeem" }],
+  creator: "Jamal Nadeem",
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    url: "https://jamalnadeem.com",
+    title: "Jamal Nadeem | System Architect",
+    description: "Full-stack developer and AI integration specialist. Building intelligent, scalable systems that eliminate manual work.",
+    siteName: "Jamal Nadeem Portfolio",
+    images: [
+      {
+        url: "/og-image.jpg", // Make sure to add this image to /public later!
+        width: 1200,
+        height: 630,
+        alt: "Jamal Nadeem | Automation Engineer",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Jamal Nadeem | System Architect",
+    description: "Full-stack developer and AI integration specialist.",
+    images: ["/og-image.jpg"],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
 };
 
 export const viewport: import("next").Viewport = {
