@@ -25,6 +25,7 @@ const jetbrainsMono = JetBrains_Mono({
 
 import CommandPalette from "@/components/CommandPalette";
 import TerminalOverlay from "@/components/TerminalOverlay";
+import KonamiCode from "@/components/KonamiCode";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://jamalnadeem.com"),
@@ -86,6 +87,7 @@ export default function RootLayout({
         {children}
         <CommandPalette />
         <TerminalOverlay />
+        <KonamiCode />
         <Analytics />
         <SpeedInsights />
       </body>
