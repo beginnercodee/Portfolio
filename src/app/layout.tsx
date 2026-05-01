@@ -26,6 +26,7 @@ const jetbrainsMono = JetBrains_Mono({
 import CommandPalette from "@/components/CommandPalette";
 import TerminalOverlay from "@/components/TerminalOverlay";
 import KonamiCode from "@/components/KonamiCode";
+import ScrollProgress from "@/components/ScrollProgress";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://jamalnadeem.com"),
@@ -84,6 +85,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${inter.variable} ${spaceGrotesk.variable} ${jetbrainsMono.variable} antialiased bg-background text-primary`}>
+        <ScrollProgress />
         {children}
         <CommandPalette />
         <TerminalOverlay />
