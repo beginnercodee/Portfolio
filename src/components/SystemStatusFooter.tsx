@@ -9,6 +9,7 @@ export default function SystemStatusFooter() {
   const [ram, setRam] = useState(1.26);
   const [mounted, setMounted] = useState(false);
   const [buildInfo, setBuildInfo] = useState<{ hash: string; timeAgo: string; url: string } | null>(null);
+  const [location, setLocation] = useState("TRACING...");
 
   useEffect(() => {
     setMounted(true);
@@ -76,6 +77,23 @@ export default function SystemStatusFooter() {
 
     fetchBuildData();
 
+    // Fetch User IP Geolocation (Easter Egg)
+    const fetchLocation = async () => {
+      try {
+        const res = await fetch("https://ipapi.co/json/");
+        const data = await res.json();
+        if (data.city && data.country_code) {
+          setLocation(`${data.city.toUpperCase()}, ${data.country_code}`);
+        } else {
+          setLocation("SECURE_NODE");
+        }
+      } catch {
+        setLocation("ENCRYPTED");
+      }
+    };
+    
+    fetchLocation();
+
     // Easter Egg: Tab Visibility Tracker
     const handleVisibilityChange = () => {
       if (document.hidden) {
@@ -107,6 +125,9 @@ export default function SystemStatusFooter() {
         <span className="flex items-center gap-2">
           <span className="w-2 h-2 rounded-full bg-glow-green shadow-[0_0_8px_rgba(57,255,20,0.8)] animate-pulse" />
           SYSTEM: ONLINE
+        </span>
+        <span className="hidden lg:inline-flex items-center gap-2 border-l border-white/10 pl-4">
+          NODE: {mounted ? location : "---"}
         </span>
         {mounted && buildInfo && (
           <a 
