@@ -90,7 +90,8 @@ export default function TerminalOverlay() {
         newLogs.push({ id: Date.now() + 1, text: "/home/jamal/system/portfolio", type: "output" });
         break;
       case "ping":
-        newLogs.push({ id: Date.now() + 1, text: "PONG! (12ms) - connection stable.", type: "output" });
+        const ms = Math.floor(Math.random() * 40) + 10;
+        newLogs.push({id:Date.now() + 1, text: `PONG! (${ms}ms) - connection stable.`, type: "output"});
         break;
       case "uptime":
         newLogs.push({ id: Date.now() + 1, text: "up 14 days, 3 hours, 42 minutes. load average: 0.01, 0.03, 0.05", type: "output" });
