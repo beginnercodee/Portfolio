@@ -96,8 +96,7 @@ export default function TerminalOverlay() {
         newLogs.push({ id: Date.now() + 1, text: "up 14 days, 3 hours, 42 minutes. load average: 0.01, 0.03, 0.05", type: "output" });
         break;
       case "whoami":
-        newLogs.push({ id: Date.now() + 1, text: "Jamal Nadeem - Team Lead, CRM & Agentic AI at EditVista LTD.", type: "output" });
-        newLogs.push({ id: Date.now() + 2, text: "Specializing in autonomous workflows, AI architecture, and massive-scale automation.", type: "output" });
+        newLogs.push({ id: Date.now() + 1, text: "guest_user // ACCESS_LEVEL: RESTRICTED", type: "output" });
         break;
       case "skills":
         newLogs.push({ id: Date.now() + 1, text: "[ SYSTEM COMPETENCIES ]", type: "output" });
