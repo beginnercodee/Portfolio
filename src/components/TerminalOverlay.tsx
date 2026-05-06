@@ -161,8 +161,8 @@ export default function TerminalOverlay() {
               <div className="flex bg-[#111] border-b border-white/10 px-4 py-3 items-center justify-between z-30">
                 <div className="flex gap-2">
                   <div className="w-3 h-3 rounded-full bg-red-500/80 cursor-pointer hover:bg-red-400" onClick={() => setIsOpen(false)} />
-                  <div className="w-3 h-3 rounded-full bg-yellow-500/80" />
-                  <div className="w-3 h-3 rounded-full bg-green-500/80" />
+                  <div className="w-3 h-3 rounded-full bg-yellow-500/80 cursor-pointer hover:bg-yellow-400" onClick={() => setIsOpen(false)} />
+                  <div className="w-3 h-3 rounded-full bg-green-500/80 cursor-pointer hover:bg-green-400" onClick={() => setIsOpen(false)} />
                 </div>
                 <div className="font-mono text-xs text-secondary font-bold tracking-widest">
                   JN_OS_TERMINAL
@@ -193,7 +193,7 @@ export default function TerminalOverlay() {
 
                 {/* Input Line */}
                 <form onSubmit={handleSubmit} className="mt-4 flex items-center shrink-0">
-                  <span className="text-glow-green mr-2">jamal@sys:~$</span>
+                  <span className="text-glow-green mr-2 hover:text-white transition-colors duration-300">jamal@sys:~$</span>
                   <input
                     ref={inputRef}
                     type="text"
