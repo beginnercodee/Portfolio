@@ -191,7 +191,7 @@ export default function TerminalOverlay() {
                   <div ref={endOfLogsRef} />
                 </div>
 
-                {/* InputLine */}
+                {/* Input Line */}
                 <form onSubmit={handleSubmit} className="mt-4 flex items-center shrink-0">
                   <span className="text-glow-green mr-2 hover:text-white transition-colors duration-300">jamal@sys:~$</span>
                   <input
