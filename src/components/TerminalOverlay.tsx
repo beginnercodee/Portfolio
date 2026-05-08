@@ -136,7 +136,7 @@ export default function TerminalOverlay() {
       {/* Easter Egg Trigger Button */}
       <button 
         onClick={() => setIsOpen(true)}
-        className="fixed bottom-6 right-6 z-40 bg-black/80 backdrop-blur-md border border-surface p-3 rounded-full hover:border-glow-green hover:text-glow-green hover:shadow-[0_0_20px_rgba(57,255,20,0.3)] transition-all group"
+        className="fixed bottom-16 md:bottom-14 right-6 md:right-8 z-[60] bg-black/80 backdrop-blur-md border border-surface p-3 rounded-full hover:border-glow-green hover:text-glow-green hover:shadow-[0_0_20px_rgba(57,255,20,0.3)] transition-all group"
         aria-label="Open Terminal OS"
       >
         <TerminalIcon className="w-5 h-5 opacity-70 group-hover:opacity-100" />
