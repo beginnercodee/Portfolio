@@ -120,7 +120,7 @@ export default function SystemStatusFooter() {
   }, []);
 
   return (
-    <footer className="w-full border-t border-surface bg-[#0D0D0D] py-2 px-6 flex justify-between items-center z-50 fixed bottom-0">
+    <footer className="w-full border-t border-surface bg-[#0D0D0D]/80 backdrop-blur-md py-1 px-6 flex justify-between items-center z-50 fixed bottom-0">
       <div className="flex-1 flex gap-4 font-mono text-[10px] text-secondary tracking-widest uppercase items-center">
         <span className="flex items-center gap-2">
           <span className="w-2 h-2 rounded-full bg-glow-green shadow-[0_0_8px_rgba(57,255,20,0.8)] animate-pulse" />
