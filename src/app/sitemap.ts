@@ -10,7 +10,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'monthly',
       priority: 1.0,
     },
-    // We explicitly define imaginary but conceptually necessary boundaries
+    // We explicitly define imaginary but conceptually necessary boundaries.
     // Note: Add any additional permanent structural routes here if you build them out (like /logs or /case-studies)
   ];
 }
