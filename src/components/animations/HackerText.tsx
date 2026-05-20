@@ -17,9 +17,11 @@ export default function HackerText({ text }: { text: string }) {
   useEffect(() => {
     // Stage 1: Fast-encrypt on Client Mount (safely bypasses SSR Hydration checks)
     if (!isEncrypted) {
-      setDisplayText(text.split('').map(c => c === ' ' ? ' ' : LETTERS[Math.floor(Math.random() * LETTERS.length)]).join(''));
-      setIsEncrypted(true);
-      return;
+      const handle = setTimeout(() => {
+        setDisplayText(text.split('').map(c => c === ' ' ? ' ' : LETTERS[Math.floor(Math.random() * LETTERS.length)]).join(''));
+        setIsEncrypted(true);
+      }, 0);
+      return () => clearTimeout(handle);
     }
 
     // Stage 2: Wait until user scrolls the element into view

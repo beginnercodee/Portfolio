@@ -16,7 +16,6 @@ export default function Hero() {
     offset: ["start start", "end start"],
   });
 
-  const yBg = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
   const yText = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
   const opacityText = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
 
@@ -37,6 +36,7 @@ export default function Hero() {
         >
           <div className="w-full h-full rounded-full bg-[#111] overflow-hidden relative flex items-center justify-center">
             {/* INSTRUCTION FOR USER: Add profile.jpg or profile.png to the 'public' folder */}
+            {/* eslint-disable-next-line @next/next/no-img-element */}
             <img 
               src="/profile.jpg" 
               alt="Jamal Nadeem" 

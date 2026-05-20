@@ -13,12 +13,21 @@ export type LogPost = {
 
 const LOGS_DIR = path.join(process.cwd(), "content/logs");
 
+interface Frontmatter {
+  title?: string;
+  date?: string;
+  tags?: string[];
+  excerpt?: string;
+  status?: string;
+  [key: string]: string | string[] | undefined;
+}
+
 // Extremely lightweight custom frontmatter parser to avoid external dependencies blocking CI
 function parseFrontmatter(fileContent: string) {
   const frontmatterRegex = /---\n([\s\S]*?)\n---/;
   const match = frontmatterRegex.exec(fileContent);
   
-  let data: any = {};
+  const data: Frontmatter = {};
   let content = fileContent;
 
   if (match) {
@@ -28,7 +37,7 @@ function parseFrontmatter(fileContent: string) {
     fmString.split("\n").forEach((line) => {
       const [key, ...values] = line.split(":");
       if (key && values.length > 0) {
-        let val = values.join(":").trim();
+        const val = values.join(":").trim();
         // Handle array parsing like tags: [AI, Next.js]
         if (val.startsWith("[") && val.endsWith("]")) {
           data[key.trim()] = val.slice(1, -1).split(",").map(s => s.trim().replace(/^['"]|['"]$/g, ''));

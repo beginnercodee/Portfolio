@@ -73,7 +73,7 @@ export default function LiveGitHubActivityClient() {
           }
         }, 1200);
 
-      } catch (error) {
+      } catch {
         if (active) {
           setLogs([`[${new Date().toLocaleTimeString('en-US', { hour12: false })}] error: failed to connect to GitHub API`]);
         }

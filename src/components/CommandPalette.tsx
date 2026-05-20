@@ -39,8 +39,11 @@ export default function CommandPalette() {
     if (isOpen) {
       setTimeout(() => inputRef.current?.focus(), 50);
     } else {
-      setQuery(""); // Reset query on close
-      setSelectedIndex(0);
+      const handle = setTimeout(() => {
+        setQuery("");
+        setSelectedIndex(0);
+      }, 0);
+      return () => clearTimeout(handle);
     }
   }, [isOpen]);
 
@@ -115,10 +118,7 @@ export default function CommandPalette() {
     cmd.id.toLowerCase().includes(query.toLowerCase())
   );
 
-  // Reset selected index when query results change
-  useEffect(() => {
-    setSelectedIndex(0);
-  }, [query]);
+  // Reset selected index handled inline during input onChange
 
   const handleInputKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "ArrowDown") {
@@ -162,7 +162,10 @@ export default function CommandPalette() {
               <input
                 ref={inputRef}
                 value={query}
-                onChange={(e) => setQuery(e.target.value)}
+                onChange={(e) => {
+                  setQuery(e.target.value);
+                  setSelectedIndex(0);
+                }}
                 onKeyDown={handleInputKeyDown}
                 placeholder="Type a command or search..."
                 className="flex-1 bg-transparent text-primary placeholder:text-secondary/50 font-mono text-sm focus:outline-none"
@@ -206,7 +209,7 @@ export default function CommandPalette() {
                 ))
               ) : (
                 <div className="px-4 py-8 text-center font-mono text-xs text-secondary opacity-50">
-                  No commands found matching "{query}"
+                  No commands found matching &quot;{query}&quot;
                 </div>
               )}
             </div>

@@ -10,10 +10,7 @@ export default function ASCIIProgress({ status, isActive }: { status: string, is
 
     // Simulate active processing chunks fluctuating
     const interval = setInterval(() => {
-      setProgress((prev) => {
-        // Randomly jump around between 12% and 98% to simulate active processing nodes
-        return Math.floor(Math.random() * 86) + 12;
-      });
+      setProgress(Math.floor(Math.random() * 86) + 12);
     }, 800);
 
     return () => clearInterval(interval);

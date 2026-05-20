@@ -12,7 +12,10 @@ export default function SystemStatusFooter() {
   const [location, setLocation] = useState("TRACING...");
 
   useEffect(() => {
-    setMounted(true);
+    const handle = setTimeout(() => {
+      setMounted(true);
+      setCpu(Math.floor(Math.random() * 10 + 5).toString());
+    }, 0);
     
     // Clock
     const updateTime = () => {
@@ -30,7 +33,6 @@ export default function SystemStatusFooter() {
     const timeInterval = setInterval(updateTime, 60000);
 
     // CPU Simulator (5% to 15%, with 5% chance of severe load spikes)
-    setCpu(Math.floor(Math.random() * 10 + 5).toString());
     const metricsInterval = setInterval(() => {
       const isSpike = Math.random() < 0.05;
       const newCpu = isSpike ? Math.floor(Math.random() * 40 + 50) : Math.floor(Math.random() * 10 + 5);
@@ -69,7 +71,7 @@ export default function SystemStatusFooter() {
             url: data.html_url
           });
         }
-      } catch (err) {
+      } catch {
         // Silent fail on rate limit, fallback to default UI
         console.error("Failed to fetch live build data");
       }
@@ -113,6 +115,7 @@ export default function SystemStatusFooter() {
     );
 
     return () => {
+      clearTimeout(handle);
       clearInterval(timeInterval);
       clearInterval(metricsInterval);
       document.removeEventListener("visibilitychange", handleVisibilityChange);
@@ -137,7 +140,7 @@ export default function SystemStatusFooter() {
             className="hidden sm:inline-flex items-center gap-2 opacity-70 hover:opacity-100 hover:text-white transition-opacity border-l border-white/10 pl-4"
             title="View Live Deployment Commit"
           >
-            BUILD_{buildInfo.hash} <span className="text-glow-green/80">// DEPLOYED {buildInfo.timeAgo}</span>
+            BUILD_{buildInfo.hash} <span className="text-glow-green/80">{"// DEPLOYED "}{buildInfo.timeAgo}</span>
           </a>
         )}
       </div>

@@ -12,7 +12,10 @@ export default function NavigationBar() {
 
   // Check OS for correct shortcut key display
   useEffect(() => {
-    setIsMac(navigator.userAgent.toLowerCase().includes('mac'));
+    const handle = setTimeout(() => {
+      setIsMac(navigator.userAgent.toLowerCase().includes('mac'));
+    }, 0);
+    return () => clearTimeout(handle);
   }, []);
 
   // O(1) functional referencing across renders

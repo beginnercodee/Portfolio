@@ -36,7 +36,7 @@ export default function Contact() {
       } else {
         setSubmitError("Transaction Failed: " + data.message);
       }
-    } catch (err) {
+    } catch {
       setSubmitError("Network Error. Please try again or use direct email.");
     } finally {
       setIsSubmitting(false);

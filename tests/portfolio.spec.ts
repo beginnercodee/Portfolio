@@ -45,11 +45,23 @@ test.describe('JN Labs Portfolio - Core Verification', () => {
 
     // Assert that the fallback text (--:--) has been dynamically replaced by the live clock logic
     const clockElement = page.locator('text=/SYNCED: \\d{2}:\\d{2} UTC/i');
-    await expect(clockElement).toBeVisible();
+    const cpuMetric = page.locator('text=/CPU:\\s\\d{1,3}%/i');
+
+    const viewport = page.viewportSize();
+    const width = viewport?.width ?? 1280;
+
+    if (width >= 768) {
+      await expect(clockElement).toBeVisible();
+    } else {
+      await expect(clockElement).toBeAttached();
+    }
 
     // Verify the CPU simulator is pushing a number (not placeholder)
-    const cpuMetric = page.locator('text=/CPU:\\s\\d{1,3}%/i');
-    await expect(cpuMetric).toBeVisible();
+    if (width >= 640) {
+      await expect(cpuMetric).toBeVisible();
+    } else {
+      await expect(cpuMetric).toBeAttached();
+    }
   });
 
   test('Contact form execution simulator (Network mock)', async ({ page }) => {

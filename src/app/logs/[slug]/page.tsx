@@ -9,8 +9,9 @@ export async function generateStaticParams() {
   }));
 }
 
-export async function generateMetadata({ params }: { params: { slug: string } }) {
-  const post = await getLogBySlug(params.slug);
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
+  const post = await getLogBySlug(slug);
   if (!post) return { title: "Not Found" };
 
   return {
@@ -19,8 +20,9 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   };
 }
 
-export default async function LogPost({ params }: { params: { slug: string } }) {
-  const post = await getLogBySlug(params.slug);
+export default async function LogPost({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
+  const post = await getLogBySlug(slug);
 
   if (!post) {
     notFound();
@@ -29,7 +31,7 @@ export default async function LogPost({ params }: { params: { slug: string } }) 
   // A very lightweight parser to map basic markdown syntax to HTML classes safely without installing heavy libraries
   // Supports Headers, Bold, Italic, CodeBlocks, Inline Code, blockquotes
   const parseMarkdownBasic = (content: string) => {
-    let html = content
+    const html = content
       .replace(/^### (.*$)/gim, '<h3 class="font-display text-2xl text-white mt-12 mb-6 tracking-wide">$1</h3>')
       .replace(/^## (.*$)/gim, '<h2 class="font-display text-3xl text-glow-green mt-16 mb-8 uppercase tracking-widest">$1</h2>')
       .replace(/^# (.*$)/gim, '<h1 class="font-display text-4xl text-white mt-8 mb-8">$1</h1>')
@@ -83,7 +85,7 @@ export default async function LogPost({ params }: { params: { slug: string } }) 
         />
 
         <div className="border-t border-surface pt-12 flex justify-between items-center font-mono text-xs mt-16 text-secondary">
-          <span>// END OF TRANSMISSION</span>
+          <span>{"// END OF TRANSMISSION"}</span>
           <Link href="/logs" className="text-glow-green hover:text-white transition-colors">
             RETURN_TO_INDEX
           </Link>
