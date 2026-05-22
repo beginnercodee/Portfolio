@@ -29,7 +29,7 @@ export default async function LogPost({ params }: { params: Promise<{ slug: stri
   }
 
   // A very lightweight parser to map basic markdown syntax to HTML classes safely without installing heavy libraries
-  // Supports Headers, Bold, Italic, CodeBlocks, Inline Code, blockquotes
+  //Supports Headers, Bold, Italic, CodeBlocks, Inline Code, blockquotes
   const parseMarkdownBasic = (content: string) => {
     const html = content
       .replace(/^### (.*$)/gim, '<h3 class="font-display text-2xl text-white mt-12 mb-6 tracking-wide">$1</h3>')
@@ -41,7 +41,7 @@ export default async function LogPost({ params }: { params: Promise<{ slug: stri
       .replace(/```(.*?)\n([\s\S]*?)```/gm, '<pre class="bg-[#0A0A0A] p-4 md:p-6 rounded-xl border border-white/10 overflow-x-auto my-8 font-mono text-sm shadow-inner overflow-hidden relative"><div class="absolute inset-0 bg-gradient-to-b from-transparent via-glow-green/5 to-transparent h-[10px] w-full animate-[scan_2s_linear_infinite] pointer-events-none"></div><code class="text-glow-silver text-xs break-pre block text-left">$2</code></pre>')
       .replace(/^> (.*$)/gim, '<blockquote class="border-l-2 border-glow-green pl-6 py-2 my-8 italic text-secondary bg-glow-green/5">$1</blockquote>')
       .replace(/^\s*\n/gm, '</p><p class="font-sans text-secondary leading-relaxed mb-6 text-sm md:text-base">');
-    
+
     return `<p class="font-sans text-secondary leading-relaxed mb-6 text-sm md:text-base">${html}</p>`;
   };
 
@@ -57,7 +57,7 @@ export default async function LogPost({ params }: { params: Promise<{ slug: stri
           <Link href="/logs" className="font-mono text-xs text-secondary hover:text-white transition-colors inline-flex items-center gap-2 mb-2 w-max">
             <span className="text-glow-green">&lt;</span> cd ../logs
           </Link>
-          
+
           <div className="flex flex-wrap gap-4 items-center font-mono text-xs text-secondary">
             <div className="flex items-center gap-2 px-3 py-1 bg-surface border border-white/5 rounded-full text-glow-silver">
               <span className="w-2 h-2 rounded-full bg-glow-green shadow-[0_0_8px_rgba(57,255,20,0.8)]" />
@@ -79,7 +79,7 @@ export default async function LogPost({ params }: { params: Promise<{ slug: stri
           </div>
         </header>
 
-        <article 
+        <article
           className="prose prose-invert prose-p:text-secondary max-w-none prose-headings:font-display w-full"
           dangerouslySetInnerHTML={{ __html: parseMarkdownBasic(post.content) }}
         />
