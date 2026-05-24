@@ -8,7 +8,7 @@ export default function ASCIIProgress({ status, isActive }: { status: string, is
   useEffect(() => {
     if (!isActive) return;
 
-    // Simulate active processing chunks fluctuating
+    //Simulate active processing chunks fluctuating
     const interval = setInterval(() => {
       setProgress(Math.floor(Math.random() * 86) + 12);
     }, 800);
