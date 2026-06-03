@@ -20,12 +20,12 @@ export default function TerminalOverlay() {
   ]);
   const [availableLogs, setAvailableLogs] = useState<LogPost[]>([]);
   const [isPrinting, setIsPrinting] = useState(false);
-  
+
   const endOfLogsRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
   const printIntervalRef = useRef<NodeJS.Timeout | null>(null);
 
-  // Load dynamic logs from API route
+  //Load dynamic logs from API route
   useEffect(() => {
     async function fetchLogs() {
       try {
@@ -108,7 +108,7 @@ export default function TerminalOverlay() {
 
     const args = trimmed.split(/\s+/);
     const commandName = args[0].toLowerCase();
-    
+
     // Echo input
     const newLogs: Log[] = [...logs, { id: Date.now(), text: `jamal@sys:~$ ${cmd}`, type: "input" }];
 
@@ -306,7 +306,7 @@ export default function TerminalOverlay() {
   return (
     <>
       {/* Easter Egg Trigger Button */}
-      <button 
+      <button
         onClick={() => setIsOpen(true)}
         className="fixed bottom-16 md:bottom-14 right-6 md:right-8 z-[60] bg-black/80 backdrop-blur-md border border-surface p-3 rounded-full hover:border-glow-green hover:text-glow-green hover:shadow-[0_0_20px_rgba(57,255,20,0.3)] transition-all group"
         aria-label="Open Terminal OS"
@@ -325,7 +325,7 @@ export default function TerminalOverlay() {
           >
             {/* Terminal Window */}
             <div className="w-full max-w-4xl h-[80vh] bg-[#0A0A0A] border border-glow-green/30 rounded-xl overflow-hidden shadow-[0_0_50px_rgba(57,255,20,0.1)] flex flex-col relative" onClick={() => !isPrinting && inputRef.current?.focus()}>
-              
+
               {/* Scanline Overlay Effect */}
               <div className="absolute inset-0 pointer-events-none z-20 opacity-5 bg-[linear-gradient(transparent_50%,rgba(0,0,0,1)_50%)] bg-[length:100%_4px] mix-blend-overlay" />
 
@@ -348,8 +348,8 @@ export default function TerminalOverlay() {
               <div className="flex-1 p-6 font-mono text-sm overflow-y-auto z-30 scrollbar-thin scrollbar-thumb-glow-green/20">
                 <div className="flex flex-col gap-2">
                   {logs.map((log) => (
-                    <div 
-                      key={log.id} 
+                    <div
+                      key={log.id}
                       className={`
                         ${log.type === "system" ? "text-glow-silver/70 italic" : ""}
                         ${log.type === "input" ? "text-white" : ""}
