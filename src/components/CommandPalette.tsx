@@ -4,10 +4,13 @@ import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Search, Terminal, ArrowRight, Github, Linkedin, Mail } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { useRouter } from "next/navigation";
+import type { LogPost } from "@/lib/blog";
 
 type Command = {
   id: string;
   name: string;
+  desc?: string;
   icon: React.ReactNode;
   action: () => void;
 };
@@ -16,7 +19,10 @@ export default function CommandPalette() {
   const [isOpen, setIsOpen] = useState(false);
   const [query, setQuery] = useState("");
   const [selectedIndex, setSelectedIndex] = useState(0);
+  const [availableLogs, setAvailableLogs] = useState<LogPost[]>([]);
+  
   const inputRef = useRef<HTMLInputElement>(null);
+  const router = useRouter();
 
   // Toggle palette on CMD+K or CTRL+K
   useEffect(() => {
@@ -32,6 +38,22 @@ export default function CommandPalette() {
 
     window.addEventListener("keydown", handleGlobalKeyDown);
     return () => window.removeEventListener("keydown", handleGlobalKeyDown);
+  }, []);
+
+  // Fetch dynamic logs on mount
+  useEffect(() => {
+    async function fetchLogs() {
+      try {
+        const response = await fetch("/api/logs");
+        if (response.ok) {
+          const data = await response.json();
+          setAvailableLogs(data);
+        }
+      } catch (err) {
+        console.error("Error fetching logs for command palette:", err);
+      }
+    }
+    fetchLogs();
   }, []);
 
   // Auto-focus input when opened
@@ -51,6 +73,7 @@ export default function CommandPalette() {
     {
       id: "home",
       name: "cd ~ /home",
+      desc: "Navigate to the top of the homepage",
       icon: <Terminal className="w-4 h-4" />,
       action: () => {
         window.scrollTo({ top: 0, behavior: "smooth" });
@@ -60,6 +83,7 @@ export default function CommandPalette() {
     {
       id: "about",
       name: "cat about.txt",
+      desc: "View biography section",
       icon: <Terminal className="w-4 h-4" />,
       action: () => {
         document.getElementById("about")?.scrollIntoView({ behavior: "smooth" });
@@ -69,6 +93,7 @@ export default function CommandPalette() {
     {
       id: "experience",
       name: "cd ./experience",
+      desc: "Scroll to professional history and education",
       icon: <Terminal className="w-4 h-4" />,
       action: () => {
         document.getElementById("experience")?.scrollIntoView({ behavior: "smooth" });
@@ -78,6 +103,7 @@ export default function CommandPalette() {
     {
       id: "projects",
       name: "ls projects/",
+      desc: "Examine portfolio works and details",
       icon: <Terminal className="w-4 h-4" />,
       action: () => {
         document.getElementById("projects")?.scrollIntoView({ behavior: "smooth" });
@@ -87,6 +113,7 @@ export default function CommandPalette() {
     {
       id: "contact",
       name: "./initiate_contact.sh",
+      desc: "Scroll down to connection and social links",
       icon: <Mail className="w-4 h-4" />,
       action: () => {
         document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
@@ -96,6 +123,7 @@ export default function CommandPalette() {
     {
       id: "github",
       name: "ssh github.com/beginnercodee",
+      desc: "Open GitHub profile in a new tab",
       icon: <Github className="w-4 h-4" />,
       action: () => {
         window.open("https://github.com/beginnercodee", "_blank");
@@ -105,6 +133,7 @@ export default function CommandPalette() {
     {
       id: "linkedin",
       name: "ssh linkedin.com/jamal-nadeem",
+      desc: "Open LinkedIn profile in a new tab",
       icon: <Linkedin className="w-4 h-4" />,
       action: () => {
         window.open("https://www.linkedin.com/in/jamal-nadeem/", "_blank");
@@ -113,12 +142,84 @@ export default function CommandPalette() {
     },
   ];
 
-  const filteredCommands = commands.filter((cmd) =>
-    cmd.name.toLowerCase().includes(query.toLowerCase()) || 
-    cmd.id.toLowerCase().includes(query.toLowerCase())
-  );
+  const getFilteredCommands = (): Command[] => {
+    if (query.startsWith(">")) {
+      const macroQuery = query.substring(1).trim().toLowerCase();
+      const macros = [
+        { name: "help", desc: "Show available terminal commands" },
+        { name: "ping", desc: "Check system connectivity latency" },
+        { name: "clear", desc: "Wipe terminal command logs" },
+        { name: "whoami", desc: "Display guest user identity details" },
+        { name: "skills", desc: "List core technical competencies" },
+        { name: "uptime", desc: "Show system load and running time" },
+        { name: "godmode", desc: "Activate system God Mode override" },
+        { name: "ls logs", desc: "List all files in the content partition" },
+      ];
 
-  // Reset selected index handled inline during input onChange
+      const filteredMacros = macros.filter(
+        (m) =>
+          m.name.includes(macroQuery) ||
+          m.desc.toLowerCase().includes(macroQuery)
+      );
+
+      const macroCommands: Command[] = filteredMacros.map((m) => ({
+        id: `macro-${m.name}`,
+        name: `> ${m.name}`,
+        desc: m.desc,
+        icon: <Terminal className="w-4 h-4 text-glow-green" />,
+        action: () => {
+          window.dispatchEvent(
+            new CustomEvent("run-terminal-command", {
+              detail: { command: m.name }
+            })
+          );
+          setIsOpen(false);
+        }
+      }));
+
+      // Custom command execution
+      const hasExactMacroMatch = macros.some((m) => m.name === macroQuery);
+      if (macroQuery && !hasExactMacroMatch) {
+        macroCommands.push({
+          id: `macro-custom`,
+          name: `> ${macroQuery}`,
+          desc: "Execute custom terminal command",
+          icon: <Terminal className="w-4 h-4 text-glow-green" />,
+          action: () => {
+            window.dispatchEvent(
+              new CustomEvent("run-terminal-command", {
+                detail: { command: macroQuery }
+              })
+            );
+            setIsOpen(false);
+          }
+        });
+      }
+
+      return macroCommands;
+    } else {
+      const logCommands: Command[] = availableLogs.map((log) => ({
+        id: `log-${log.slug}`,
+        name: `cat logs/${log.slug}.md`,
+        desc: log.title,
+        icon: <Terminal className="w-4 h-4 text-glow-silver/70" />,
+        action: () => {
+          router.push(`/logs/${log.slug}`);
+          setIsOpen(false);
+        }
+      }));
+
+      const all = [...commands, ...logCommands];
+      return all.filter(
+        (cmd) =>
+          cmd.name.toLowerCase().includes(query.toLowerCase()) ||
+          cmd.id.toLowerCase().includes(query.toLowerCase()) ||
+          (cmd.desc && cmd.desc.toLowerCase().includes(query.toLowerCase()))
+      );
+    }
+  };
+
+  const filteredCommands = getFilteredCommands();
 
   const handleInputKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "ArrowDown") {
@@ -192,17 +293,24 @@ export default function CommandPalette() {
                       "group"
                     )}
                   >
-                    <div className="flex items-center gap-3 font-mono text-xs md:text-sm">
-                      <span className={cn(
-                        "transition-opacity",
-                        index === selectedIndex ? "opacity-100" : "opacity-50 group-hover:opacity-100"
-                      )}>
-                        {cmd.icon}
-                      </span>
-                      {cmd.name}
+                    <div className="flex flex-col items-start gap-1 font-mono text-xs md:text-sm text-left">
+                      <div className="flex items-center gap-3">
+                        <span className={cn(
+                          "transition-opacity",
+                          index === selectedIndex ? "opacity-100" : "opacity-50 group-hover:opacity-100"
+                        )}>
+                          {cmd.icon}
+                        </span>
+                        {cmd.name}
+                      </div>
+                      {cmd.desc && (
+                        <span className="text-[10px] text-secondary/60 pl-7 group-hover:text-secondary/80 transition-colors">
+                          {cmd.desc}
+                        </span>
+                      )}
                     </div>
                     <ArrowRight className={cn(
-                      "w-4 h-4 transition-all",
+                      "w-4 h-4 transition-all shrink-0",
                       index === selectedIndex ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-2 group-hover:opacity-50 group-hover:translate-x-0"
                     )} />
                   </button>

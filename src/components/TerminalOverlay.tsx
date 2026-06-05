@@ -99,6 +99,26 @@ export default function TerminalOverlay() {
     }, 40);
   };
 
+  const executeCommandRef = useRef<((cmd: string) => void) | null>(null);
+  useEffect(() => {
+    executeCommandRef.current = executeCommand;
+  }, [availableLogs, logs, isPrinting]);
+
+  useEffect(() => {
+    const handleRunCommand = (e: Event) => {
+      const customEvent = e as CustomEvent<{ command: string }>;
+      const cmd = customEvent.detail.command;
+      setIsOpen(true);
+      setTimeout(() => {
+        if (executeCommandRef.current) {
+          executeCommandRef.current(cmd);
+        }
+      }, 150);
+    };
+    window.addEventListener("run-terminal-command", handleRunCommand);
+    return () => window.removeEventListener("run-terminal-command", handleRunCommand);
+  }, []);
+
   const executeCommand = (cmd: string) => {
     const trimmed = cmd.trim();
     if (!trimmed) {
@@ -279,6 +299,11 @@ export default function TerminalOverlay() {
         } else {
           newLogs.push({ id: Date.now() + 1, text: "sudo: permission denied", type: "error" });
         }
+        break;
+
+      case "godmode":
+        newLogs.push({ id: Date.now() + 1, text: "[SUCCESS] ROOT ACCESS VERIFIED. INITIATING OVERRIDE SEQUENCE.", type: "output" });
+        window.dispatchEvent(new CustomEvent("trigger-god-mode"));
         break;
 
       case "clear":

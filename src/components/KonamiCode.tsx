@@ -38,6 +38,15 @@ export default function KonamiCode() {
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, []);
 
+  useEffect(() => {
+    const handleTriggerGodMode = () => {
+      setUnlocked(true);
+      setTimeout(() => setUnlocked(false), 5000);
+    };
+    window.addEventListener("trigger-god-mode", handleTriggerGodMode);
+    return () => window.removeEventListener("trigger-god-mode", handleTriggerGodMode);
+  }, []);
+
   return (
     <AnimatePresence>
       {unlocked && (
