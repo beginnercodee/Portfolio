@@ -1,7 +1,8 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
+import Image from "next/image";
 
 import HeroMatrix from "./animations/HeroMatrix";
 
@@ -10,6 +11,7 @@ const AUTOMATE_CHARS = "AUTOMATE.".split("");
 
 export default function Hero() {
   const containerRef = useRef<HTMLElement>(null);
+  const [imgError, setImgError] = useState(false);
   
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -36,15 +38,17 @@ export default function Hero() {
         >
           <div className="w-full h-full rounded-full bg-[#111] overflow-hidden relative flex items-center justify-center">
             {/* INSTRUCTION FOR USER: Add profile.jpg or profile.png to the 'public' folder */}
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img 
-              src="/profile.jpg" 
-              alt="Jamal Nadeem" 
-              className="absolute w-full h-full object-cover filter grayscale group-hover:grayscale-0 transition-all duration-800 opacity-80 group-hover:opacity-100 object-top"
-              onError={(e) => {
-                e.currentTarget.style.display = 'none';
-              }}
-            />
+            {!imgError && (
+              <Image 
+                src="/profile.jpg" 
+                alt="Jamal Nadeem" 
+                fill
+                priority
+                className="absolute w-full h-full object-cover filter grayscale group-hover:grayscale-0 transition-all duration-800 opacity-80 group-hover:opacity-100 object-top"
+                sizes="(max-width: 768px) 128px, 160px"
+                onError={() => setImgError(true)}
+              />
+            )}
             {/* Fallback Initials */}
             <span className="text-secondary tracking-widest font-mono text-xl group-hover:text-glow-green transition-colors">
               [ J_N ]

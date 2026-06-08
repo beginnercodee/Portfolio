@@ -77,7 +77,7 @@ export default function SystemStatusFooter() {
       }
     };
 
-    fetchBuildData();
+    // fetchBuildData will be called in deferred timeout below
 
     // Fetch User IP Geolocation (Easter Egg)
     const fetchLocation = async () => {
@@ -94,7 +94,11 @@ export default function SystemStatusFooter() {
       }
     };
     
-    fetchLocation();
+    // Defer non-critical network requests to avoid blocking main thread at startup
+    const apiFetchTimeout = setTimeout(() => {
+      fetchBuildData();
+      fetchLocation();
+    }, 3000);
 
     // Easter Egg: Tab Visibility Tracker
     const handleVisibilityChange = () => {
@@ -116,6 +120,7 @@ export default function SystemStatusFooter() {
 
     return () => {
       clearTimeout(handle);
+      clearTimeout(apiFetchTimeout);
       clearInterval(timeInterval);
       clearInterval(metricsInterval);
       document.removeEventListener("visibilitychange", handleVisibilityChange);

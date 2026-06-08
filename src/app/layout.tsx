@@ -3,30 +3,28 @@ import { Inter, Space_Grotesk, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { Analytics } from '@vercel/analytics/next';
 import { SpeedInsights } from '@vercel/speed-insights/next';
+import ClientOnlyOverlays from "@/components/ClientOnlyOverlays";
 
 const inter = Inter({
   variable: "--font-inter",
   subsets: ["latin"],
-  display: "block",
+  display: "swap",
 });
 
 const spaceGrotesk = Space_Grotesk({
   variable: "--font-space-grotesk",
   subsets: ["latin"],
   weight: ["300", "400", "500", "600", "700"],
-  display: "block",
+  display: "swap",
 });
 
 const jetbrainsMono = JetBrains_Mono({
   variable: "--font-jetbrains-mono",
   subsets: ["latin"],
-  display: "block",
+  display: "swap",
 });
 
-import CommandPalette from "@/components/CommandPalette";
-import TerminalOverlay from "@/components/TerminalOverlay";
-import KonamiCode from "@/components/KonamiCode";
-import ScrollProgress from "@/components/ScrollProgress";
+// Client-only overlays are now rendered in ClientOnlyOverlays wrapper below
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://jamalnadeem.com"),
@@ -85,11 +83,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${inter.variable} ${spaceGrotesk.variable} ${jetbrainsMono.variable} antialiased bg-background text-primary`}>
-        <ScrollProgress />
+        <ClientOnlyOverlays />
         {children}
-        <CommandPalette />
-        <TerminalOverlay />
-        <KonamiCode />
         <Analytics />
         <SpeedInsights />
       </body>

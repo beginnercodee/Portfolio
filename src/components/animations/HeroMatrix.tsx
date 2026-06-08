@@ -61,10 +61,13 @@ export default function HeroMatrix() {
         const dropY = drops[i] * fontSize;
         const dx = dropX - mouseX;
         const dy = dropY - mouseY;
-        const dist = Math.sqrt(dx * dx + dy * dy);
+        const distSq = dx * dx + dy * dy;
+        const radius = 150;
+        const radiusSq = radius * radius;
 
         // If mouse is near, light up the character and push it slightly
-        if (dist < 150) {
+        if (distSq < radiusSq) {
+          const dist = Math.sqrt(distSq);
           ctx.fillStyle = `rgba(57, 255, 20, ${1 - dist / 150})`; // glow-green
           // Optional: Add a subtle text shadow for local glow
           ctx.shadowBlur = 10;

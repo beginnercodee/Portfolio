@@ -1,4 +1,8 @@
-import LiveGitHubActivityClient from "./LiveGitHubActivityClient";
+"use client";
+
+import dynamic from "next/dynamic";
+
+const LiveGitHubActivityClient = dynamic(() => import("./LiveGitHubActivityClient"), { ssr: false });
 
 export default function LiveGitHubActivity() {
   return (

@@ -17,16 +17,19 @@ export default function ProjectCursor() {
     let targetX = -100;
     let targetY = -100;
 
+    let lastTarget: EventTarget | null = null;
     const handleMouseMove = (e: MouseEvent) => {
       targetX = e.clientX;
       targetY = e.clientY;
 
-      // Detect if the mouse is currently over a project card using closest()
-      const target = e.target as HTMLElement;
-      if (target.closest('[data-project-id]')) {
-        setIsHovering(true);
-      } else {
-        setIsHovering(false);
+      if (e.target !== lastTarget) {
+        lastTarget = e.target;
+        const target = e.target as HTMLElement;
+        if (target && target.closest('[data-project-id]')) {
+          setIsHovering(true);
+        } else {
+          setIsHovering(false);
+        }
       }
     };
 

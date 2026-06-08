@@ -100,9 +100,6 @@ export default function TerminalOverlay() {
   };
 
   const executeCommandRef = useRef<((cmd: string) => void) | null>(null);
-  useEffect(() => {
-    executeCommandRef.current = executeCommand;
-  }, [availableLogs, logs, isPrinting]);
 
   useEffect(() => {
     const handleRunCommand = (e: Event) => {
@@ -320,6 +317,8 @@ export default function TerminalOverlay() {
 
     setLogs(newLogs);
   };
+
+  executeCommandRef.current = executeCommand;
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
