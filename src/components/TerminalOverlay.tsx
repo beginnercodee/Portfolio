@@ -129,7 +129,7 @@ export default function TerminalOverlay() {
     // Echo input
     const newLogs: Log[] = [...logs, { id: Date.now(), text: `jamal@sys:~$ ${cmd}`, type: "input" }];
 
-    //Handle echo
+    // Handle echo
     if (commandName === "echo") {
       const outputText = trimmed.substring(4).trim();
       newLogs.push({ id: Date.now() + 1, text: outputText, type: "output" });
