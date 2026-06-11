@@ -25,7 +25,7 @@ export default function TerminalOverlay() {
   const inputRef = useRef<HTMLInputElement>(null);
   const printIntervalRef = useRef<NodeJS.Timeout | null>(null);
 
-  // Load dynamic logs from API route
+  // Load dynamic logs from API route via useEffect
   useEffect(() => {
     async function fetchLogs() {
       try {
