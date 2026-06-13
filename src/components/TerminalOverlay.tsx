@@ -126,7 +126,7 @@ export default function TerminalOverlay() {
     const args = trimmed.split(/\s+/);
     const commandName = args[0].toLowerCase();
 
-    //Echo input
+    // Echo input
     const newLogs: Log[] = [...logs, { id: Date.now(), text: `jamal@sys:~$ ${cmd}`, type: "input" }];
 
     // Handle echo
