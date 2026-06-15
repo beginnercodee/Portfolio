@@ -5,7 +5,7 @@ import { motion, useMotionValue, useSpring } from "framer-motion";
 
 export default function ProjectCursor() {
   const [isHovering, setIsHovering] = useState(false);
-  
+
   const mouseX = useMotionValue(-100);
   const mouseY = useMotionValue(-100);
 
@@ -33,7 +33,7 @@ export default function ProjectCursor() {
       }
     };
 
-    // Optimization loop using rAF to push motion values
+    //Optimization loop using rAF to push motion values
     const updateMotionValues = () => {
       mouseX.set(targetX);
       mouseY.set(targetY);
@@ -57,7 +57,7 @@ export default function ProjectCursor() {
       }}
       className="fixed top-0 left-0 z-[100] flex items-center justify-center pointer-events-none"
     >
-      <motion.div 
+      <motion.div
         animate={{
           scale: isHovering ? 1 : 0,
           opacity: isHovering ? 1 : 0
@@ -66,7 +66,7 @@ export default function ProjectCursor() {
         className="relative flex items-center justify-center w-24 h-24 -ml-12 -mt-12 bg-glow-green/90 backdrop-blur-sm rounded-full mix-blend-difference shadow-[0_0_30px_rgba(57,255,20,0.8)]"
       >
         <span className="font-mono text-[10px] font-bold text-black tracking-widest text-center">
-          EXPLORE<br/>SYS
+          EXPLORE<br />SYS
         </span>
       </motion.div>
     </motion.div>
