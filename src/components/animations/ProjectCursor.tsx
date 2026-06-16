@@ -33,7 +33,7 @@ export default function ProjectCursor() {
       }
     };
 
-    //Optimization loop using rAF to push motion values
+    // Optimization loop using rAF to push motion values
     const updateMotionValues = () => {
       mouseX.set(targetX);
       mouseY.set(targetY);
