@@ -25,7 +25,7 @@ export default function ProjectCursor() {
       if (e.target !== lastTarget) {
         lastTarget = e.target;
         const target = e.target as HTMLElement;
-        if (target && target.closest('[data-project-id]')) {
+        if (target && typeof target.closest === "function" && target.closest('[data-project-id]')) {
           setIsHovering(true);
         } else {
           setIsHovering(false);
