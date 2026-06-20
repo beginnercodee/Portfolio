@@ -29,11 +29,9 @@ export default function ASCIIProgress({ status, isActive }: { status: string, is
       <span className="flex items-center gap-2">
         <span className={isActive ? "animate-pulse" : ""}>{status}</span>
       </span>
-      {isActive && (
-        <span className="opacity-80 transition-all duration-300">
-          {getBrackets()}
-        </span>
-      )}
+      <span className="opacity-80 transition-all duration-300">
+        {getBrackets()}
+      </span>
     </div>
   );
 }
