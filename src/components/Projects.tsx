@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { ScrollScale } from "./animations/ScrollScale";
 import ProjectCursor from "./animations/ProjectCursor";
-import Link from "next/link"; // For upcoming routing implementations
+import Link from "next/link"; // For log details routing
 
 const projects = [
   {
