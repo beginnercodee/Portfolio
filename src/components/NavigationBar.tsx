@@ -10,7 +10,7 @@ export default function NavigationBar() {
   const [isOpen, setIsOpen] = useState(false);
   const [isMac, setIsMac] = useState(false);
 
-  // Check OS for correct shortcut key display
+  // Detect client OS for correct shortcut key display (avoids hydration mismatch)
   useEffect(() => {
     const handle = setTimeout(() => {
       setIsMac(navigator.userAgent.toLowerCase().includes('mac'));
