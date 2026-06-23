@@ -33,7 +33,7 @@ export default function HeroMatrix() {
     resizeCanvas();
     window.addEventListener("resize", resizeCanvas);
 
-    // Mouse tracking for parallax and dispersion
+    // Mouse tracking for proximity-based glow interaction
     let mouseX = canvas.width / 2;
     let mouseY = canvas.height / 2;
 
