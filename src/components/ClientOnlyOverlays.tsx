@@ -7,6 +7,9 @@ const TerminalOverlay = dynamic(() => import("@/components/TerminalOverlay"), { 
 const KonamiCode = dynamic(() => import("@/components/KonamiCode"), { ssr: false });
 const ScrollProgress = dynamic(() => import("@/components/ScrollProgress"), { ssr: false });
 
+// Dedicated client-side wrapper to group client-only overlays and prevent Next.js
+// hydration mismatches, since next/dynamic with { ssr: false } cannot be used
+// directly within Next.js Server Components like layout.tsx.
 export default function ClientOnlyOverlays() {
   return (
     <>
