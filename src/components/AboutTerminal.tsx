@@ -20,7 +20,7 @@ export default function AboutTerminal() {
         setDisplayedLines([]);
         setCurrentLineIndex(0);
         setCurrentCharIndex(0);
-      }, 4000);
+      }, 4000); // Wait 4 seconds before restarting the typing animation cycle
       return () => clearTimeout(timeout);
     }
 
