@@ -33,7 +33,7 @@ export default function ProjectCursor() {
       }
     };
 
-    // Optimization loop using rAF to push motion values
+    // Throttles motion value updates to the display refresh rate (rAF) to decouple from high mouse polling rates
     const updateMotionValues = () => {
       mouseX.set(targetX);
       mouseY.set(targetY);
