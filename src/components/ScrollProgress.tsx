@@ -2,6 +2,10 @@
 
 import { motion, useScroll } from "framer-motion";
 
+/**
+ * Renders a global, fixed scroll progress indicator at the top of the viewport
+ * with a customized green glow effect using Framer Motion.
+ */
 export default function ScrollProgress() {
   const { scrollYProgress } = useScroll();
 
