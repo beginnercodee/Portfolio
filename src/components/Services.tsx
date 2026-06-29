@@ -21,6 +21,10 @@ const services = [
   }
 ];
 
+/**
+ * Renders the Services section displaying core capabilities including AI Automation,
+ * Full-Stack Engineering, and Frontend Architecture with hover-based glow highlights.
+ */
 export default function Services() {
   return (
     <section id="services" className="px-6 md:px-12 py-16 md:py-24 max-w-[1440px] mx-auto z-30 relative">
