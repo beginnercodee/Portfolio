@@ -7,6 +7,10 @@ const skills = {
   AI: ["n8n", "GoHighLevel", "Selenium", "Google Gemini", "Hugging Face APIs"],
 };
 
+/**
+ * Renders the Skills section containing categorized lists of technical proficiencies
+ * (Frontend, Backend, AI/Automation) and an abstract SVG radar chart representing skill levels.
+ */
 export default function Skills() {
   return (
     <section id="skills" className="py-16 md:py-24 px-6 md:px-12 max-w-[1440px] mx-auto z-30 grid lg:grid-cols-2 gap-12 md:gap-16 items-center">
