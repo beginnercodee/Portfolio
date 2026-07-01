@@ -18,6 +18,10 @@ const experiences = [
   },
 ];
 
+/**
+ * Renders the Experience timeline showing professional logs. Alternates layout alignment 
+ * (left/right of the timeline) on desktop screens and aligns to a single track on mobile.
+ */
 export default function Experience() {
   return (
     <section id="experience" className="flex flex-col max-w-[1000px] mx-auto py-16 md:py-24 px-6 md:px-12 z-30 relative overflow-hidden">
