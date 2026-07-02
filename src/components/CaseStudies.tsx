@@ -13,6 +13,10 @@ const caseStudies = [
   },
 ];
 
+/**
+ * Renders the Case Studies section showing specific client ROI metrics and architectural
+ * summaries of business efficiency/automation improvements.
+ */
 export default function CaseStudies() {
   return (
     <section className="max-w-[1440px] mx-auto py-12 md:py-20 px-6 md:px-12 z-30 relative">
