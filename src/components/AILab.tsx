@@ -21,6 +21,10 @@ const experiments = [
 ];
 
 
+/**
+ * Renders the AI Lab & Experiments section showcasing current and archived AI projects,
+ * automated pipelines, and testing suites. Features dynamic typing effects and ASCII status bars.
+ */
 export default function AILab() {
   return (
     <section className="max-w-[1440px] mx-auto py-16 md:py-24 px-6 md:px-12 z-30 relative">
