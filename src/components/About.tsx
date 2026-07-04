@@ -1,6 +1,10 @@
 import AboutTerminal from "./AboutTerminal";
 import { ScrollFade } from "./animations/ScrollFade";
 
+/**
+ * Renders the About section combining a mock coding/terminal typing simulator
+ * with clean biographical details and automation philosophy summaries.
+ */
 export default function About() {
   return (
     <section id="about" className="max-w-[1440px] mx-auto px-6 md:px-12 py-16 md:py-24 grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16 relative z-30">
