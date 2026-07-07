@@ -5,6 +5,10 @@ import { motion } from "framer-motion";
 import ThankYouOverlay from "./ThankYouOverlay";
 import { Github, Linkedin, Twitter } from "lucide-react";
 
+/**
+ * Renders the Contact section featuring a form integrated with Web3Forms API,
+ * dynamic submission states, error display, and a customized modal overlay.
+ */
 export default function Contact() {
   const [isOverlayOpen, setIsOverlayOpen] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
