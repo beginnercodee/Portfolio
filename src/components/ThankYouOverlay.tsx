@@ -7,6 +7,10 @@ interface Props {
   onClose: () => void;
 }
 
+/**
+ * Renders the full-screen Thank You modal overlay featuring an animated SVG checkmark,
+ * terminal-style success headers, and session-closing trigger buttons.
+ */
 export default function ThankYouOverlay({ isOpen, onClose }: Props) {
   return (
     <AnimatePresence>
