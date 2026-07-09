@@ -15,6 +15,10 @@ const testimonials = [
   }
 ];
 
+/**
+ * Renders the Testimonials section showing client reviews and verified feedback logs
+ * using left-border highlights and responsive column layouts.
+ */
 export default function Testimonials() {
   return (
     <section className="px-6 md:px-12 py-16 md:py-24 max-w-[1000px] mx-auto z-30 relative">
