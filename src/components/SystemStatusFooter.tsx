@@ -2,6 +2,11 @@
 
 import { useEffect, useState } from "react";
 
+/**
+ * Renders the System Status Footer showing real-time client indicators: a clock, 
+ * simulated hardware resource gauges (CPU/RAM/Latency), live Git build info via GitHub API,
+ * and user IP-based city geolocation tracing.
+ */
 export default function SystemStatusFooter() {
   const [time, setTime] = useState("--:--");
   const [cpu, setCpu] = useState("--");
