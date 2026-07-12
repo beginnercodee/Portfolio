@@ -9,6 +9,10 @@ import HeroMatrix from "./animations/HeroMatrix";
 const ENGINEER_CHARS = "ENGINEER.".split("");
 const AUTOMATE_CHARS = "AUTOMATE.".split("");
 
+/**
+ * Renders the Hero landing section featuring full-page matrix digital rain background,
+ * interactive parallax text, and profile picture avatar display with fallback initials.
+ */
 export default function Hero() {
   const containerRef = useRef<HTMLElement>(null);
   const [imgError, setImgError] = useState(false);
