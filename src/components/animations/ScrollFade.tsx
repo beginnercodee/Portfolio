@@ -3,6 +3,10 @@
 import { motion } from "framer-motion";
 import { ReactNode } from "react";
 
+/**
+ * A reusable scroll-triggered fade and translation animation component 
+ * powered by Framer Motion. Triggers once when scrolled into view.
+ */
 export function ScrollFade({
   children,
   x = 0,
