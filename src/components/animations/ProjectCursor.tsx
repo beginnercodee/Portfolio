@@ -3,6 +3,10 @@
 import { useEffect, useState } from "react";
 import { motion, useMotionValue, useSpring } from "framer-motion";
 
+/**
+ * Renders a custom green glow mouse cursor overlay with spring damping physics
+ * that activates when hovering over specific interactive project sections.
+ */
 export default function ProjectCursor() {
   const [isHovering, setIsHovering] = useState(false);
 
