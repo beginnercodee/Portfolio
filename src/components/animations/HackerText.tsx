@@ -5,6 +5,10 @@ import { useInView } from "framer-motion";
 
 const LETTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%&*";
 
+/**
+ * Renders text with an interactive, scrolling matrix-scrambler text decoding animation.
+ * Safely initializes to avoid Next.js hydration mismatches before mounting.
+ */
 export default function HackerText({ text }: { text: string }) {
   // Initialize with plain text to match SSR and prevent Hydration #418 Error
   const [displayText, setDisplayText] = useState(text);
