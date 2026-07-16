@@ -2,6 +2,10 @@
 
 import { useEffect, useState } from "react";
 
+/**
+ * Renders a terminal-style ASCII progress bar indicator.
+ * Displays dynamically fluctuating progress percentage bars when active.
+ */
 export default function ASCIIProgress({ status, isActive }: { status: string, isActive: boolean }) {
   const [progress, setProgress] = useState(0);
 
