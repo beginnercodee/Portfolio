@@ -2,6 +2,10 @@
 
 import { useEffect, useRef } from "react";
 
+/**
+ * Renders a full-screen Matrix digital rain animation on an HTML5 canvas,
+ * featuring interactive mouse-proximity glow highlights and trail fade effects.
+ */
 export default function HeroMatrix() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
