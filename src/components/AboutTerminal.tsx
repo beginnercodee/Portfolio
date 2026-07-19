@@ -9,6 +9,10 @@ const terminalLines = [
   "> status: [SYSTEMS OPTIMIZED]"
 ];
 
+/**
+ * Renders the terminal console mockup showing typing animation sequence loops, 
+ * simulated shell feedback statements, and terminal decorative headers.
+ */
 export default function AboutTerminal() {
   const [displayedLines, setDisplayedLines] = useState<string[]>([]);
   const [currentLineIndex, setCurrentLineIndex] = useState(0);
