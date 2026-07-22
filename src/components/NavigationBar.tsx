@@ -5,6 +5,11 @@ import { cn } from "@/lib/utils";
 import { useEffect, useState, useCallback } from "react";
 import { motion } from "framer-motion";
 
+/**
+ * Renders the primary navigation header with desktop navigation links,
+ * mobile drawer menu toggle, OS-specific shortcut detection for the command palette,
+ * and background blur dynamics on scroll.
+ */
 export default function NavigationBar() {
   const [scrolled, setScrolled] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
