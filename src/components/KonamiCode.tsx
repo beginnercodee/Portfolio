@@ -3,6 +3,10 @@
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
+/**
+ * Listens for the classic Konami Code key sequence (Up Up Down Down Left Right Left Right B A)
+ * or a custom trigger event to unlock a hidden "GOD MODE" full-screen overlay.
+ */
 export default function KonamiCode() {
   const [unlocked, setUnlocked] = useState(false);
 
