@@ -11,6 +11,11 @@ type Log = {
   type: "input" | "output" | "error" | "system";
 };
 
+/**
+ * Renders an interactive, modal-based CLI terminal interface allowing users to execute
+ * custom shell commands (help, whoami, skills, ls, cat, echo, ping, date, godmode, clear, exit).
+ * Features hotkey toggles (Ctrl+`), simulated scanlines, and animated text streaming.
+ */
 export default function TerminalOverlay() {
   const [isOpen, setIsOpen] = useState(false);
   const [inputMessage, setInputMessage] = useState("");
