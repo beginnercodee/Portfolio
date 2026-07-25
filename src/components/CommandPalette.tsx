@@ -15,6 +15,10 @@ type Command = {
   action: () => void;
 };
 
+/**
+ * Renders a global command palette modal activated by CMD+K / CTRL+K or search triggers.
+ * Provides keyboard-navigable navigation shortcuts, macro command triggers, and log post search capabilities.
+ */
 export default function CommandPalette() {
   const [isOpen, setIsOpen] = useState(false);
   const [query, setQuery] = useState("");
