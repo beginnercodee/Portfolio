@@ -31,7 +31,7 @@ export default function ASCIIProgress({ status, isActive }: { status: string, is
   return (
     <div className={`flex items-center justify-between w-full font-mono text-[10px] md:text-xs tracking-widest ${isActive ? "text-glow-green" : "text-secondary/50"}`}>
       <span className="flex items-center gap-2">
-        <span className={isActive ? "animate-pulse" : ""}>{status}</span>
+        <span className={isActive ? "animate-pulse" : ""}>{status}</span>q
       </span>
       <span className="opacity-80 transition-all duration-300">
         {getBrackets()}
