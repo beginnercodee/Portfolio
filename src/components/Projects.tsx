@@ -34,6 +34,10 @@ const projects = [
   },
 ];
 
+/**
+ * Renders the Selected Works / Projects grid displaying interactive project cards,
+ * tech stack labels, custom hover cursors, and routing links to external repos or logs.
+ */
 export default function Projects() {
   return (
     <section id="projects" className="px-6 md:px-12 py-16 md:py-24 max-w-[1440px] mx-auto z-30 relative">
