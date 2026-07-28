@@ -3,6 +3,10 @@
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 
+/**
+ * Fetches real-time public activity events from the GitHub REST API for the user `beginnercodee`
+ * and streams formatted activity logs sequentially into a styled terminal console container.
+ */
 export default function LiveGitHubActivityClient() {
   const [logs, setLogs] = useState<string[]>([]);
 
