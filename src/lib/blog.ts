@@ -51,6 +51,10 @@ function parseFrontmatter(fileContent: string) {
   return { data, content };
 }
 
+/**
+ * Reads all Markdown execution log posts from the local content directory,
+ * parses frontmatter metadata, and returns them sorted descending by date.
+ */
 export async function getLogs(): Promise<LogPost[]> {
   if (!fs.existsSync(LOGS_DIR)) return [];
 
@@ -81,6 +85,9 @@ export async function getLogs(): Promise<LogPost[]> {
   return posts;
 }
 
+/**
+ * Retrieves a single execution log post by its URL slug.
+ */
 export async function getLogBySlug(slug: string): Promise<LogPost | null> {
   const fullPath = path.join(LOGS_DIR, `${slug}.md`);
   if (!fs.existsSync(fullPath)) return null;
