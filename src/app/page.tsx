@@ -15,6 +15,10 @@ const Skills = dynamic(() => import("@/components/Skills"), { ssr: true });
 const Contact = dynamic(() => import("@/components/Contact"), { ssr: true });
 const SystemStatusFooter = dynamic(() => import("@/components/SystemStatusFooter"), { ssr: true });
 
+/**
+ * Renders the main portfolio homepage layout incorporating dynamic server-rendered section imports
+ * (Hero, About, Services, Experience, Live GitHub Feed, Projects, Case Studies, Testimonials, AI Lab, Skills, Contact).
+ */
 export default function Home() {
   return (
     <main className="min-h-screen bg-background text-foreground mb-[32px]">
