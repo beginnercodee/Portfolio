@@ -75,6 +75,10 @@ export const viewport: import("next").Viewport = {
   themeColor: "#000000",
 };
 
+/**
+ * Root HTML layout structure configuring Google Font CSS variables (Inter, Space Grotesk, JetBrains Mono),
+ * SEO metadata, Vercel Analytics/Speed Insights, and client-only overlay wrappers.
+ */
 export default function RootLayout({
   children,
 }: Readonly<{
