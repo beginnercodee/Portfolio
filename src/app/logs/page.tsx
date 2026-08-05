@@ -6,6 +6,10 @@ export const metadata = {
   description: "Technical writings, system architectures, and AI automation workflows.",
 };
 
+/**
+ * Renders the Execution Logs directory index page, fetching and listing all published
+ * Markdown technical articles, architecture decisions, and system breakdown logs.
+ */
 export default async function LogsIndex() {
   const logs = await getLogs();
 
