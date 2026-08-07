@@ -20,6 +20,10 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   };
 }
 
+/**
+ * Renders an individual Markdown execution log article page, converting light Markdown content
+ * into styled HTML headers, code blocks, and formatted paragraph blocks.
+ */
 export default async function LogPost({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
   const post = await getLogBySlug(slug);
