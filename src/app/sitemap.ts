@@ -1,5 +1,9 @@
 import { MetadataRoute } from 'next';
 
+/**
+ * Generates the dynamic XML sitemap configuration for search engine crawlers,
+ * defining root URLs, last modified dates, and index priorities.
+ */
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = 'https://jamalnadeem.com';
 
