@@ -1,5 +1,9 @@
 import { MetadataRoute } from 'next';
 
+/**
+ * Generates the web application manifest configuration for Progressive Web App (PWA) support,
+ * specifying app names, display modes, theme colors, and icon paths.
+ */
 export default function manifest(): MetadataRoute.Manifest {
   return {
     name: 'Jamal Nadeem | Automation Engineer',
