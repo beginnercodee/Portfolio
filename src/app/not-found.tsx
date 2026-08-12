@@ -5,6 +5,10 @@ export const metadata: Metadata = {
   title: '404 - Memory Address Not Found',
 };
 
+/**
+ * Renders the custom retro terminal-style 404 page displaying a simulated system kernel panic,
+ * exception stack details, and a recovery link routing users back to the root homepage.
+ */
 export default function NotFound() {
   return (
     <div className="min-h-screen bg-[#020202] flex flex-col items-center justify-center p-6 relative overflow-hidden font-mono antialiased">
