@@ -54,6 +54,9 @@ export default function SystemStatusFooter() {
     }, 3000);
 
     // Fetch Last Deployment Commit from GitHub (Vercel builds on push to main)
+    /**
+     * Queries the GitHub Commits API for the latest commit SHA hash and relative deployment age.
+     */
     const fetchBuildData = async () => {
       try {
         const res = await fetch("https://api.github.com/repos/beginnercodee/Portfolio/commits/main");
