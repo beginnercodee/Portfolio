@@ -24,6 +24,9 @@ export default function HeroMatrix() {
     let drops: number[] = [];
     
     // Resize handler
+    /**
+     * Recalculates canvas dimensions and matrix column drop staggers on viewport resize.
+     */
     const resizeCanvas = () => {
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
