@@ -146,6 +146,9 @@ export default function CommandPalette() {
     },
   ];
 
+  /**
+   * Filters navigation commands, macro shortcuts, and log posts matching the active search query.
+   */
   const getFilteredCommands = (): Command[] => {
     if (query.startsWith(">")) {
       const macroQuery = query.substring(1).trim().toLowerCase();
