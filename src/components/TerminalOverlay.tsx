@@ -79,6 +79,9 @@ export default function TerminalOverlay() {
     };
   }, []);
 
+  /**
+   * Sequentially appends text lines to the terminal console log output at a fixed interval.
+   */
   const printLinesSlowly = (lines: string[]) => {
     if (printIntervalRef.current) {
       clearInterval(printIntervalRef.current);
