@@ -18,6 +18,10 @@ export default function AboutTerminal() {
   const [currentLineIndex, setCurrentLineIndex] = useState(0);
   const [currentCharIndex, setCurrentCharIndex] = useState(0);
 
+  /**
+   * Manages the typing simulation loop, stepping through line characters with randomized delays,
+   * pausing between completed lines, and auto-resetting after a rest period.
+   */
   useEffect(() => {
     if (currentLineIndex >= terminalLines.length) {
       const timeout = setTimeout(() => {
