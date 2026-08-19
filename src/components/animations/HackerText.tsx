@@ -18,6 +18,10 @@ export default function HackerText({ text }: { text: string }) {
   const isInView = useInView(containerRef, { once: true, margin: "0px 0px -50px 0px" });
   const hasRunRef = useRef(false);
 
+  /**
+   * Triggers client-side text encryption on mount to bypass SSR hydration mismatches,
+   * followed by an animated matrix decoding sequence once scrolled into viewport.
+   */
   useEffect(() => {
     // Stage 1: Fast-encrypt on Client Mount (safely bypasses SSR Hydration checks)
     if (!isEncrypted) {
