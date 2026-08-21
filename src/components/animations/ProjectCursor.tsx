@@ -16,6 +16,10 @@ export default function ProjectCursor() {
   const springX = useSpring(mouseX, { damping: 25, stiffness: 200, mass: 0.5 });
   const springY = useSpring(mouseY, { damping: 25, stiffness: 200, mass: 0.5 });
 
+  /**
+   * Listens for mousemove events, detects hover interactions over project cards,
+   * and updates Framer Motion spring target coordinates aligned with browser rAF ticks.
+   */
   useEffect(() => {
     let animationFrameId: number;
     let targetX = -100;
