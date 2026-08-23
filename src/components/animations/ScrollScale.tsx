@@ -4,8 +4,8 @@ import { motion } from "framer-motion";
 import { ReactNode } from "react";
 
 /**
- * A reusable scroll-triggered scaling and fade animation component 
- * powered by Framer Motion. Triggers once when scrolled into view.
+ * A reusable scroll-triggered scaling and fade animation component powered by Framer Motion.
+ * Triggers once when scrolled into view with configurable scale factors, duration, and delay.
  */
 export function ScrollScale({
   children,
