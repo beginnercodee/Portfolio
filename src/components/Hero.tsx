@@ -41,22 +41,22 @@ export default function Hero() {
            className="relative w-32 h-32 md:w-40 md:h-40 rounded-full border-2 border-white/10 p-1 overflow-hidden backdrop-blur-md group hover:border-glow-green/50 transition-colors duration-500"
         >
           <div className="w-full h-full rounded-full bg-[#111] overflow-hidden relative flex items-center justify-center">
-            {/* INSTRUCTION FOR USER: Add profile.jpg or profile.png to the 'public' folder */}
-            {!imgError && (
+            {!imgError ? (
               <Image 
                 src="/profile.jpg" 
                 alt="Jamal Nadeem" 
                 fill
                 priority
-                className="absolute w-full h-full object-cover filter grayscale group-hover:grayscale-0 transition-all duration-800 opacity-80 group-hover:opacity-100 object-top"
+                className="absolute w-full h-full object-cover filter grayscale group-hover:grayscale-0 transition-all duration-700 opacity-95 group-hover:opacity-100 object-top"
                 sizes="(max-width: 768px) 128px, 160px"
                 onError={() => setImgError(true)}
               />
+            ) : (
+              /* Fallback Initials (shown only if image fails to load) */
+              <span className="text-secondary tracking-widest font-mono text-xl group-hover:text-glow-green transition-colors">
+                [ J_N ]
+              </span>
             )}
-            {/* Fallback Initials */}
-            <span className="text-secondary tracking-widest font-mono text-xl group-hover:text-glow-green transition-colors">
-              [ J_N ]
-            </span>
           </div>
         </motion.div>
       </motion.div>
