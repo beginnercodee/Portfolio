@@ -13,7 +13,7 @@ export default function About() {
       <div className="flex flex-col justify-center font-sans text-body-sm text-secondary space-y-6 leading-relaxed">
         <ScrollFade x={20}>
           <p>
-            Currently completing my B.Sc in Computer Science at Sir Syed University of Engineering & Technology (Class of &apos;26). <span className="text-primary font-medium">I don&apos;t just write code; I architect solutions.</span>
+            Computer Science graduate from Sir Syed University of Engineering & Technology (SSUET). <span className="text-primary font-medium">I don&apos;t just write code; I architect solutions.</span>
           </p>
         </ScrollFade>
         
@@ -25,7 +25,7 @@ export default function About() {
         
         <ScrollFade x={20} delay={0.4}>
           <p>
-            Whether it&apos;s a sleek Next.js frontend or a complex background workflow powered by Python and GoHighLevel, I deliver digital infrastructure that works flawlessly.
+            Whether it&apos;s a production full-stack application, an autonomous voice agent, or complex CRM pipelines powered by Python, n8n, and GoHighLevel, I deliver digital infrastructure that works flawlessly.
           </p>
         </ScrollFade>
       </div>

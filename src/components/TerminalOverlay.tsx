@@ -199,16 +199,16 @@ export default function TerminalOverlay() {
 
         if (lowerTarget === "about.md") {
           const lines = [
-            "JAMAL NADEEM - B.Sc in Computer Science (SSUET, Class of '26)",
+            "JAMAL NADEEM - BS in Computer Science (SSUET Graduate)",
             "-------------------------------------------------------------",
             "Core Philosophy: \"If a task can be predicted, it can be automated.\"",
             "",
             "I bridge the gap between clean, high-performance web development",
             "and agentic AI systems—reducing friction and multiplying efficiency.",
             "",
-            "Whether it's a sleek Next.js frontend or a complex background workflow",
-            "powered by Python and GoHighLevel, I deliver digital infrastructure",
-            "that works flawlessly."
+            "Whether it's a scalable full-stack app, an autonomous voice agent,",
+            "or complex CRM pipelines powered by Python, n8n, and GoHighLevel,",
+            "I deliver digital infrastructure that works flawlessly."
           ];
           setLogs(newLogs);
           printLinesSlowly(lines);
@@ -218,10 +218,11 @@ export default function TerminalOverlay() {
         if (lowerTarget === "skills.json") {
           const lines = [
             "{",
-            '  "languages": ["TypeScript", "JavaScript", "Python", "HTML/CSS"],',
-            '  "frameworks": ["Next.js", "React", "TailwindCSS"],',
-            '  "tools_platforms": ["GoHighLevel", "n8n", "Supabase", "Git"],',
-            '  "specialties": ["Agentic AI systems", "Browser automation", "E2E testing"]',
+            '  "languages": ["TypeScript", "JavaScript", "Python", "PHP", "HTML/CSS"],',
+            '  "frameworks": ["Next.js", "React", "NestJS", "Tailwind CSS"],',
+            '  "databases": ["PostgreSQL (NeonDB)", "Supabase", "MongoDB", "MySQL"],',
+            '  "ai_automation": ["n8n", "GoHighLevel", "Voice Agents", "OpenAI/Gemini/OpenRouter/Nvidia", "Judge0 CE"],',
+            '  "devops_tools": ["Docker", "Git/GitHub", "Vercel", "CI/CD"]',
             "}"
           ];
           setLogs(newLogs);
@@ -293,9 +294,9 @@ export default function TerminalOverlay() {
 
       case "skills":
         newLogs.push({ id: Date.now() + 1, text: "[ SYSTEM COMPETENCIES ]", type: "output" });
-        newLogs.push({ id: Date.now() + 2, text: "> React.js, Next.js, Node.js", type: "output" });
-        newLogs.push({ id: Date.now() + 3, text: "> Python, GoHighLevel, Supabase", type: "output" });
-        newLogs.push({ id: Date.now() + 4, text: "> Agentic Frameworks, Web Sockets, Microservices", type: "output" });
+        newLogs.push({ id: Date.now() + 2, text: "> Next.js, React, NestJS, Node.js, Tailwind CSS", type: "output" });
+        newLogs.push({ id: Date.now() + 3, text: "> Python, PostgreSQL, Supabase, MongoDB, Docker", type: "output" });
+        newLogs.push({ id: Date.now() + 4, text: "> Agentic AI, Voice Agents, n8n, GoHighLevel, LLM APIs", type: "output" });
         break;
 
       case "sudo":

@@ -168,7 +168,7 @@ export default function Contact() {
         >
           <Github className="w-8 h-8 mb-4 opacity-70 group-hover:opacity-100 group-hover:scale-110 transition-all duration-300" />
           <span className="font-mono text-sm tracking-widest uppercase">github://</span>
-          <span className="font-sans font-bold text-white group-hover:text-glow-green mt-1">jamal-nadeem</span>
+          <span className="font-sans font-bold text-white group-hover:text-glow-green mt-1">beginnercodee</span>
         </a>
         
         <a 

@@ -2,19 +2,19 @@ import { ScrollFade } from "./animations/ScrollFade";
 
 const experiences = [
   {
-    role: "Team Lead, CRM & Agentic AI",
-    meta: "[master] EditVista LTD // Mar 2026 — Present",
-    desc: "Leading a department focused on orchestrating intelligent agentic workflows, complex CRM integrations, and massive-scale operational automation.",
+    role: "Team Lead, CRM & Agentic AI Department",
+    meta: "[master] EditVista Ltd // Mar 2026 — Present",
+    desc: "Lead a department building intelligent agentic workflows and CRM pipelines. Built 50+ production automations using n8n and GoHighLevel (GHL), and direct voice agent projects integrating OpenAI, Gemini, OpenRouter, and Nvidia open-source models.",
   }, 
   {
     role: "Agentic AI & Automation Intern",
-    meta: "[v1.1.0] EditVista LTD // Jan 2026 — Feb 2026",
-    desc: "Designed and prototyped intelligent agentic systems and integrated LLMs to automate high-friction business processes.",
+    meta: "[v1.1.0] EditVista Ltd // Jan 2026 — Feb 2026",
+    desc: "Designed and prototyped intelligent agentic systems, integrating LLMs to automate high-friction business processes and operational pipelines.",
   },
   {
-    role: "Web Development Intern",
+    role: "AI-Enhanced Web Development Intern",
     meta: "[v1.0.0] Nexium // Jul 2025 — Aug 2025",
-    desc: "Architected and deployed full-stack web applications utilizing Next.js, Tailwind CSS, Supabase, and MongoDB.",
+    desc: "Built and maintained full-stack web applications using Next.js, Tailwind CSS, and Supabase. Designed scalable database architectures with Supabase & MongoDB and automated backend workflows.",
   },
 ];
 

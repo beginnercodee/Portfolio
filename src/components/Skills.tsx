@@ -2,9 +2,9 @@ import { ScrollFade } from "./animations/ScrollFade";
 import { ScrollScale } from "./animations/ScrollScale";
 
 const skills = {
-  Frontend: ["React.js", "Next.js", "Tailwind CSS", "Shadcn UI", "Framer Motion"],
-  Backend: ["Node.js", "Python", "Flask", "Supabase", "MongoDB Atlas"],
-  AI: ["n8n", "GoHighLevel", "Selenium", "Google Gemini", "Hugging Face APIs"],
+  "Frontend Architecture": ["React.js", "Next.js", "Tailwind CSS", "JavaScript", "Framer Motion", "Shadcn UI"],
+  "Backend & Databases": ["Node.js", "Python", "NestJS", "PostgreSQL (NeonDB)", "Supabase", "MongoDB", "MySQL", "Docker"],
+  "AI & Automation": ["n8n", "GoHighLevel (GHL)", "Voice Agents", "OpenAI / OpenRouter", "Google Gemini", "Nvidia Models", "Judge0 CE", "Selenium"],
 };
 
 /**

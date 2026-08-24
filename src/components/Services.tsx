@@ -4,14 +4,14 @@ const services = [
   {
     id: "01",
     title: "AI AUTOMATION & AGENTS",
-    desc: "Custom LLM integrations, n8n workflows, and autonomous agents designed to eliminate repetitive tasks and scale operations.",
-    features: ["Agentic Workflows", "OpenAI / Claude / Local LLMs", "Chatbots & RAG Systems"],
+    desc: "Custom LLM integrations, n8n workflows, and autonomous voice agents designed to eliminate manual bottlenecks and scale operations.",
+    features: ["Agentic Workflows", "Voice Agents & Multi-LLMs", "n8n & CRM Pipelines"],
   },
   {
     id: "02",
     title: "FULL-STACK ENGINEERING",
-    desc: "High-performance data pipelines, backend architecture, and database design using Node.js, Python, and Supabase.",
-    features: ["REST/GraphQL APIs", "WebSockets & Real-time", "Database Architecture"],
+    desc: "High-performance backend systems, microservices, and database architectures using Next.js, NestJS, Python, PostgreSQL, and Supabase.",
+    features: ["REST APIs & WebSockets", "Real-Time Systems", "Database Architecture"],
   },
   {
     id: "03",
