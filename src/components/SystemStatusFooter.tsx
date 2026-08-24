@@ -136,13 +136,13 @@ export default function SystemStatusFooter() {
   }, []);
 
   return (
-    <footer className="w-full border-t border-surface bg-[#0D0D0D]/80 backdrop-blur-md py-1 px-6 flex justify-between items-center z-50 fixed bottom-0">
-      <div className="flex-1 flex gap-4 font-mono text-[10px] text-secondary tracking-widest uppercase items-center">
-        <span className="flex items-center gap-2">
-          <span className="w-2 h-2 rounded-full bg-glow-green shadow-[0_0_8px_rgba(57,255,20,0.8)] animate-pulse" />
+    <footer className="w-full border-t border-surface bg-[#0D0D0D]/80 backdrop-blur-md py-1.5 px-6 flex justify-between items-center z-50 fixed bottom-0 whitespace-nowrap">
+      <div className="flex items-center gap-4 font-mono text-[10px] text-secondary tracking-widest uppercase whitespace-nowrap">
+        <span className="inline-flex items-center gap-2 whitespace-nowrap">
+          <span className="w-2 h-2 rounded-full bg-glow-green shadow-[0_0_8px_rgba(57,255,20,0.8)] animate-pulse shrink-0" />
           SYSTEM: ONLINE
         </span>
-        <span className="hidden lg:inline-flex items-center gap-2 border-l border-white/10 pl-4">
+        <span className="hidden lg:inline-flex items-center gap-2 border-l border-white/10 pl-4 whitespace-nowrap">
           NODE: {mounted ? location : "---"}
         </span>
         {mounted && buildInfo && (
@@ -150,19 +150,19 @@ export default function SystemStatusFooter() {
             href={buildInfo.url} 
             target="_blank" 
             rel="noopener noreferrer"
-            className="hidden sm:inline-flex items-center gap-2 opacity-70 hover:opacity-100 hover:text-white transition-opacity border-l border-white/10 pl-4"
+            className="hidden sm:inline-flex items-center gap-2 opacity-70 hover:opacity-100 hover:text-white transition-opacity border-l border-white/10 pl-4 whitespace-nowrap"
             title="View Live Deployment Commit"
           >
-            BUILD_{buildInfo.hash} <span className="text-glow-green/80">{"// DEPLOYED "}{buildInfo.timeAgo}</span>
+            BUILD_{buildInfo.hash} <span className="text-glow-green/80 whitespace-nowrap">{"// DEPLOYED "}{buildInfo.timeAgo}</span>
           </a>
         )}
       </div>
       
-      <div className="flex-2 flex gap-4 font-mono text-[10px] text-secondary tracking-widest uppercase justify-end items-center">
-        <span className="hidden md:inline-block">SYNCED: {mounted ? time : "--:--"} UTC</span>
-        <span className="hidden sm:inline-block border-l border-white/10 pl-4">LATENCY: {mounted ? latency : "--"}MS</span>
-        <span className={`hidden sm:inline-block border-l border-white/10 pl-4 transition-colors duration-300 ${mounted && parseInt(cpu) >= 50 ? 'text-red-400' : 'text-glow-green'}`}>CPU: {mounted ? cpu : "--"}%</span>
-        <span className="hidden lg:inline-block border-l border-white/10 pl-4 text-glow-silver">RAM: {mounted ? ram.toFixed(2) : "-.--"}GB ALLOCATED</span>
+      <div className="flex items-center gap-4 font-mono text-[10px] text-secondary tracking-widest uppercase justify-end whitespace-nowrap">
+        <span className="hidden md:inline-block whitespace-nowrap">SYNCED: {mounted ? time : "--:--"} UTC</span>
+        <span className="hidden sm:inline-block border-l border-white/10 pl-4 whitespace-nowrap">LATENCY: {mounted ? latency : "--"}MS</span>
+        <span className={`hidden sm:inline-block border-l border-white/10 pl-4 transition-colors duration-300 whitespace-nowrap ${mounted && parseInt(cpu) >= 50 ? 'text-red-400' : 'text-glow-green'}`}>CPU: {mounted ? cpu : "--"}%</span>
+        <span className="hidden lg:inline-block border-l border-white/10 pl-4 text-glow-silver whitespace-nowrap">RAM: {mounted ? ram.toFixed(2) : "-.--"}GB ALLOCATED</span>
       </div>
     </footer>
   );
