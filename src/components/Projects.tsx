@@ -9,7 +9,7 @@ const projects = [
     tech: "Next.js, NestJS, Postgres, Judge0, Gemini API",
     desc: "AI-powered competitive programming and learning platform featuring real-time code evaluation with Judge0 CE, BullMQ, and Socket.IO. Selected as Finalist at ASPIRE Pakistan Startup Hub.",
     image: "/projects/codesprint.png",
-    link: "https://github.com/beginnercodee",
+    link: "https://code-sprint.com/",
   },
   {
     title: "Automated Outreach Engine.",
