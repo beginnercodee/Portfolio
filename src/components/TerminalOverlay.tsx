@@ -150,16 +150,17 @@ export default function TerminalOverlay() {
         newLogs.push({ id: Date.now() + 1, text: "AVAILABLE COMMANDS:", type: "output" });
         newLogs.push({ id: Date.now() + 2, text: "  whoami           - display current user identity", type: "output" });
         newLogs.push({ id: Date.now() + 3, text: "  skills           - list core technical competencies", type: "output" });
-        newLogs.push({ id: Date.now() + 4, text: "  ls [dir]         - list directory files (e.g. ls logs)", type: "output" });
-        newLogs.push({ id: Date.now() + 5, text: "  cat [file]       - print file contents (e.g. cat about.md, cat logs/building-agentic-workflows.md)", type: "output" });
-        newLogs.push({ id: Date.now() + 6, text: "  date             - print system date and time", type: "output" });
-        newLogs.push({ id: Date.now() + 7, text: "  pwd              - print working directory", type: "output" });
-        newLogs.push({ id: Date.now() + 8, text: "  echo [arg]       - print arguments to output", type: "output" });
-        newLogs.push({ id: Date.now() + 9, text: "  ping             - check network connectivity", type: "output" });
-        newLogs.push({ id: Date.now() + 10, text: "  uptime           - tell how long the system has been running", type: "output" });
-        newLogs.push({ id: Date.now() + 11, text: "  clear            - wipe terminal output", type: "output" });
-        newLogs.push({ id: Date.now() + 12, text: "  sudo rm -rf      - [DANGEROUS] do not run", type: "output" });
-        newLogs.push({ id: Date.now() + 13, text: "  exit             - close terminal interface", type: "output" });
+        newLogs.push({ id: Date.now() + 4, text: "  resume / cv      - view & print official curriculum vitae", type: "output" });
+        newLogs.push({ id: Date.now() + 5, text: "  ls [dir]         - list directory files (e.g. ls logs)", type: "output" });
+        newLogs.push({ id: Date.now() + 6, text: "  cat [file]       - print file contents (e.g. cat resume.md, cat about.md)", type: "output" });
+        newLogs.push({ id: Date.now() + 7, text: "  date             - print system date and time", type: "output" });
+        newLogs.push({ id: Date.now() + 8, text: "  pwd              - print working directory", type: "output" });
+        newLogs.push({ id: Date.now() + 9, text: "  echo [arg]       - print arguments to output", type: "output" });
+        newLogs.push({ id: Date.now() + 10, text: "  ping             - check network connectivity", type: "output" });
+        newLogs.push({ id: Date.now() + 11, text: "  uptime           - tell how long the system has been running", type: "output" });
+        newLogs.push({ id: Date.now() + 12, text: "  clear            - wipe terminal output", type: "output" });
+        newLogs.push({ id: Date.now() + 13, text: "  sudo rm -rf      - [DANGEROUS] do not run", type: "output" });
+        newLogs.push({ id: Date.now() + 14, text: "  exit             - close terminal interface", type: "output" });
         break;
 
       case "ls":
@@ -178,8 +179,9 @@ export default function TerminalOverlay() {
         } else {
           newLogs.push({ id: Date.now() + 1, text: "drwxr-xr-x  jamal  jamal  logs/", type: "output" });
           newLogs.push({ id: Date.now() + 2, text: "-rw-r--r--  jamal  jamal  about.md", type: "output" });
-          newLogs.push({ id: Date.now() + 3, text: "-rw-r--r--  jamal  jamal  skills.json", type: "output" });
-          newLogs.push({ id: Date.now() + 4, text: "-rwxr-xr-x  root   root   deploy.sh", type: "output" });
+          newLogs.push({ id: Date.now() + 3, text: "-rw-r--r--  jamal  jamal  resume.md", type: "output" });
+          newLogs.push({ id: Date.now() + 4, text: "-rw-r--r--  jamal  jamal  skills.json", type: "output" });
+          newLogs.push({ id: Date.now() + 5, text: "-rwxr-xr-x  root   root   deploy.sh", type: "output" });
         }
         break;
 
@@ -195,6 +197,40 @@ export default function TerminalOverlay() {
         if (lowerTarget === "logs" || lowerTarget === "logs/") {
           newLogs.push({ id: Date.now() + 1, text: "cat: logs: Is a directory", type: "error" });
           break;
+        }
+
+        if (lowerTarget === "resume.md" || lowerTarget === "cv.md" || lowerTarget === "resume" || lowerTarget === "cv") {
+          const lines = [
+            "=============================================================",
+            "JAMAL NADEEM | Full-Stack & Agentic AI Specialist",
+            "Contact: jamalnadeem2004@gmail.com | +92 332 0212439",
+            "Profiles: github.com/beginnercodee | linkedin.com/in/jamal-nadeem",
+            "=============================================================",
+            "",
+            "[ SUMMARY ]",
+            "Recent Computer Science graduate (SSUET, CGPA: 3.26) and full-stack developer",
+            "with production experience across Next.js, MERN stack, Python, and Agentic AI.",
+            "",
+            "[ EXPERIENCE ]",
+            "• Team Lead, CRM & Agentic AI Department — EditVista Ltd (Mar 2026 – Present)",
+            "  - Lead department building agentic workflows & 50+ production CRM automations (n8n/GHL).",
+            "  - Direct voice agent projects integrating OpenAI, Gemini, OpenRouter, & Nvidia models.",
+            "• AI-Enhanced Web Development Intern — Nexium (Jul 2025 – Aug 2025)",
+            "  - Built Next.js/Supabase/MongoDB full-stack apps & automated backend workflows.",
+            "",
+            "[ FEATURED PROJECT ]",
+            "• CodeSprint: AI Competitive Programming Platform (Next.js, NestJS, Postgres, Judge0 CE)",
+            "  - Finalist at ASPIRE Pakistan Startup Hub; National Idea Bank IV startup pitch.",
+            "",
+            "[ PDF DOWNLOAD ]: Opening /resume.pdf in new tab...",
+            "============================================================="
+          ];
+          setLogs(newLogs);
+          printLinesSlowly(lines);
+          setTimeout(() => {
+            window.open("/resume.pdf", "_blank");
+          }, 1500);
+          return;
         }
 
         if (lowerTarget === "about.md") {
@@ -270,6 +306,21 @@ export default function TerminalOverlay() {
 
         newLogs.push({ id: Date.now() + 1, text: `cat: ${targetFile}: No such file or directory`, type: "error" });
         break;
+
+      case "resume":
+      case "cv":
+        const cvSummaryLines = [
+          "> Loading official CV / Resume...",
+          "> Jamal Nadeem - BS in Computer Science (SSUET)",
+          "> Team Lead, CRM & Agentic AI @ EditVista Ltd",
+          "> Opening official PDF resume in a new tab..."
+        ];
+        setLogs(newLogs);
+        printLinesSlowly(cvSummaryLines);
+        setTimeout(() => {
+          window.open("/resume.pdf", "_blank");
+        }, 800);
+        return;
 
       case "date":
         newLogs.push({ id: Date.now() + 1, text: new Date().toString(), type: "output" });

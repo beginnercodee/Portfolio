@@ -82,9 +82,18 @@ export default function NavigationBar() {
           </div>
           
           {/* Desktop Right Links */}
-          <div className="hidden md:flex w-1/3 justify-end gap-8 font-sans text-nav lowercase text-secondary transition-colors duration-300 items-center">
+          <div className="hidden md:flex w-1/3 justify-end gap-6 font-sans text-nav lowercase text-secondary transition-colors duration-300 items-center">
             <Link href="/#projects" className="hover:text-primary transition-colors">projects</Link>
             <Link href="/#skills" className="hover:text-primary transition-colors">skills</Link>
+            <a 
+              href="/resume.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-3 py-1.5 rounded-md border border-glow-green/40 bg-glow-green/10 text-glow-green hover:bg-glow-green hover:text-black font-mono text-[10px] tracking-widest uppercase transition-all shadow-[0_0_12px_rgba(57,255,20,0.15)] hover:shadow-[0_0_20px_rgba(57,255,20,0.4)]"
+              title="View & Download Curriculum Vitae"
+            >
+              [ CV ]
+            </a>
             <button 
               onClick={openCommandPalette}
               className="flex items-center gap-2 px-3 py-1.5 rounded-md border border-white/10 bg-white/5 hover:bg-glow-green/10 hover:border-glow-green/30 hover:text-glow-green transition-all"
@@ -130,8 +139,17 @@ export default function NavigationBar() {
         <Link href="/#experience" onClick={closeMenu} className="font-display uppercase tracking-[0.2em] text-2xl text-secondary hover:text-glow-green transition-all">Experience</Link>
         <Link href="/#projects" onClick={closeMenu} className="font-display uppercase tracking-[0.2em] text-2xl text-secondary hover:text-glow-green transition-all">Projects</Link>
         <Link href="/#skills" onClick={closeMenu} className="font-display uppercase tracking-[0.2em] text-2xl text-secondary hover:text-glow-green transition-all">Skills</Link>
-        <div className="w-12 h-px bg-white/10 my-2" />
-        <Link href="/logs" onClick={closeMenu} className="font-display uppercase tracking-[0.2em] text-2xl text-glow-green hover:text-white transition-all flex items-center gap-3">
+        <a 
+          href="/resume.pdf" 
+          target="_blank"
+          rel="noopener noreferrer"
+          onClick={closeMenu} 
+          className="px-6 py-2 rounded-full border border-glow-green bg-glow-green/10 text-glow-green font-mono text-sm tracking-widest uppercase hover:bg-glow-green hover:text-black transition-all"
+        >
+          [ Download CV ]
+        </a>
+        <div className="w-12 h-px bg-white/10 my-1" />
+        <Link href="/logs" onClick={closeMenu} className="font-display uppercase tracking-[0.2em] text-xl text-glow-green hover:text-white transition-all flex items-center gap-3">
           <span className="w-2 h-2 rounded-full bg-glow-green animate-pulse" />
           Execution Logs
         </Link>

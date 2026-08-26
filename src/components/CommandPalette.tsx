@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Search, Terminal, ArrowRight, Github, Linkedin, Mail } from "lucide-react";
+import { Search, Terminal, ArrowRight, Github, Linkedin, Mail, FileText } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useRouter } from "next/navigation";
 import type { LogPost } from "@/lib/blog";
@@ -85,6 +85,16 @@ export default function CommandPalette() {
       },
     },
     {
+      id: "resume",
+      name: "cat resume.md",
+      desc: "View and download official Curriculum Vitae (PDF)",
+      icon: <FileText className="w-4 h-4 text-glow-green" />,
+      action: () => {
+        window.open("/resume.pdf", "_blank");
+        setIsOpen(false);
+      },
+    },
+    {
       id: "about",
       name: "cat about.txt",
       desc: "View biography section",
@@ -153,6 +163,8 @@ export default function CommandPalette() {
     if (query.startsWith(">")) {
       const macroQuery = query.substring(1).trim().toLowerCase();
       const macros = [
+        { name: "resume", desc: "View & download official CV" },
+        { name: "cv", desc: "Print full resume in CLI terminal" },
         { name: "help", desc: "Show available terminal commands" },
         { name: "ping", desc: "Check system connectivity latency" },
         { name: "clear", desc: "Wipe terminal command logs" },
