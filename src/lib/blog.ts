@@ -22,7 +22,10 @@ interface Frontmatter {
   [key: string]: string | string[] | undefined;
 }
 
-// Extremely lightweight custom frontmatter parser to avoid external dependencies blocking CI
+/**
+ * Lightweight custom frontmatter parser to extract YAML-style key-value metadata
+ * and body markdown text without external dependency overhead.
+ */
 function parseFrontmatter(fileContent: string) {
   const frontmatterRegex = /---\n([\s\S]*?)\n---/;
   const match = frontmatterRegex.exec(fileContent);
