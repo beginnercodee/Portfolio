@@ -12,11 +12,11 @@ const projects = [
     link: "https://code-sprint.com/",
   },
   {
-    title: "Automated Outreach Engine.",
-    tech: "GoHighLevel, n8n, OpenAI, Supabase",
-    desc: "50+ production automations and end-to-end client acquisition pipelines built with n8n and GoHighLevel, completely removing manual CRM workflow friction.",
+    title: "Nexium Blog Summarizer.",
+    tech: "Next.js, Supabase, MongoDB, Tailwind CSS",
+    desc: "Full-stack blog summarization platform enabling persistent AI summary retrieval with dual-database architecture storing metadata in MongoDB and content in Supabase.",
     image: "/projects/outreach-engine.png",
-    link: "/logs",
+    link: "https://nexium-blog-summariser.vercel.app/",
   },
   {
     title: "NexiumQuotes AI Engine.",
