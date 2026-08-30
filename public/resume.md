@@ -33,7 +33,7 @@ Recent Computer Science graduate and full-stack developer with production experi
 
 ## OTHER PROJECTS
 - InspireGPT / NexiumQuotes — Architected an AI-powered content generation engine using the Google Gemini API and Next.js, replacing legacy static datasets with real-time, context-aware dynamic generation.
-- Nexium Summarizer — Full-stack app for persistent blog summary retrieval, storing metadata in Supabase and content in MongoDB.
+- Nexium Summarizer — Full-stack app for persistent blog summary retrieval, storing metadata in MongoDB and content in Supabase.
 - Task Manager Dashboard — Full-stack task tracker with PHP session authentication and MySQL prepared statements, eliminating SQL injection vulnerabilities.
 
 ## CERTIFICATIONS

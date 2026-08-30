@@ -1,36 +1,36 @@
 import Image from "next/image";
 import { ScrollScale } from "./animations/ScrollScale";
 import ProjectCursor from "./animations/ProjectCursor";
-import Link from "next/link"; // For log details routing
+import Link from "next/link";
 
 const projects = [
   {
     title: "CodeSprint.",
     tech: "Next.js, NestJS, Postgres, Judge0, Gemini API",
     desc: "AI-powered competitive programming and learning platform featuring real-time code evaluation with Judge0 CE, BullMQ, and Socket.IO. Selected as Finalist at ASPIRE Pakistan Startup Hub.",
-    image: "/projects/codesprint.png",
+    image: "/projects/codesprint.jpg",
     link: "https://code-sprint.com/",
   },
   {
     title: "Nexium Blog Summarizer.",
     tech: "Next.js, Supabase, MongoDB, Tailwind CSS",
     desc: "Full-stack blog summarization platform enabling persistent AI summary retrieval with dual-database architecture storing metadata in MongoDB and content in Supabase.",
-    image: "/projects/outreach-engine.png",
+    image: "/projects/nexium-blog.jpg",
     link: "https://nexium-blog-summariser.vercel.app/",
   },
   {
     title: "NexiumQuotes AI Engine.",
     tech: "Next.js, Gemini API, Supabase, Tailwind CSS",
     desc: "Architected an AI-powered content generation engine using the Google Gemini API and Next.js, replacing legacy static datasets with real-time, context-aware dynamic generation.",
-    image: "/projects/quote-generator.png",
+    image: "/projects/nexium-quotes.jpg",
     link: "https://nexium-jamal-assign1.vercel.app/",
   },
   {
-    title: "Intelligent PDF & CRM Engine.",
-    tech: "Python, Flask, Webhooks, Supabase",
-    desc: "Automated document processing system integrating directly with GoHighLevel via webhooks to dynamically generate assets and update CRM contact records in real time.",
-    image: "/projects/pdf-engine.png",
-    link: "https://github.com/beginnercodee",
+    title: "AI Resume Tailor.",
+    tech: "Next.js 16, TypeScript, Gemini API, Tailwind CSS, jsPDF",
+    desc: "AI-powered ATS resume optimization engine that parses candidate resumes and dynamically aligns keywords, experience, and quantifiable metrics with job descriptions for instant formatted PDF export.",
+    image: "/projects/ai-resumetailor.jpg",
+    link: "https://ai-resumetailor-sage.vercel.app/",
   },
 ];
 
@@ -80,7 +80,7 @@ export default function Projects() {
                       rel="noopener noreferrer"
                       className="font-mono text-[10px] md:text-xs flex items-center gap-2 bg-black/80 backdrop-blur-md border border-white/20 px-3 py-1.5 rounded-sm hover:border-glow-green hover:text-glow-green transition-all duration-300 md:opacity-0 md:group-hover:opacity-100 group/btn"
                     >
-                      <span className="opacity-0 group-hover/btn:opacity-100 transition-opacity -mr-1 hidden md:inline-block">↗ </span>
+                      <span className="opacity-0 group-hover/btn:opacity-100 transition-opacity -mr-1 hidden md:inline-block">⚡ </span>
                       <span className="md:hidden group-hover/btn:hidden">[ ... ]</span>
                       <span className="hidden md:inline-block group-hover/btn:hidden">[ RUN ]</span>
                       <span className="hidden group-hover/btn:inline-block">EXECUTE SYS</span>
@@ -90,7 +90,7 @@ export default function Projects() {
                       href={proj.link}
                       className="font-mono text-[10px] md:text-xs flex items-center gap-2 bg-black/80 backdrop-blur-md border border-white/20 px-3 py-1.5 rounded-sm hover:border-glow-green hover:text-glow-green transition-all duration-300 md:opacity-0 md:group-hover:opacity-100 group/btn"
                     >
-                      <span className="opacity-0 group-hover/btn:opacity-100 transition-opacity -mr-1 hidden md:inline-block">↗ </span>
+                      <span className="opacity-0 group-hover/btn:opacity-100 transition-opacity -mr-1 hidden md:inline-block">⚡ </span>
                       <span className="md:hidden group-hover/btn:hidden">[ ... ]</span>
                       <span className="hidden md:inline-block group-hover/btn:hidden">[ LOG ]</span>
                       <span className="hidden group-hover/btn:inline-block">VIEW DATA</span>
