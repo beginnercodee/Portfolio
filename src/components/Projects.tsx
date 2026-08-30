@@ -19,11 +19,11 @@ const projects = [
     link: "/logs",
   },
   {
-    title: "InspireGPT & Quoting Engine.",
-    tech: "Next.js, Gemini API, Supabase, Tailwind",
-    desc: "Integrated the Google Gemini API for dynamic, intelligent content generation with real-time database synchronization to replace legacy static workflows.",
+    title: "NexiumQuotes AI Engine.",
+    tech: "Next.js, Gemini API, Supabase, Tailwind CSS",
+    desc: "Architected an AI-powered content generation engine using the Google Gemini API and Next.js, replacing legacy static datasets with real-time, context-aware dynamic generation.",
     image: "/projects/quote-generator.png",
-    link: "https://github.com/beginnercodee",
+    link: "https://nexium-jamal-assign1.vercel.app/",
   },
   {
     title: "Intelligent PDF & CRM Engine.",
