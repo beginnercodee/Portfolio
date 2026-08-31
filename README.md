@@ -153,8 +153,8 @@ The application is engineered using **Next.js 16 (App Router)**, **React 19**, *
 
 ```mermaid
 flowchart TD
-    subgraph Client ["Client Browser (Next.js 16 + React 19)"]
-        UI["Visual Viewport & Layout (RSC + Client Components)"]
+    subgraph Client ["Client Browser (Next.js 16 & React 19)"]
+        UI["Visual Viewport & Layout (RSC + Overlays)"]
         Hero["Hero Matrix Canvas (60FPS Mouse Proximity)"]
         Nav["Navigation Bar & Quick Jump"]
         Foot["System Status Footer (Live Telemetry Ticker)"]
@@ -167,24 +167,24 @@ flowchart TD
 
     subgraph InternalAPI ["Next.js App Router API & Utilities"]
         LogsRoute["GET /api/logs"]
-        BlogLib["src/lib/blog.ts (Frontmatter Parser)"]
-        ContentDir["/content/logs/*.md Storage"]
+        BlogLib["src/lib/blog.ts Frontmatter Parser"]
+        ContentDir["content/logs Markdown Storage"]
     end
 
     subgraph ExternalServices ["External Cloud Services & APIs"]
-        GH_Events["GitHub REST API (/events/public)"]
-        GH_Commits["GitHub REST API (/commits/main)"]
-        GeoIP["ipapi.co (Geolocation Service)"]
-        W3F["Web3Forms API (Transactional Mail Engine)"]
+        GH_Events["GitHub REST API (Public Events)"]
+        GH_Commits["GitHub REST API (Main Commits)"]
+        GeoIP["ipapi.co Geolocation Service"]
+        W3F["Web3Forms API Mail Dispatch"]
         VercelAnalytics["Vercel Analytics & Speed Insights"]
     end
 
     %% Internal Data Flow
-    ContentDir -->|Read File Sync| BlogLib
+    ContentDir -->|Read Local Files| BlogLib
     BlogLib -->|Serialize Markdown Posts| LogsRoute
     LogsRoute -->|JSON Payload| Term
     LogsRoute -->|JSON Payload| CmdPal
-    BlogLib -->|Static Generation (SSG)| UI
+    BlogLib -->|Static Site Generation| UI
 
     %% External Telemetry Flow
     GH_Events -->|Stream Public Events| UI
@@ -194,9 +194,9 @@ flowchart TD
     UI -->|Telemetry Metrics| VercelAnalytics
 
     %% User Interaction Flow
-    UI -->|Hotkey Ctrl+\` | Term
+    UI -->|Hotkey Ctrl+Backtick| Term
     UI -->|Hotkey CMD+K / Search| CmdPal
-    CmdPal -->|Macro Route '>'| Term
+    CmdPal -->|Macro Execution| Term
     Konami -->|Trigger Sequence| UI
 ```
 
