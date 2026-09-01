@@ -138,6 +138,7 @@ export default function NavigationBar() {
         <Link href="/#about" onClick={closeMenu} className="font-display uppercase tracking-[0.2em] text-2xl text-secondary hover:text-glow-green transition-all">About</Link>
         <Link href="/#experience" onClick={closeMenu} className="font-display uppercase tracking-[0.2em] text-2xl text-secondary hover:text-glow-green transition-all">Experience</Link>
         <Link href="/#projects" onClick={closeMenu} className="font-display uppercase tracking-[0.2em] text-2xl text-secondary hover:text-glow-green transition-all">Projects</Link>
+        <Link href="/case-studies" onClick={closeMenu} className="font-display uppercase tracking-[0.2em] text-2xl text-secondary hover:text-glow-green transition-all">Case Studies</Link>
         <Link href="/#skills" onClick={closeMenu} className="font-display uppercase tracking-[0.2em] text-2xl text-secondary hover:text-glow-green transition-all">Skills</Link>
         <a 
           href="/resume.pdf" 

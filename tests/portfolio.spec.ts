@@ -101,4 +101,30 @@ test.describe('JN Labs Portfolio - Core Verification', () => {
     const terminalLine = page.locator('.text-glow-silver:has-text(">")').first();
     await expect(terminalLine).toBeVisible();
   });
+
+  test('Case Studies section renders hover navigation and navigates to deep-dive case study', async ({ page }) => {
+    // Scroll to Case Studies section
+    const caseStudiesSection = page.locator('#case-studies');
+    await caseStudiesSection.scrollIntoViewIfNeeded();
+
+    // Verify section heading is present
+    await expect(page.locator('h2:has-text("CASE STUDIES / ROI ARCHITECTURE")')).toBeVisible();
+
+    // Check Agency Outreach card
+    const agencyCard = page.locator('a[href="/case-studies/agency-outreach-automation"]').first();
+    await expect(agencyCard).toBeVisible();
+
+    // Verify "READ CASE STUDY" button exists inside the card
+    const readBtn = agencyCard.locator('text=READ CASE STUDY');
+    await expect(readBtn).toBeVisible();
+
+    // Click to navigate to the Case Study detail page
+    await agencyCard.click();
+    await page.waitForURL('**/case-studies/agency-outreach-automation');
+
+    // Verify Case Study detail elements
+    await expect(page.locator('h1:has-text("AUTONOMOUS BID & QUOTING ENGINE")')).toBeVisible();
+    await expect(page.locator('text=+400%')).toBeVisible();
+    await expect(page.locator('h2:has-text("5-LAYER AUTONOMOUS ARCHITECTURE")')).toBeVisible();
+  });
 });

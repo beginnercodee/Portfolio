@@ -7,6 +7,8 @@ import { cn } from "@/lib/utils";
 import { useRouter } from "next/navigation";
 import type { LogPost } from "@/lib/blog";
 
+import { getAllCaseStudies } from "@/data/caseStudies";
+
 type Command = {
   id: string;
   name: string;
@@ -81,6 +83,16 @@ export default function CommandPalette() {
       icon: <Terminal className="w-4 h-4" />,
       action: () => {
         window.scrollTo({ top: 0, behavior: "smooth" });
+        setIsOpen(false);
+      },
+    },
+    {
+      id: "case-studies",
+      name: "cd ./case-studies",
+      desc: "View ROI Architecture and deep-dive case studies",
+      icon: <Terminal className="w-4 h-4 text-glow-green" />,
+      action: () => {
+        router.push("/case-studies");
         setIsOpen(false);
       },
     },
@@ -228,7 +240,18 @@ export default function CommandPalette() {
         }
       }));
 
-      const all = [...commands, ...logCommands];
+      const caseStudyCommands: Command[] = getAllCaseStudies().map((cs) => ({
+        id: `cs-${cs.slug}`,
+        name: `cat case-studies/${cs.slug}`,
+        desc: `${cs.title} (${cs.heroMetric})`,
+        icon: <Terminal className="w-4 h-4 text-glow-green" />,
+        action: () => {
+          router.push(`/case-studies/${cs.slug}`);
+          setIsOpen(false);
+        }
+      }));
+
+      const all = [...commands, ...caseStudyCommands, ...logCommands];
       return all.filter(
         (cmd) =>
           cmd.name.toLowerCase().includes(query.toLowerCase()) ||
