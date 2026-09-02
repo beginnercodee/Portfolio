@@ -126,5 +126,15 @@ test.describe('JN Labs Portfolio - Core Verification', () => {
     await expect(page.locator('h1:has-text("AUTONOMOUS BID & QUOTING ENGINE")')).toBeVisible();
     await expect(page.locator('text=+400%')).toBeVisible();
     await expect(page.locator('h2:has-text("5-LAYER AUTONOMOUS ARCHITECTURE")')).toBeVisible();
+
+    // Verify Download PDF button exists in header and CTA
+    const downloadPdfBtn = page.locator('button:has-text("DOWNLOAD PDF BRIEFING")').first();
+    await expect(downloadPdfBtn).toBeVisible();
+
+    // Test clicking Download PDF button triggers download
+    const downloadPromise = page.waitForEvent('download');
+    await downloadPdfBtn.click();
+    const download = await downloadPromise;
+    expect(download.suggestedFilename()).toBe('agency-outreach-automation-technical-case-study.pdf');
   });
 });

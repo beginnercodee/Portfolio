@@ -2,6 +2,7 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import { getCaseStudyBySlug, getAllCaseStudies } from "@/data/caseStudies";
 import { ArrowLeft, CheckCircle2, Layers, Cpu, Database, Mail, ShieldCheck, Zap, Server, ChevronRight, Terminal, BarChart3 } from "lucide-react";
+import DownloadCaseStudyPdfButton from "@/components/DownloadCaseStudyPdfButton";
 import type { Metadata } from "next";
 
 export async function generateStaticParams() {
@@ -67,9 +68,12 @@ export default async function CaseStudyDetailPage({
               <span className="text-glow-silver">case-studies/{cs.slug}</span>
             </div>
 
-            <div className="flex items-center gap-2 px-3 py-1 bg-surface border border-glow-green/30 rounded-full font-mono text-[11px] text-glow-green">
-              <span className="w-2 h-2 rounded-full bg-glow-green animate-pulse shadow-[0_0_8px_#39ff14]" />
-              PRODUCTION_DEPLOYED
+            <div className="flex items-center gap-3">
+              <div className="hidden sm:flex items-center gap-2 px-3 py-1 bg-surface border border-glow-green/30 rounded-full font-mono text-[11px] text-glow-green">
+                <span className="w-2 h-2 rounded-full bg-glow-green animate-pulse shadow-[0_0_8px_#39ff14]" />
+                PRODUCTION_DEPLOYED
+              </div>
+              <DownloadCaseStudyPdfButton caseStudy={cs} />
             </div>
           </div>
 
@@ -367,6 +371,7 @@ export default async function CaseStudyDetailPage({
               <span>[ INITIATE ARCHITECTURE AUDIT ]</span>
               <ChevronRight className="w-4 h-4" />
             </Link>
+            <DownloadCaseStudyPdfButton caseStudy={cs} />
             <Link
               href="/#case-studies"
               className="px-6 py-3 rounded-full border border-white/20 bg-black/40 text-secondary hover:text-white hover:border-white font-mono text-xs md:text-sm tracking-widest uppercase transition-all"
