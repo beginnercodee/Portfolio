@@ -43,12 +43,20 @@ export function generateCaseStudyPdf(cs: CaseStudy) {
     doc.setFont("helvetica", "bold");
     doc.setFontSize(8);
     doc.setTextColor(COLOR_SECONDARY[0], COLOR_SECONDARY[1], COLOR_SECONDARY[2]);
-    doc.text("JN LABS // TECHNICAL ARCHITECTURE CASE STUDY", margin, 11, { baseline: "top" });
+    const headerTitle = "JN LABS // TECHNICAL ARCHITECTURE CASE STUDY";
+    doc.text(headerTitle, margin, 11, { baseline: "top" });
+    const headerTitleW = doc.getTextWidth(headerTitle);
+    doc.link(margin, 9.5, headerTitleW, 4.5, { url: "https://github.com/beginnercodee" });
 
     doc.setFont("helvetica", "normal");
     doc.setFontSize(7.5);
     doc.setTextColor(COLOR_MUTED[0], COLOR_MUTED[1], COLOR_MUTED[2]);
-    doc.text(cs.badge, pageWidth - margin, 11, { align: "right", baseline: "top" });
+    const badgeStr = cs.badge;
+    const badgeStrW = doc.getTextWidth(badgeStr);
+    doc.text(badgeStr, pageWidth - margin, 11, { align: "right", baseline: "top" });
+    doc.link(pageWidth - margin - badgeStrW, 9.5, badgeStrW, 4.5, {
+      url: "https://github.com/beginnercodee",
+    });
 
     doc.setDrawColor(COLOR_BORDER[0], COLOR_BORDER[1], COLOR_BORDER[2]);
     doc.setLineWidth(0.3);
@@ -58,12 +66,17 @@ export function generateCaseStudyPdf(cs: CaseStudy) {
     doc.line(margin, pageHeight - 14, pageWidth - margin, pageHeight - 14);
     doc.setFontSize(7.5);
     doc.setTextColor(COLOR_MUTED[0], COLOR_MUTED[1], COLOR_MUTED[2]);
-    doc.text(
-      "CONFIDENTIAL & SANITIZED TECHNICAL CASE STUDY  •  ARCHITECTED BY JAMAL NADEEM",
-      margin,
-      pageHeight - 10,
-      { baseline: "top" }
-    );
+    const footerText = "CONFIDENTIAL & SANITIZED TECHNICAL CASE STUDY  •  ARCHITECTED BY JAMAL NADEEM";
+    doc.text(footerText, margin, pageHeight - 10, { baseline: "top" });
+
+    // Clickable interactive link over author attribution
+    const prefixStr = "CONFIDENTIAL & SANITIZED TECHNICAL CASE STUDY  •  ";
+    const prefixW = doc.getTextWidth(prefixStr);
+    const authorW = doc.getTextWidth("ARCHITECTED BY JAMAL NADEEM");
+    doc.link(margin + prefixW, pageHeight - 10.5, authorW, 4, {
+      url: "https://www.linkedin.com/in/jamal-nadeem/",
+    });
+
     doc.text(
       `Page ${pageNumber} of ${totalPages}`,
       pageWidth - margin,
@@ -91,6 +104,9 @@ export function generateCaseStudyPdf(cs: CaseStudy) {
 
   doc.setTextColor(COLOR_ACCENT[0], COLOR_ACCENT[1], COLOR_ACCENT[2]);
   doc.text(badgeText, margin + 4, cursorY + 1.8, { baseline: "top" });
+  doc.link(margin, cursorY, badgeBoxWidth, badgeBoxHeight, {
+    url: "https://github.com/beginnercodee",
+  });
   
   // Advance cursor past the badge with generous margin to PREVENT TITLE OVERLAP
   cursorY += badgeBoxHeight + 5;
@@ -448,31 +464,67 @@ export function generateCaseStudyPdf(cs: CaseStudy) {
   cursorY += 5.5;
 
   cs.techStack.forEach((stack) => {
-    doc.setFont("helvetica", "normal");
-    doc.setFontSize(7.5);
-    const techStr = stack.technologies.join("  •  ");
-    const techSplit = doc.splitTextToSize(techStr, contentWidth - 48);
-    const rowHeight = Math.max(6.5, techSplit.length * 3.8 + 1.5);
+    const badgeStartX = margin + 48;
+    const badgeMaxX = margin + contentWidth;
+    const badgeGapX = 2;
+    const badgeGapY = 2;
+    const pillH = 5.2;
 
-    ensureSpace(rowHeight + 2);
+    // Pre-calculate line wrapping and needed height
+    doc.setFont("courier", "bold");
+    doc.setFontSize(6.8);
+    let testX = badgeStartX;
+    let linesCount = 1;
 
+    stack.technologies.forEach((tech) => {
+      const pillW = doc.getTextWidth(tech) + 5;
+      if (testX + pillW > badgeMaxX && testX > badgeStartX) {
+        linesCount++;
+        testX = badgeStartX;
+      }
+      testX += pillW + badgeGapX;
+    });
+
+    const totalCategoryHeight = Math.max(7, linesCount * (pillH + badgeGapY) + 2);
+    ensureSpace(totalCategoryHeight + 2);
+
+    // Render Category Title on Left Column
     doc.setFont("helvetica", "bold");
     doc.setFontSize(7.5);
     doc.setTextColor(COLOR_PRIMARY[0], COLOR_PRIMARY[1], COLOR_PRIMARY[2]);
-    doc.text(`${stack.category}:`, margin, cursorY + 1, { baseline: "top" });
+    doc.text(`${stack.category}:`, margin, cursorY + 1.2, { baseline: "top" });
 
-    doc.setFont("helvetica", "normal");
-    doc.setTextColor(COLOR_SECONDARY[0], COLOR_SECONDARY[1], COLOR_SECONDARY[2]);
-    let techY = cursorY + 1;
-    techSplit.forEach((line: string) => {
-      doc.text(line, margin + 46, techY, { baseline: "top" });
-      techY += 3.8;
+    // Render Pill Badges
+    let pillX = badgeStartX;
+    let pillY = cursorY;
+
+    stack.technologies.forEach((tech) => {
+      doc.setFont("courier", "bold");
+      doc.setFontSize(6.8);
+      const pillW = doc.getTextWidth(tech) + 5;
+
+      if (pillX + pillW > badgeMaxX && pillX > badgeStartX) {
+        pillX = badgeStartX;
+        pillY += pillH + badgeGapY;
+      }
+
+      // Pill Background & Crisp Border
+      doc.setFillColor(COLOR_CARD_BG[0], COLOR_CARD_BG[1], COLOR_CARD_BG[2]);
+      doc.setDrawColor(COLOR_BORDER[0], COLOR_BORDER[1], COLOR_BORDER[2]);
+      doc.setLineWidth(0.25);
+      doc.roundedRect(pillX, pillY, pillW, pillH, 1, 1, "FD");
+
+      // Pill Text
+      doc.setTextColor(COLOR_PRIMARY[0], COLOR_PRIMARY[1], COLOR_PRIMARY[2]);
+      doc.text(tech, pillX + 2.5, pillY + 1.1, { baseline: "top" });
+
+      pillX += pillW + badgeGapX;
     });
 
-    cursorY += rowHeight + 1.5;
+    cursorY += totalCategoryHeight + 1.5;
   });
 
-  cursorY += 5;
+  cursorY += 4;
 
   // ==========================================
   // SECTION 5: BUSINESS ROI & OPERATIONAL VERIFICATION
@@ -532,6 +584,94 @@ export function generateCaseStudyPdf(cs: CaseStudy) {
 
     cursorY += cardHeight + 3;
   });
+
+  // ==========================================
+  // SECTION 6: ARCHITECTURAL BRIEFING & CONSULTATION (EXECUTIVE CTA)
+  // ==========================================
+  cursorY += 4;
+  const ctaBoxHeight = 36;
+  ensureSpace(ctaBoxHeight + 5);
+
+  doc.setFillColor(COLOR_DARK_BG[0], COLOR_DARK_BG[1], COLOR_DARK_BG[2]);
+  doc.setDrawColor(COLOR_ACCENT[0], COLOR_ACCENT[1], COLOR_ACCENT[2]);
+  doc.setLineWidth(0.4);
+  doc.roundedRect(margin, cursorY, contentWidth, ctaBoxHeight, 2, 2, "FD");
+
+  // Emerald left accent indicator
+  doc.setFillColor(COLOR_ACCENT[0], COLOR_ACCENT[1], COLOR_ACCENT[2]);
+  doc.rect(margin, cursorY, 2.8, ctaBoxHeight, "F");
+
+  // Header pill & Subhead
+  doc.setFont("helvetica", "bold");
+  doc.setFontSize(6.8);
+  doc.setTextColor(COLOR_ACCENT[0], COLOR_ACCENT[1], COLOR_ACCENT[2]);
+  doc.text("[ EXECUTIVE ARCHITECTURAL ENGAGEMENT ]", margin + 6, cursorY + 3.8, { baseline: "top" });
+
+  doc.setFont("helvetica", "bold");
+  doc.setFontSize(9.5);
+  doc.setTextColor(255, 255, 255);
+  doc.text("ENGAGE JAMAL NADEEM FOR ENTERPRISE AI ARCHITECTURE", margin + 6, cursorY + 8.2, { baseline: "top" });
+
+  doc.setFont("helvetica", "normal");
+  doc.setFontSize(7.2);
+  doc.setTextColor(COLOR_MUTED[0], COLOR_MUTED[1], COLOR_MUTED[2]);
+  doc.text(
+    "Specializing in autonomous agent workflows, strict deterministic guardrails, and event-driven data pipelines.",
+    margin + 6,
+    cursorY + 13.8,
+    { baseline: "top" }
+  );
+
+  // Row of 3 Interactive Clickable Action Badges
+  const btnY = cursorY + 20.5;
+  const btnH = 8;
+
+  // Button 1: Direct Email
+  doc.setFont("helvetica", "bold");
+  doc.setFontSize(7);
+  const btn1Text = "EMAIL: jamalnadeem2004@gmail.com";
+  const btn1W = doc.getTextWidth(btn1Text) + 8;
+  const btn1X = margin + 6;
+
+  doc.setFillColor(COLOR_ACCENT[0], COLOR_ACCENT[1], COLOR_ACCENT[2]);
+  doc.roundedRect(btn1X, btnY, btn1W, btnH, 1.2, 1.2, "F");
+  doc.setTextColor(255, 255, 255);
+  doc.text(btn1Text, btn1X + 4, btnY + 2.4, { baseline: "top" });
+  doc.link(btn1X, btnY, btn1W, btnH, {
+    url: "mailto:jamalnadeem2004@gmail.com?subject=Enterprise%20AI%20Architecture%20Inquiry%20-%20Jamal%20Nadeem",
+  });
+
+  // Button 2: LinkedIn
+  const btn2Text = "LINKEDIN: in/jamal-nadeem";
+  const btn2W = doc.getTextWidth(btn2Text) + 8;
+  const btn2X = btn1X + btn1W + 3;
+
+  doc.setFillColor(30, 41, 59);
+  doc.setDrawColor(71, 85, 105);
+  doc.setLineWidth(0.3);
+  doc.roundedRect(btn2X, btnY, btn2W, btnH, 1.2, 1.2, "FD");
+  doc.setTextColor(241, 245, 249);
+  doc.text(btn2Text, btn2X + 4, btnY + 2.4, { baseline: "top" });
+  doc.link(btn2X, btnY, btn2W, btnH, {
+    url: "https://www.linkedin.com/in/jamal-nadeem/",
+  });
+
+  // Button 3: GitHub Portfolio
+  const btn3Text = "GITHUB: @beginnercodee";
+  const btn3W = doc.getTextWidth(btn3Text) + 8;
+  const btn3X = btn2X + btn2W + 3;
+
+  doc.setFillColor(30, 41, 59);
+  doc.setDrawColor(71, 85, 105);
+  doc.setLineWidth(0.3);
+  doc.roundedRect(btn3X, btnY, btn3W, btnH, 1.2, 1.2, "FD");
+  doc.setTextColor(241, 245, 249);
+  doc.text(btn3Text, btn3X + 4, btnY + 2.4, { baseline: "top" });
+  doc.link(btn3X, btnY, btn3W, btnH, {
+    url: "https://github.com/beginnercodee",
+  });
+
+  cursorY += ctaBoxHeight + 5;
 
   // Add Headers & Footers across all generated pages
   const totalPages = doc.getNumberOfPages();
