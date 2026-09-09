@@ -9,14 +9,13 @@ const Experience = dynamic(() => import("@/components/Experience"), { ssr: true 
 const LiveGitHubActivity = dynamic(() => import("@/components/LiveGitHubActivity"), { ssr: true }); // Requires client-side APIs
 const Projects = dynamic(() => import("@/components/Projects"), { ssr: true });
 const CaseStudies = dynamic(() => import("@/components/CaseStudies"), { ssr: true });
-const AILab = dynamic(() => import("@/components/AILab"), { ssr: true });
 const Skills = dynamic(() => import("@/components/Skills"), { ssr: true });
 const Contact = dynamic(() => import("@/components/Contact"), { ssr: true });
 const SystemStatusFooter = dynamic(() => import("@/components/SystemStatusFooter"), { ssr: true });
 
 /**
  * Renders the main portfolio homepage layout incorporating dynamic server-rendered section imports
- * (Hero, About, Services, Experience, Live GitHub Feed, Projects, Case Studies, AI Lab, Skills, Contact).
+ * (Hero, About, Services, Experience, Live GitHub Feed, Projects, Case Studies, Skills, Contact).
  */
 export default function Home() {
   return (
@@ -29,7 +28,6 @@ export default function Home() {
       <LiveGitHubActivity />
       <Projects />
       <CaseStudies />
-      <AILab />
       <Skills />
       <Contact />
       <SystemStatusFooter />

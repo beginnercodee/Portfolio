@@ -261,7 +261,6 @@ Portfolio/
 │   │   │   ├── ProjectCursor.tsx   # Spring physics mouse cursor badge
 │   │   │   ├── ScrollFade.tsx      # Viewport scroll-triggered fade & translation
 │   │   │   └── ScrollScale.tsx     # Viewport scroll-triggered spring scale
-│   │   ├── AILab.tsx           # Active & archived AI research experiments
 │   │   ├── About.tsx           # Biography summary & mindset statement
 │   │   ├── AboutTerminal.tsx   # Autonomous pipeline typing simulator
 │   │   ├── CaseStudies.tsx     # Quantifiable business ROI case study metrics
