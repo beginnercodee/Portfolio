@@ -65,7 +65,7 @@ export default function NavigationBar() {
             : "bg-transparent border-transparent"
         )}>
           {/* Desktop Left Links */}
-          <div className="hidden md:flex w-1/3 justify-start gap-8 font-sans text-nav lowercase text-secondary transition-colors duration-300 items-center">
+          <div className="hidden md:flex flex-1 justify-start gap-5 lg:gap-8 font-sans text-nav lowercase text-secondary transition-colors duration-300 items-center">
             <Link href="/#about" className="hover:text-primary transition-colors">about</Link>
             <Link href="/#experience" className="hover:text-primary transition-colors">experience</Link>
             <Link href="/logs" className="hover:text-glow-green text-glow-green/80 flex items-center gap-1 transition-colors group">
@@ -75,15 +75,16 @@ export default function NavigationBar() {
           </div>
           
           {/* Logo Center */}
-          <div className="flex w-full md:w-1/3 justify-start md:justify-center z-50">
+          <div className="flex shrink-0 justify-start md:justify-center z-50">
             <Link href="/" className="font-display uppercase tracking-widest text-primary text-xl font-bold hover:text-glow-green transition-colors">
               JN LABS
             </Link>
           </div>
           
           {/* Desktop Right Links */}
-          <div className="hidden md:flex w-1/3 justify-end gap-6 font-sans text-nav lowercase text-secondary transition-colors duration-300 items-center">
+          <div className="hidden md:flex flex-1 justify-end gap-4 lg:gap-6 font-sans text-nav lowercase text-secondary transition-colors duration-300 items-center whitespace-nowrap">
             <Link href="/#projects" className="hover:text-primary transition-colors">projects</Link>
+            <Link href="/#case-studies" className="hover:text-primary transition-colors">case studies</Link>
             <Link href="/#skills" className="hover:text-primary transition-colors">skills</Link>
             <a 
               href="/resume.pdf"
@@ -138,7 +139,7 @@ export default function NavigationBar() {
         <Link href="/#about" onClick={closeMenu} className="font-display uppercase tracking-[0.2em] text-2xl text-secondary hover:text-glow-green transition-all">About</Link>
         <Link href="/#experience" onClick={closeMenu} className="font-display uppercase tracking-[0.2em] text-2xl text-secondary hover:text-glow-green transition-all">Experience</Link>
         <Link href="/#projects" onClick={closeMenu} className="font-display uppercase tracking-[0.2em] text-2xl text-secondary hover:text-glow-green transition-all">Projects</Link>
-        <Link href="/case-studies" onClick={closeMenu} className="font-display uppercase tracking-[0.2em] text-2xl text-secondary hover:text-glow-green transition-all">Case Studies</Link>
+        <Link href="/#case-studies" onClick={closeMenu} className="font-display uppercase tracking-[0.2em] text-2xl text-secondary hover:text-glow-green transition-all">Case Studies</Link>
         <Link href="/#skills" onClick={closeMenu} className="font-display uppercase tracking-[0.2em] text-2xl text-secondary hover:text-glow-green transition-all">Skills</Link>
         <a 
           href="/resume.pdf" 
