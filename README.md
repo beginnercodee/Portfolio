@@ -365,7 +365,7 @@ The portfolio is continuously deployed to **Vercel's Edge Network** with automat
 
 - **GitHub**: [@beginnercodee](https://github.com/beginnercodee)
 - **LinkedIn**: [Jamal Nadeem](https://www.linkedin.com/in/jamal-nadeem/)
-- **X (Twitter)**: [@jamal_codes](https://x.com/Nadeem7Jamal)
+- **X (Twitter)**: [@Nadeem7Jamal](https://x.com/Nadeem7Jamal)
 - **Email**: [jamalnadeem2004@gmail.com](mailto:jamalnadeem2004@gmail.com)
 
 ---

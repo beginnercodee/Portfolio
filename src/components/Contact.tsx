@@ -179,7 +179,7 @@ export default function Contact() {
         >
           <Linkedin className="w-8 h-8 mb-4 opacity-70 group-hover:opacity-100 group-hover:scale-110 transition-all duration-300" />
           <span className="font-mono text-sm tracking-widest uppercase">linkedin://</span>
-          <span className="font-sans font-bold text-white group-hover:text-glow-green mt-1">in/jamalnadeem</span>
+          <span className="font-sans font-bold text-white group-hover:text-glow-green mt-1">in/jamal-nadeem</span>
         </a>
 
         <a 
@@ -190,7 +190,7 @@ export default function Contact() {
         >
           <Twitter className="w-8 h-8 mb-4 opacity-70 group-hover:opacity-100 group-hover:scale-110 transition-all duration-300" />
           <span className="font-mono text-sm tracking-widest uppercase">x://</span>
-          <span className="font-sans font-bold text-white group-hover:text-glow-green mt-1">@jamal_codes</span>
+          <span className="font-sans font-bold text-white group-hover:text-glow-green mt-1">@Nadeem7Jamal</span>
         </a>
       </div>
     </section>
