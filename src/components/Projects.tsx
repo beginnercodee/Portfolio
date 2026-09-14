@@ -23,7 +23,7 @@ const projects = [
     tech: "Next.js, Gemini API, Supabase, Tailwind CSS",
     desc: "Architected an AI-powered content generation engine using the Google Gemini API and Next.js, replacing legacy static datasets with real-time, context-aware dynamic generation.",
     image: "/projects/nexium-quotes.jpg",
-    link: "https://nexium-jamal-assign1.vercel.app/",
+    link: "https://nexium-quotes.vercel.app/",
   },
   {
     title: "AI Resume Tailor.",
