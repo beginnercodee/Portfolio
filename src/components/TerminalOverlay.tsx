@@ -218,9 +218,11 @@ export default function TerminalOverlay() {
             "• AI-Enhanced Web Development Intern — Nexium (Jul 2025 – Aug 2025)",
             "  - Built Next.js/Supabase/MongoDB full-stack apps & automated backend workflows.",
             "",
-            "[ FEATURED PROJECT ]",
+            "[ FEATURED PROJECTS ]",
             "• CodeSprint: AI Competitive Programming Platform (Next.js, NestJS, Postgres, Judge0 CE)",
             "  - Finalist at ASPIRE Pakistan Startup Hub; National Idea Bank IV startup pitch.",
+            "• AI Resume Tailor: AI-Powered ATS Resume Engine (Next.js 16, TypeScript, Gemini API, jsPDF)",
+            "  - Dynamic resume parser & ATS optimizer generating real-time job-aligned formatted PDF exports.",
             "",
             "[ PDF DOWNLOAD ]: Opening /resume.pdf in new tab...",
             "============================================================="

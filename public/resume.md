@@ -32,6 +32,7 @@ Recent Computer Science graduate and full-stack developer with production experi
   * Used as the pitch for a National Idea Bank IV startup application; selected as a finalist at the ASPIRE Pakistan Startup Hub.
 
 ## OTHER PROJECTS
+- AI Resume Tailor — AI-powered ATS resume optimization engine (Next.js 16, TypeScript, Gemini API, Tailwind CSS, jsPDF) that parses candidate resumes and dynamically aligns keywords, experience, and quantifiable metrics with job descriptions for instant formatted PDF export.
 - InspireGPT / NexiumQuotes — Architected an AI-powered content generation engine using the Google Gemini API and Next.js, replacing legacy static datasets with real-time, context-aware dynamic generation.
 - Nexium Summarizer — Full-stack app for persistent blog summary retrieval, storing metadata in MongoDB and content in Supabase.
 - Task Manager Dashboard — Full-stack task tracker with PHP session authentication and MySQL prepared statements, eliminating SQL injection vulnerabilities.
