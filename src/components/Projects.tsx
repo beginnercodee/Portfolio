@@ -2,8 +2,18 @@ import Image from "next/image";
 import { ScrollScale } from "./animations/ScrollScale";
 import ProjectCursor from "./animations/ProjectCursor";
 import Link from "next/link";
+import { Github } from "lucide-react";
 
-const projects = [
+interface Project {
+  title: string;
+  tech: string;
+  desc: string;
+  image: string;
+  link: string;
+  github?: string;
+}
+
+const projects: Project[] = [
   {
     title: "CodeSprint.",
     tech: "Next.js, NestJS, Postgres, Judge0, Gemini API",
@@ -12,11 +22,20 @@ const projects = [
     link: "https://code-sprint.com/",
   },
   {
+    title: "AI Resume Tailor.",
+    tech: "Next.js 16, TypeScript, Gemini API, Tailwind CSS, jsPDF",
+    desc: "AI-powered ATS resume optimization engine that parses candidate resumes and dynamically aligns keywords, experience, and quantifiable metrics with job descriptions for instant formatted PDF export.",
+    image: "/projects/ai-resumetailor.jpg",
+    link: "https://ai-resumetailor-sage.vercel.app/",
+    github: "https://github.com/beginnercodee/ai-resumetailor",
+  },
+  {
     title: "Nexium Blog Summarizer.",
     tech: "Next.js, Supabase, MongoDB, Tailwind CSS",
     desc: "Full-stack blog summarization platform enabling persistent AI summary retrieval with dual-database architecture storing metadata in MongoDB and content in Supabase.",
     image: "/projects/nexium-blog.jpg",
     link: "https://nexium-blog-summariser.vercel.app/",
+    github: "https://github.com/beginnercodee/Nexium_Jamal_Assign2",
   },
   {
     title: "NexiumQuotes AI Engine.",
@@ -24,13 +43,7 @@ const projects = [
     desc: "Architected an AI-powered content generation engine using the Google Gemini API and Next.js, replacing legacy static datasets with real-time, context-aware dynamic generation.",
     image: "/projects/nexium-quotes.jpg",
     link: "https://nexium-quotes.vercel.app/",
-  },
-  {
-    title: "AI Resume Tailor.",
-    tech: "Next.js 16, TypeScript, Gemini API, Tailwind CSS, jsPDF",
-    desc: "AI-powered ATS resume optimization engine that parses candidate resumes and dynamically aligns keywords, experience, and quantifiable metrics with job descriptions for instant formatted PDF export.",
-    image: "/projects/ai-resumetailor.jpg",
-    link: "https://ai-resumetailor-sage.vercel.app/",
+    github: "https://github.com/beginnercodee/Nexium_Jamal_Assign1",
   },
 ];
 
@@ -71,28 +84,42 @@ export default function Projects() {
               {/* Lower gradient overlay for text readability */}
               <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/70 md:via-black/50 to-transparent flex flex-col justify-end p-6 md:p-8 z-20 pointer-events-none">
 
-                {/* Floating Action Link */}
-                <div className="absolute top-6 right-6 md:top-8 md:right-8 z-30 pointer-events-auto">
+                {/* Floating Action Links */}
+                <div className="absolute top-6 right-6 md:top-8 md:right-8 z-30 pointer-events-auto flex items-center gap-2">
+                  {proj.github && (
+                    <a
+                      href={proj.github}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={`${proj.title} GitHub Repository`}
+                      className="font-mono text-[10px] md:text-xs flex items-center gap-1.5 bg-black/80 backdrop-blur-md border border-white/20 px-2.5 py-1.5 rounded-sm hover:border-glow-green hover:text-glow-green transition-all duration-300 md:opacity-0 md:group-hover:opacity-100 group/gh"
+                      title="View Source Code"
+                    >
+                      <Github className="w-3.5 h-3.5 text-secondary group-hover/gh:text-glow-green transition-colors" />
+                      <span className="hidden sm:inline-block">[ CODE ]</span>
+                    </a>
+                  )}
+
                   {proj.link.startsWith("http") ? (
                     <a
                       href={proj.link}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="font-mono text-[10px] md:text-xs flex items-center gap-2 bg-black/80 backdrop-blur-md border border-white/20 px-3 py-1.5 rounded-sm hover:border-glow-green hover:text-glow-green transition-all duration-300 md:opacity-0 md:group-hover:opacity-100 group/btn"
+                      aria-label={`${proj.title} Live Application`}
+                      className="font-mono text-[10px] md:text-xs flex items-center gap-1.5 bg-black/80 backdrop-blur-md border border-white/20 px-2.5 sm:px-3 py-1.5 rounded-sm hover:border-glow-green hover:text-glow-green transition-all duration-300 md:opacity-0 md:group-hover:opacity-100 group/btn"
                     >
                       <span className="opacity-0 group-hover/btn:opacity-100 transition-opacity -mr-1 hidden md:inline-block">⚡ </span>
-                      <span className="md:hidden group-hover/btn:hidden">[ ... ]</span>
-                      <span className="hidden md:inline-block group-hover/btn:hidden">[ RUN ]</span>
+                      <span className="group-hover/btn:hidden">[ LIVE ]</span>
                       <span className="hidden group-hover/btn:inline-block">EXECUTE SYS</span>
                     </a>
                   ) : (
                     <Link
                       href={proj.link}
-                      className="font-mono text-[10px] md:text-xs flex items-center gap-2 bg-black/80 backdrop-blur-md border border-white/20 px-3 py-1.5 rounded-sm hover:border-glow-green hover:text-glow-green transition-all duration-300 md:opacity-0 md:group-hover:opacity-100 group/btn"
+                      aria-label={`${proj.title} Details`}
+                      className="font-mono text-[10px] md:text-xs flex items-center gap-1.5 bg-black/80 backdrop-blur-md border border-white/20 px-2.5 sm:px-3 py-1.5 rounded-sm hover:border-glow-green hover:text-glow-green transition-all duration-300 md:opacity-0 md:group-hover:opacity-100 group/btn"
                     >
                       <span className="opacity-0 group-hover/btn:opacity-100 transition-opacity -mr-1 hidden md:inline-block">⚡ </span>
-                      <span className="md:hidden group-hover/btn:hidden">[ ... ]</span>
-                      <span className="hidden md:inline-block group-hover/btn:hidden">[ LOG ]</span>
+                      <span className="group-hover/btn:hidden">[ LOG ]</span>
                       <span className="hidden group-hover/btn:inline-block">VIEW DATA</span>
                     </Link>
                   )}
