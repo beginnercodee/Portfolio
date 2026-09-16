@@ -20,6 +20,7 @@ const projects: Project[] = [
     desc: "AI-powered competitive programming and learning platform featuring real-time code evaluation with Judge0 CE, BullMQ, and Socket.IO. Selected as Finalist at ASPIRE Pakistan Startup Hub.",
     image: "/projects/codesprint.jpg",
     link: "https://code-sprint.com/",
+    github: "https://github.com/CodeSprint-ai/Code-Sprint",
   },
   {
     title: "AI Resume Tailor.",
