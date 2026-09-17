@@ -83,13 +83,16 @@ The application is engineered using **Next.js 16 (App Router)**, **React 19**, *
 
 ### 🖥️ Interactive Terminal CLI (`JN_OS`)
 - **Hotkey & UI Trigger**: Openable anytime via `Ctrl + \`` shortcut or via the floating terminal button in the bottom-right corner.
-- **14+ Built-in Shell Commands**:
+- **17+ Built-in Shell Commands**:
   - `help` — Lists all executable system commands.
   - `whoami` — Displays guest user privilege level.
   - `skills` — Outputs technical competencies across Frontend, Backend, and AI.
+  - `projects` — Streams production application summaries and scrolls to the selected works showcase.
+  - `case-studies` — Displays verified enterprise ROI metrics and navigates to the case studies repository.
+  - `contact` — Prints direct communication protocols (email, socials, phone) and focuses the contact console.
   - `resume` / `cv` — Prints structured resume details directly in the console and auto-launches the official PDF.
-  - `ls [dir]` — Lists directory partitions (e.g. `ls logs` dynamically queries published articles).
-  - `cat [file]` — Streams markdown files line-by-line (`cat resume.md`, `cat about.md`, `cat skills.json`, `cat deploy.sh`, `cat logs/<slug>.md`).
+  - `ls [dir]` — Lists directory partitions (e.g. `ls logs`, `ls projects`, `ls case-studies`).
+  - `cat [file]` — Streams file contents line-by-line (`cat resume.md`, `cat about.md`, `cat skills.json`, `cat contact.txt`, `cat projects.json`, `cat deploy.sh`, `cat logs/<slug>.md`).
   - `ping` — Calculates dynamic synthetic network latency in milliseconds.
   - `uptime`, `date`, `pwd`, `echo [arg]` — Authentic POSIX shell command behaviors.
   - `godmode` — Triggers root access override sequence.

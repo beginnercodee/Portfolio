@@ -3,6 +3,7 @@
 import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, Terminal as TerminalIcon } from "lucide-react";
+import { useRouter } from "next/navigation";
 import type { LogPost } from "@/lib/blog";
 
 type Log = {
@@ -13,10 +14,11 @@ type Log = {
 
 /**
  * Renders an interactive, modal-based CLI terminal interface allowing users to execute
- * custom shell commands (help, whoami, skills, ls, cat, echo, ping, date, godmode, clear, exit).
+ * custom shell commands (help, whoami, skills, projects, case-studies, contact, ls, cat, echo, ping, date, godmode, clear, exit).
  * Features hotkey toggles (Ctrl+`), simulated scanlines, and animated text streaming.
  */
 export default function TerminalOverlay() {
+  const router = useRouter();
   const [isOpen, setIsOpen] = useState(false);
   const [inputMessage, setInputMessage] = useState("");
   const [logs, setLogs] = useState<Log[]>([
@@ -150,17 +152,20 @@ export default function TerminalOverlay() {
         newLogs.push({ id: Date.now() + 1, text: "AVAILABLE COMMANDS:", type: "output" });
         newLogs.push({ id: Date.now() + 2, text: "  whoami           - display current user identity", type: "output" });
         newLogs.push({ id: Date.now() + 3, text: "  skills           - list core technical competencies", type: "output" });
-        newLogs.push({ id: Date.now() + 4, text: "  resume / cv      - view & print official curriculum vitae", type: "output" });
-        newLogs.push({ id: Date.now() + 5, text: "  ls [dir]         - list directory files (e.g. ls logs)", type: "output" });
-        newLogs.push({ id: Date.now() + 6, text: "  cat [file]       - print file contents (e.g. cat resume.md, cat about.md)", type: "output" });
-        newLogs.push({ id: Date.now() + 7, text: "  date             - print system date and time", type: "output" });
-        newLogs.push({ id: Date.now() + 8, text: "  pwd              - print working directory", type: "output" });
-        newLogs.push({ id: Date.now() + 9, text: "  echo [arg]       - print arguments to output", type: "output" });
-        newLogs.push({ id: Date.now() + 10, text: "  ping             - check network connectivity", type: "output" });
-        newLogs.push({ id: Date.now() + 11, text: "  uptime           - tell how long the system has been running", type: "output" });
-        newLogs.push({ id: Date.now() + 12, text: "  clear            - wipe terminal output", type: "output" });
-        newLogs.push({ id: Date.now() + 13, text: "  sudo rm -rf      - [DANGEROUS] do not run", type: "output" });
-        newLogs.push({ id: Date.now() + 14, text: "  exit             - close terminal interface", type: "output" });
+        newLogs.push({ id: Date.now() + 4, text: "  projects         - inspect production software & live demos", type: "output" });
+        newLogs.push({ id: Date.now() + 5, text: "  case-studies     - explore enterprise ROI architectures & metrics", type: "output" });
+        newLogs.push({ id: Date.now() + 6, text: "  contact          - initialize direct connection protocols", type: "output" });
+        newLogs.push({ id: Date.now() + 7, text: "  resume / cv      - view & print official curriculum vitae", type: "output" });
+        newLogs.push({ id: Date.now() + 8, text: "  ls [dir]         - list directory files (e.g. ls logs, ls projects)", type: "output" });
+        newLogs.push({ id: Date.now() + 9, text: "  cat [file]       - print file contents (e.g. cat resume.md, cat about.md)", type: "output" });
+        newLogs.push({ id: Date.now() + 10, text: "  date             - print system date and time", type: "output" });
+        newLogs.push({ id: Date.now() + 11, text: "  pwd              - print working directory", type: "output" });
+        newLogs.push({ id: Date.now() + 12, text: "  echo [arg]       - print arguments to output", type: "output" });
+        newLogs.push({ id: Date.now() + 13, text: "  ping             - check network connectivity", type: "output" });
+        newLogs.push({ id: Date.now() + 14, text: "  uptime           - tell how long the system has been running", type: "output" });
+        newLogs.push({ id: Date.now() + 15, text: "  clear            - wipe terminal output", type: "output" });
+        newLogs.push({ id: Date.now() + 16, text: "  sudo rm -rf      - [DANGEROUS] do not run", type: "output" });
+        newLogs.push({ id: Date.now() + 17, text: "  exit             - close terminal interface", type: "output" });
         break;
 
       case "ls":
@@ -174,14 +179,25 @@ export default function TerminalOverlay() {
               newLogs.push({ id: Date.now() + 1 + index, text: `-rw-r--r--  jamal  jamal  ${log.slug}.md`, type: "output" });
             });
           }
+        } else if (targetDir === "projects" || targetDir === "projects/") {
+          newLogs.push({ id: Date.now() + 1, text: "-rwxr-xr-x  jamal  jamal  codesprint.app", type: "output" });
+          newLogs.push({ id: Date.now() + 2, text: "-rwxr-xr-x  jamal  jamal  ai-resumetailor.app", type: "output" });
+          newLogs.push({ id: Date.now() + 3, text: "-rwxr-xr-x  jamal  jamal  nexium-blog.app", type: "output" });
+          newLogs.push({ id: Date.now() + 4, text: "-rwxr-xr-x  jamal  jamal  nexium-quotes.app", type: "output" });
+        } else if (targetDir === "case-studies" || targetDir === "case-studies/") {
+          newLogs.push({ id: Date.now() + 1, text: "-rw-r--r--  jamal  jamal  agency-outreach-automation.md", type: "output" });
+          newLogs.push({ id: Date.now() + 2, text: "-rw-r--r--  jamal  jamal  real-time-data-sync-pipeline.md", type: "output" });
         } else if (targetDir && targetDir !== "." && targetDir !== "./") {
           newLogs.push({ id: Date.now() + 1, text: `ls: cannot access '${args[1]}': No such file or directory`, type: "error" });
         } else {
           newLogs.push({ id: Date.now() + 1, text: "drwxr-xr-x  jamal  jamal  logs/", type: "output" });
-          newLogs.push({ id: Date.now() + 2, text: "-rw-r--r--  jamal  jamal  about.md", type: "output" });
-          newLogs.push({ id: Date.now() + 3, text: "-rw-r--r--  jamal  jamal  resume.md", type: "output" });
-          newLogs.push({ id: Date.now() + 4, text: "-rw-r--r--  jamal  jamal  skills.json", type: "output" });
-          newLogs.push({ id: Date.now() + 5, text: "-rwxr-xr-x  root   root   deploy.sh", type: "output" });
+          newLogs.push({ id: Date.now() + 2, text: "drwxr-xr-x  jamal  jamal  projects/", type: "output" });
+          newLogs.push({ id: Date.now() + 3, text: "drwxr-xr-x  jamal  jamal  case-studies/", type: "output" });
+          newLogs.push({ id: Date.now() + 4, text: "-rw-r--r--  jamal  jamal  about.md", type: "output" });
+          newLogs.push({ id: Date.now() + 5, text: "-rw-r--r--  jamal  jamal  resume.md", type: "output" });
+          newLogs.push({ id: Date.now() + 6, text: "-rw-r--r--  jamal  jamal  skills.json", type: "output" });
+          newLogs.push({ id: Date.now() + 7, text: "-rw-r--r--  jamal  jamal  contact.txt", type: "output" });
+          newLogs.push({ id: Date.now() + 8, text: "-rwxr-xr-x  root   root   deploy.sh", type: "output" });
         }
         break;
 
@@ -261,6 +277,44 @@ export default function TerminalOverlay() {
             '  "databases": ["PostgreSQL (NeonDB)", "Supabase", "MongoDB", "MySQL"],',
             '  "ai_automation": ["n8n", "GoHighLevel", "Voice Agents", "OpenAI/Gemini/OpenRouter/Nvidia", "Judge0 CE"],',
             '  "devops_tools": ["Docker", "Git/GitHub", "Vercel", "CI/CD"]',
+            "}"
+          ];
+          setLogs(newLogs);
+          printLinesSlowly(lines);
+          return;
+        }
+
+        if (lowerTarget === "contact.txt" || lowerTarget === "contact.md" || lowerTarget === "contact") {
+          const lines = [
+            "=============================================================",
+            "COMMUNICATION CHANNELS & DIRECT ACCESS PROTOCOLS",
+            "=============================================================",
+            "• Direct Email:  jamalnadeem2004@gmail.com",
+            "• Phone / Tel:   +92 332 0212439",
+            "• LinkedIn:      https://www.linkedin.com/in/jamal-nadeem/",
+            "• GitHub:        https://github.com/beginnercodee",
+            "• X (Twitter):   https://x.com/Nadeem7Jamal",
+            "• Availability:  Open for Enterprise Automations & Full-Stack Contracts",
+            "=============================================================",
+            "> Navigating to #contact transmission console..."
+          ];
+          setLogs(newLogs);
+          printLinesSlowly(lines);
+          setTimeout(() => {
+            document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
+          }, 1200);
+          return;
+        }
+
+        if (lowerTarget === "projects.json" || lowerTarget === "projects") {
+          const lines = [
+            "{",
+            '  "flagship_projects": [',
+            '    { "name": "CodeSprint", "stack": "Next.js/NestJS/Postgres/Judge0/Gemini", "live": "https://code-sprint.com/" },',
+            '    { "name": "AI Resume Tailor", "stack": "Next.js 16/TypeScript/Gemini/jsPDF", "live": "https://ai-resumetailor-sage.vercel.app/" },',
+            '    { "name": "Nexium Blog Summarizer", "stack": "Next.js/Supabase/MongoDB/Tailwind", "live": "https://nexium-blog-summariser.vercel.app/" },',
+            '    { "name": "NexiumQuotes AI Engine", "stack": "Next.js/Gemini API/Supabase", "live": "https://nexium-quotes.vercel.app/" }',
+            "  ]",
             "}"
           ];
           setLogs(newLogs);
@@ -351,6 +405,90 @@ export default function TerminalOverlay() {
         newLogs.push({ id: Date.now() + 3, text: "> Python, PostgreSQL, Supabase, MongoDB, Docker", type: "output" });
         newLogs.push({ id: Date.now() + 4, text: "> Agentic AI, Voice Agents, n8n, GoHighLevel, LLM APIs", type: "output" });
         break;
+
+      case "projects":
+      case "work":
+        const projectLines = [
+          "=============================================================",
+          "SELECTED PRODUCTION WORKS & ARCHITECTURES",
+          "=============================================================",
+          "1. CodeSprint [LIVE: https://code-sprint.com/]",
+          "   • Real-Time AI Competitive Programming Platform",
+          "   • Stack: Next.js, NestJS, Postgres, Judge0 CE, BullMQ, Socket.IO",
+          "   • Finalist at ASPIRE Pakistan Startup Hub; National Idea Bank IV.",
+          "",
+          "2. AI Resume Tailor [LIVE: https://ai-resumetailor-sage.vercel.app/]",
+          "   • Dynamic ATS Resume Optimization & Keyword Alignment Engine",
+          "   • Stack: Next.js 16, TypeScript, Gemini API, Tailwind, jsPDF",
+          "   • Repo: https://github.com/beginnercodee/ai-resumetailor",
+          "",
+          "3. Nexium Blog Summarizer [LIVE: https://nexium-blog-summariser.vercel.app/]",
+          "   • Dual-Database AI Article & Summary Persistence Platform",
+          "   • Stack: Next.js, Supabase, MongoDB, Tailwind CSS",
+          "   • Repo: https://github.com/beginnercodee/Nexium_Jamal_Assign2",
+          "",
+          "4. NexiumQuotes AI Engine [LIVE: https://nexium-quotes.vercel.app/]",
+          "   • Real-Time Dynamic Generative Content Pipeline",
+          "   • Stack: Next.js, Gemini API, Supabase, Tailwind CSS",
+          "   • Repo: https://github.com/beginnercodee/InspireGPT",
+          "=============================================================",
+          "> Navigating to #projects section..."
+        ];
+        setLogs(newLogs);
+        printLinesSlowly(projectLines);
+        setTimeout(() => {
+          document.getElementById("projects")?.scrollIntoView({ behavior: "smooth" });
+        }, 1200);
+        return;
+
+      case "case-studies":
+      case "casestudies":
+      case "case-study":
+        const caseStudyLines = [
+          "=============================================================",
+          "ROI ARCHITECTURES & VERIFIED PRODUCTION CASE STUDIES",
+          "=============================================================",
+          "• Agency Outreach & RFP Quoting Engine",
+          "  - Verified Metric: +400% Turnaround Velocity",
+          "  - Architecture: Autonomous RFQ extraction, 2-way CRM sync, Supabase",
+          "  - Stack: n8n, OpenAI GPT-4, GoHighLevel, Supabase, jsPDF",
+          "",
+          "• Real-Time Enterprise Data Sync Pipeline",
+          "  - Verified Metric: 0 Manual Entry Errors (Sub-2s replication)",
+          "  - Architecture: Redis BullMQ retry queues, cryptographic webhooks",
+          "  - Stack: Node.js, Redis BullMQ, PostgreSQL, Webhooks",
+          "=============================================================",
+          "> Opening /case-studies repository..."
+        ];
+        setLogs(newLogs);
+        printLinesSlowly(caseStudyLines);
+        setTimeout(() => {
+          router.push("/case-studies");
+        }, 1200);
+        return;
+
+      case "contact":
+      case "hire":
+      case "email":
+        const contactLines = [
+          "=============================================================",
+          "COMMUNICATION CHANNELS & DIRECT ACCESS PROTOCOLS",
+          "=============================================================",
+          "• Direct Email:  jamalnadeem2004@gmail.com",
+          "• Phone / Tel:   +92 332 0212439",
+          "• LinkedIn:      https://www.linkedin.com/in/jamal-nadeem/",
+          "• GitHub:        https://github.com/beginnercodee",
+          "• X (Twitter):   https://x.com/Nadeem7Jamal",
+          "• Availability:  Open for Enterprise Automations & Full-Stack Contracts",
+          "=============================================================",
+          "> Navigating to #contact transmission console..."
+        ];
+        setLogs(newLogs);
+        printLinesSlowly(contactLines);
+        setTimeout(() => {
+          document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
+        }, 1200);
+        return;
 
       case "sudo":
         if (args.slice(1).join(" ").toLowerCase().startsWith("rm -rf")) {
