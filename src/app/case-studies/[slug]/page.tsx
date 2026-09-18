@@ -43,6 +43,10 @@ export default async function CaseStudyDetailPage({
     notFound();
   }
 
+  const allCaseStudies = getAllCaseStudies();
+  const currentIndex = allCaseStudies.findIndex((item) => item.slug === slug);
+  const nextCaseStudy = allCaseStudies[(currentIndex + 1) % allCaseStudies.length];
+
   return (
     <main className="min-h-screen bg-background text-primary pt-28 md:pt-36 pb-24 px-6 md:px-12 relative overflow-hidden">
       {/* Background Ambient Glows */}
@@ -354,6 +358,49 @@ export default async function CaseStudyDetailPage({
           </div>
         </section>
 
+        {/* Next Case Study Navigation Card */}
+        {nextCaseStudy && nextCaseStudy.slug !== cs.slug && (
+          <section className="flex flex-col gap-3">
+            <span className="font-mono text-xs uppercase tracking-widest text-secondary flex items-center gap-2">
+              <Terminal className="w-3.5 h-3.5 text-glow-green" />
+              <span>CONTINUE EXPLORING ARCHITECTURES // NEXT_CASE_STUDY</span>
+            </span>
+
+            <Link
+              href={`/case-studies/${nextCaseStudy.slug}`}
+              className="group p-6 sm:p-8 bg-black/40 border border-white/10 hover:border-glow-green/60 rounded-2xl transition-all duration-300 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 relative overflow-hidden backdrop-blur-md hover:bg-white/[0.03] shadow-[0_4px_30px_rgba(0,0,0,0.4)]"
+            >
+              <div className="absolute top-0 right-0 w-48 h-48 bg-glow-green/10 rounded-full blur-[60px] opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+
+              <div className="flex flex-col gap-2 z-10 max-w-2xl">
+                <div className="flex items-center gap-3 font-mono text-[11px]">
+                  <span className="px-2.5 py-0.5 rounded bg-glow-green/10 border border-glow-green/30 text-glow-green font-bold uppercase tracking-wider">
+                    {nextCaseStudy.badge}
+                  </span>
+                  <span className="text-secondary/60">•</span>
+                  <span className="text-glow-silver">{nextCaseStudy.clientContext.industry}</span>
+                </div>
+                <h3 className="font-display text-xl sm:text-2xl text-white font-bold group-hover:text-glow-green transition-colors">
+                  {nextCaseStudy.title}
+                </h3>
+                <p className="font-sans text-xs sm:text-sm text-secondary line-clamp-2 leading-relaxed">
+                  {nextCaseStudy.synopsis}
+                </p>
+              </div>
+
+              <div className="flex items-center gap-4 z-10 shrink-0 self-end sm:self-center">
+                <div className="text-right hidden md:block">
+                  <div className="font-mono text-[10px] text-secondary uppercase tracking-wider">Verified Impact</div>
+                  <div className="font-display text-lg text-glow-green font-bold">{nextCaseStudy.heroMetric}</div>
+                </div>
+                <div className="w-12 h-12 rounded-full border border-white/20 bg-black/60 group-hover:border-glow-green group-hover:bg-glow-green group-hover:text-black flex items-center justify-center text-white transition-all duration-300 shadow-[0_0_15px_rgba(57,255,20,0.1)]">
+                  <ChevronRight className="w-5 h-5 group-hover:translate-x-0.5 transition-transform" />
+                </div>
+              </div>
+            </Link>
+          </section>
+        )}
+
         {/* Call to Action Footer Box */}
         <section className="bg-base border border-glow-green/40 rounded-2xl p-8 md:p-12 text-center flex flex-col items-center gap-6 relative overflow-hidden shadow-[0_0_40px_rgba(57,255,20,0.1)]">
           <div className="absolute inset-0 bg-radial from-glow-green/10 via-transparent to-transparent opacity-50 pointer-events-none" />
@@ -372,6 +419,15 @@ export default async function CaseStudyDetailPage({
               <ChevronRight className="w-4 h-4" />
             </Link>
             <DownloadCaseStudyPdfButton caseStudy={cs} />
+            {nextCaseStudy && nextCaseStudy.slug !== cs.slug && (
+              <Link
+                href={`/case-studies/${nextCaseStudy.slug}`}
+                className="px-6 py-3 rounded-full border border-glow-green/40 bg-glow-green/10 text-glow-green hover:bg-glow-green hover:text-black font-mono text-xs md:text-sm tracking-widest uppercase transition-all flex items-center gap-1.5"
+              >
+                <span>Next Case Study</span>
+                <ChevronRight className="w-4 h-4" />
+              </Link>
+            )}
             <Link
               href="/#case-studies"
               className="px-6 py-3 rounded-full border border-white/20 bg-black/40 text-secondary hover:text-white hover:border-white font-mono text-xs md:text-sm tracking-widest uppercase transition-all"
