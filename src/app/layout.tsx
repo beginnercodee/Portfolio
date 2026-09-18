@@ -29,7 +29,7 @@ const jetbrainsMono = JetBrains_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL("https://jamalnadeem.com"),
   title: {
-    default: "Jamal Nadeem | Automation Engineer",
+    default: "Jamal Nadeem | Full-Stack & AI Automation Engineer",
     template: "%s | Jamal Nadeem",
   },
   description: "Portfolio of Jamal Nadeem, a full-stack developer and AI automation expert specializing in building massive architecture and autonomous systems.",
@@ -40,22 +40,24 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_US",
     url: "https://jamalnadeem.com",
-    title: "Jamal Nadeem | System Architect",
+    title: "Jamal Nadeem | Full-Stack & AI Automation Engineer",
     description: "Full-stack developer and AI integration specialist. Building intelligent, scalable systems that eliminate manual work.",
     siteName: "Jamal Nadeem Portfolio",
     images: [
       {
-        url: "/og-image.jpg", // Make sure to add this image to /public later!
+        url: "/og-image.jpg",
         width: 1200,
         height: 630,
-        alt: "Jamal Nadeem | Automation Engineer",
+        alt: "Jamal Nadeem | Full-Stack & AI Automation Engineer",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Jamal Nadeem | System Architect",
+    title: "Jamal Nadeem | Full-Stack & AI Automation Engineer",
     description: "Full-stack developer and AI integration specialist.",
+    site: "@Nadeem7Jamal",
+    creator: "@Nadeem7Jamal",
     images: ["/og-image.jpg"],
   },
   robots: {
