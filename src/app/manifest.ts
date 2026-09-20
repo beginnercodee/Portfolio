@@ -6,13 +6,14 @@ import { MetadataRoute } from 'next';
  */
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: 'Jamal Nadeem | Automation Engineer',
+    name: 'Jamal Nadeem | Full-Stack & AI Automation Engineer',
     short_name: 'JN LABS',
-    description: 'System architecture and autonomous workflows.',
+    description: 'Full-stack software engineering, system architecture, and autonomous AI workflows.',
     start_url: '/',
     display: 'standalone',
     background_color: '#000000',
     theme_color: '#000000',
+    categories: ['technology', 'development', 'portfolio'],
     icons: [
       {
         src: '/favicon.ico',
