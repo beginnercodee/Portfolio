@@ -175,6 +175,9 @@ export default function CommandPalette() {
     if (query.startsWith(">")) {
       const macroQuery = query.substring(1).trim().toLowerCase();
       const macros = [
+        { name: "projects", desc: "Inspect production software & live demos" },
+        { name: "case-studies", desc: "Explore enterprise ROI architectures & metrics" },
+        { name: "contact", desc: "Initialize direct connection protocols" },
         { name: "resume", desc: "View & download official CV" },
         { name: "cv", desc: "Print full resume in CLI terminal" },
         { name: "help", desc: "Show available terminal commands" },
