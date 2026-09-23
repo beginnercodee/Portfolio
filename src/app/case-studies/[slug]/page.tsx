@@ -3,6 +3,7 @@ import Link from "next/link";
 import { getCaseStudyBySlug, getAllCaseStudies } from "@/data/caseStudies";
 import { ArrowLeft, CheckCircle2, Layers, Cpu, Database, Mail, ShieldCheck, Zap, Server, ChevronRight, Terminal, BarChart3 } from "lucide-react";
 import DownloadCaseStudyPdfButton from "@/components/DownloadCaseStudyPdfButton";
+import ShareCaseStudyButton from "@/components/ShareCaseStudyButton";
 import type { Metadata } from "next";
 
 export async function generateStaticParams() {
@@ -72,11 +73,12 @@ export default async function CaseStudyDetailPage({
               <span className="text-glow-silver">case-studies/{cs.slug}</span>
             </div>
 
-            <div className="flex items-center gap-3">
-              <div className="hidden sm:flex items-center gap-2 px-3 py-1 bg-surface border border-glow-green/30 rounded-full font-mono text-[11px] text-glow-green">
+            <div className="flex items-center gap-2.5 sm:gap-3 flex-wrap">
+              <div className="hidden lg:flex items-center gap-2 px-3 py-1 bg-surface border border-glow-green/30 rounded-full font-mono text-[11px] text-glow-green">
                 <span className="w-2 h-2 rounded-full bg-glow-green animate-pulse shadow-[0_0_8px_#39ff14]" />
                 PRODUCTION_DEPLOYED
               </div>
+              <ShareCaseStudyButton title={cs.title} slug={cs.slug} />
               <DownloadCaseStudyPdfButton caseStudy={cs} />
             </div>
           </div>
@@ -418,6 +420,7 @@ export default async function CaseStudyDetailPage({
               <span>[ INITIATE ARCHITECTURE AUDIT ]</span>
               <ChevronRight className="w-4 h-4" />
             </Link>
+            <ShareCaseStudyButton title={cs.title} slug={cs.slug} />
             <DownloadCaseStudyPdfButton caseStudy={cs} />
             {nextCaseStudy && nextCaseStudy.slug !== cs.slug && (
               <Link
