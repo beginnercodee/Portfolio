@@ -38,18 +38,57 @@ export default function NotFound() {
             </div>
           </div>
 
-          <div className="pt-6 border-t border-white/10 mt-6 flex flex-col gap-4">
-            <p className="text-[10px] md:text-xs text-secondary uppercase tracking-widest text-glow-silver/50">
-              Available recovery operations:
-            </p>
-            <div className="flex">
+          <div className="pt-6 border-t border-white/10 mt-6 flex flex-col gap-3">
+            <div className="flex items-center justify-between">
+              <p className="text-[10px] md:text-xs text-secondary uppercase tracking-widest text-glow-silver/50">
+                Available recovery operations:
+              </p>
+              <span className="text-[10px] text-glow-green font-mono opacity-60">SELECT_ROUTE</span>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
               <Link 
                 href="/"
-                className="group inline-flex items-center gap-3 bg-[#111] hover:bg-[#1A1A1A] text-glow-green border border-glow-green/20 hover:border-glow-green/60 px-5 py-3 rounded-md transition-all text-sm hover:shadow-[0_0_20px_rgba(57,255,20,0.2)]"
+                className="group flex items-center justify-between bg-[#111] hover:bg-[#1A1A1A] text-glow-green border border-glow-green/20 hover:border-glow-green/60 px-4 py-2.5 rounded-md transition-all text-xs sm:text-sm hover:shadow-[0_0_15px_rgba(57,255,20,0.15)]"
               >
-                <span className="opacity-60 group-hover:opacity-100 transition-opacity">jamal@sys:~$</span> 
-                cd /root
-                <span className="w-2 h-4 bg-glow-green animate-pulse inline-block" />
+                <div className="flex items-center gap-2">
+                  <span className="opacity-40 group-hover:opacity-80 transition-opacity">$</span>
+                  <span>cd /root</span>
+                </div>
+                <span className="text-[10px] text-secondary opacity-60 group-hover:opacity-100 font-mono">home</span>
+              </Link>
+
+              <Link 
+                href="/case-studies"
+                className="group flex items-center justify-between bg-[#111] hover:bg-[#1A1A1A] text-glow-green border border-glow-green/20 hover:border-glow-green/60 px-4 py-2.5 rounded-md transition-all text-xs sm:text-sm hover:shadow-[0_0_15px_rgba(57,255,20,0.15)]"
+              >
+                <div className="flex items-center gap-2">
+                  <span className="opacity-40 group-hover:opacity-80 transition-opacity">$</span>
+                  <span>cd /case-studies</span>
+                </div>
+                <span className="text-[10px] text-secondary opacity-60 group-hover:opacity-100 font-mono">roi</span>
+              </Link>
+
+              <Link 
+                href="/#projects"
+                className="group flex items-center justify-between bg-[#111] hover:bg-[#1A1A1A] text-glow-green border border-glow-green/20 hover:border-glow-green/60 px-4 py-2.5 rounded-md transition-all text-xs sm:text-sm hover:shadow-[0_0_15px_rgba(57,255,20,0.15)]"
+              >
+                <div className="flex items-center gap-2">
+                  <span className="opacity-40 group-hover:opacity-80 transition-opacity">$</span>
+                  <span>cd /projects</span>
+                </div>
+                <span className="text-[10px] text-secondary opacity-60 group-hover:opacity-100 font-mono">work</span>
+              </Link>
+
+              <Link 
+                href="/logs"
+                className="group flex items-center justify-between bg-[#111] hover:bg-[#1A1A1A] text-glow-green border border-glow-green/20 hover:border-glow-green/60 px-4 py-2.5 rounded-md transition-all text-xs sm:text-sm hover:shadow-[0_0_15px_rgba(57,255,20,0.15)]"
+              >
+                <div className="flex items-center gap-2">
+                  <span className="opacity-40 group-hover:opacity-80 transition-opacity">$</span>
+                  <span>cd /logs</span>
+                </div>
+                <span className="text-[10px] text-secondary opacity-60 group-hover:opacity-100 font-mono">posts</span>
               </Link>
             </div>
           </div>
