@@ -109,11 +109,17 @@ export default function SystemStatusFooter() {
     }, 3000);
 
     // Easter Egg: Tab Visibility Tracker
+    let previousTitle = typeof document !== "undefined" ? document.title : "";
     const handleVisibilityChange = () => {
       if (document.hidden) {
+        if (document.title && document.title !== "System Waiting...") {
+          previousTitle = document.title;
+        }
         document.title = "System Waiting...";
       } else {
-        document.title = "Jamal Nadeem | Automation Engineer";
+        document.title = previousTitle && previousTitle !== "System Waiting..."
+          ? previousTitle
+          : "Jamal Nadeem | Full-Stack & AI Automation Engineer";
       }
     };
     
