@@ -16,6 +16,11 @@ const experiences = [
     meta: "[v1.0.0] Nexium // Jul 2025 — Aug 2025",
     desc: "Built and maintained full-stack web applications using Next.js, Tailwind CSS, and Supabase. Designed scalable database architectures with Supabase & MongoDB and automated backend workflows.",
   },
+  {
+    role: "BS in Computer Science (CGPA: 3.26)",
+    meta: "[academics] Sir Syed University of Engineering & Technology (SSUET)",
+    desc: "Graduated with honors in algorithmic systems and distributed software. Architected CodeSprint (AI Competitive Programming Platform) as Final Year Project, selected as an ASPIRE Pakistan Startup Hub finalist.",
+  },
 ];
 
 /**
