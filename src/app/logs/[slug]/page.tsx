@@ -68,6 +68,10 @@ export default async function LogPost({ params }: { params: Promise<{ slug: stri
               AUTHORIZED_PROTOCOL
             </div>
             <time className="tracking-widest">{post.date}</time>
+            <span className="text-white/20">•</span>
+            <span className="px-2.5 py-0.5 rounded border border-glow-green/30 bg-glow-green/10 text-glow-green font-mono text-[11px] tracking-wider flex items-center gap-1">
+              ⚡ {post.readingTime}
+            </span>
           </div>
 
           <h1 className="font-display text-[clamp(2rem,6vw,4rem)] text-white tracking-tighter leading-none uppercase mt-4 text-glow-green hover:text-white transition-colors">

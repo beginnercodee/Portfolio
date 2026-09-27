@@ -49,7 +49,13 @@ export default async function LogsIndex() {
                 
                 <div className="flex flex-col gap-4">
                   <div className="flex items-center justify-between font-mono text-[10px] md:text-xs">
-                    <span className="text-secondary tracking-widest">{post.date}</span>
+                    <div className="flex items-center gap-2.5">
+                      <span className="text-secondary tracking-widest">{post.date}</span>
+                      <span className="text-secondary/40">•</span>
+                      <span className="text-glow-silver/80 flex items-center gap-1 font-mono text-[10px]">
+                        ⚡ {post.readingTime}
+                      </span>
+                    </div>
                     <span className="text-glow-green flex items-center gap-1.5 px-2 py-0.5 border border-glow-green/30 bg-glow-green/10 rounded">
                       <span className="w-1.5 h-1.5 bg-glow-green rounded-full animate-pulse" />
                       {post.status}

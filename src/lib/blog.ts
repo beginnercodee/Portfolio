@@ -9,6 +9,7 @@ export type LogPost = {
   excerpt: string;
   content: string;
   status: string;
+  readingTime: string;
 };
 
 const LOGS_DIR = path.join(process.cwd(), "content/logs");
@@ -55,6 +56,15 @@ function parseFrontmatter(fileContent: string) {
 }
 
 /**
+ * Calculates estimated reading time in minutes based on ~200 words per minute.
+ */
+export function calculateReadingTime(text: string): string {
+  const words = text.trim().split(/\s+/).filter(Boolean).length;
+  const minutes = Math.max(1, Math.ceil(words / 200));
+  return `${minutes} MIN READ`;
+}
+
+/**
  * Reads all Markdown execution log posts from the local content directory,
  * parses frontmatter metadata, and returns them sorted descending by date.
  */
@@ -80,6 +90,7 @@ export async function getLogs(): Promise<LogPost[]> {
         excerpt: data.excerpt || "No metadata extracted.",
         status: data.status || "VERIFIED",
         content,
+        readingTime: calculateReadingTime(content),
       };
     })
     // Sort logs descending by date
@@ -106,5 +117,6 @@ export async function getLogBySlug(slug: string): Promise<LogPost | null> {
     excerpt: data.excerpt || "No metadata extracted.",
     status: data.status || "VERIFIED",
     content,
+    readingTime: calculateReadingTime(content),
   };
 }
