@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { getLogBySlug, getLogs } from "@/lib/blog";
+import ShareCaseStudyButton from "@/components/ShareCaseStudyButton";
 
 export async function generateStaticParams() {
   const posts = await getLogs();
@@ -58,9 +59,12 @@ export default async function LogPost({ params }: { params: Promise<{ slug: stri
 
       <div className="max-w-[800px] mx-auto relative z-10 flex flex-col gap-16">
         <header className="flex flex-col gap-6 border-b border-surface pb-12">
-          <Link href="/logs" className="font-mono text-xs text-secondary hover:text-white transition-colors inline-flex items-center gap-2 mb-2 w-max">
-            <span className="text-glow-green">&lt;</span> cd ../logs
-          </Link>
+          <div className="flex flex-wrap items-center justify-between gap-4 mb-2">
+            <Link href="/logs" className="font-mono text-xs text-secondary hover:text-white transition-colors inline-flex items-center gap-2 w-max">
+              <span className="text-glow-green">&lt;</span> cd ../logs
+            </Link>
+            <ShareCaseStudyButton title={post.title} slug={post.slug} basePath="logs" variant="compact" />
+          </div>
 
           <div className="flex flex-wrap gap-4 items-center font-mono text-xs text-secondary">
             <div className="flex items-center gap-2 px-3 py-1 bg-surface border border-white/5 rounded-full text-glow-silver">
@@ -92,8 +96,11 @@ export default async function LogPost({ params }: { params: Promise<{ slug: stri
           dangerouslySetInnerHTML={{ __html: parseMarkdownBasic(post.content) }}
         />
 
-        <div className="border-t border-surface pt-12 flex justify-between items-center font-mono text-xs mt-16 text-secondary">
-          <span>{"// END OF TRANSMISSION"}</span>
+        <div className="border-t border-surface pt-8 flex flex-wrap gap-4 justify-between items-center font-mono text-xs mt-16 text-secondary">
+          <div className="flex items-center gap-4">
+            <span>{"// END OF TRANSMISSION"}</span>
+            <ShareCaseStudyButton title={post.title} slug={post.slug} basePath="logs" variant="compact" />
+          </div>
           <Link href="/logs" className="text-glow-green hover:text-white transition-colors">
             RETURN_TO_INDEX
           </Link>

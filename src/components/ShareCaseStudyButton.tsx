@@ -7,16 +7,18 @@ import { cn } from "@/lib/utils";
 interface ShareCaseStudyButtonProps {
   title: string;
   slug: string;
+  basePath?: "case-studies" | "logs";
   variant?: "header" | "compact";
 }
 
 /**
- * Renders an interactive button to copy or natively share a case study link
+ * Renders an interactive button to copy or natively share a case study or log post link
  * with immediate clipboard feedback and tactile visual states.
  */
 export default function ShareCaseStudyButton({
   title,
   slug,
+  basePath = "case-studies",
   variant = "header",
 }: ShareCaseStudyButtonProps) {
   const [copied, setCopied] = useState(false);
@@ -24,15 +26,20 @@ export default function ShareCaseStudyButton({
   const handleShare = async () => {
     const shareUrl =
       typeof window !== "undefined"
-        ? `${window.location.origin}/case-studies/${slug}`
-        : `https://jamalnadeem.com/case-studies/${slug}`;
+        ? `${window.location.origin}/${basePath}/${slug}`
+        : `https://jamalnadeem.com/${basePath}/${slug}`;
+
+    const shareDescription =
+      basePath === "logs"
+        ? `Check out this technical execution log: ${title}`
+        : `Check out this technical architecture case study: ${title}`;
 
     // Mobile web share API support
     if (navigator.share && window.innerWidth < 768) {
       try {
         await navigator.share({
           title: `${title} | Jamal Nadeem`,
-          text: `Check out this technical architecture case study: ${title}`,
+          text: shareDescription,
           url: shareUrl,
         });
         return;
