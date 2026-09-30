@@ -93,7 +93,7 @@ export default function Projects() {
                       target="_blank"
                       rel="noopener noreferrer"
                       aria-label={`${proj.title} GitHub Repository`}
-                      className="font-mono text-[10px] md:text-xs flex items-center gap-1.5 bg-black/80 backdrop-blur-md border border-white/20 px-2.5 py-1.5 rounded-sm hover:border-glow-green hover:text-glow-green transition-all duration-300 md:opacity-0 md:group-hover:opacity-100 group/gh"
+                      className="font-mono text-[10px] md:text-xs flex items-center gap-1.5 bg-black/80 backdrop-blur-md border border-white/20 px-2.5 py-1.5 rounded-sm hover:border-glow-green hover:text-glow-green opacity-90 hover:opacity-100 transition-all duration-300 shadow-[0_4px_12px_rgba(0,0,0,0.5)] hover:shadow-[0_0_12px_rgba(57,255,20,0.25)] group/gh"
                       title="View Source Code"
                     >
                       <Github className="w-3.5 h-3.5 text-secondary group-hover/gh:text-glow-green transition-colors" />
@@ -107,7 +107,7 @@ export default function Projects() {
                       target="_blank"
                       rel="noopener noreferrer"
                       aria-label={`${proj.title} Live Application`}
-                      className="font-mono text-[10px] md:text-xs flex items-center gap-1.5 bg-black/80 backdrop-blur-md border border-white/20 px-2.5 sm:px-3 py-1.5 rounded-sm hover:border-glow-green hover:text-glow-green transition-all duration-300 md:opacity-0 md:group-hover:opacity-100 group/btn"
+                      className="font-mono text-[10px] md:text-xs flex items-center gap-1.5 bg-black/80 backdrop-blur-md border border-white/20 px-2.5 sm:px-3 py-1.5 rounded-sm hover:border-glow-green hover:text-glow-green opacity-90 hover:opacity-100 transition-all duration-300 shadow-[0_4px_12px_rgba(0,0,0,0.5)] hover:shadow-[0_0_12px_rgba(57,255,20,0.25)] group/btn"
                     >
                       <span className="opacity-0 group-hover/btn:opacity-100 transition-opacity -mr-1 hidden md:inline-block">⚡ </span>
                       <span className="group-hover/btn:hidden">[ LIVE ]</span>
@@ -117,7 +117,7 @@ export default function Projects() {
                     <Link
                       href={proj.link}
                       aria-label={`${proj.title} Details`}
-                      className="font-mono text-[10px] md:text-xs flex items-center gap-1.5 bg-black/80 backdrop-blur-md border border-white/20 px-2.5 sm:px-3 py-1.5 rounded-sm hover:border-glow-green hover:text-glow-green transition-all duration-300 md:opacity-0 md:group-hover:opacity-100 group/btn"
+                      className="font-mono text-[10px] md:text-xs flex items-center gap-1.5 bg-black/80 backdrop-blur-md border border-white/20 px-2.5 sm:px-3 py-1.5 rounded-sm hover:border-glow-green hover:text-glow-green opacity-90 hover:opacity-100 transition-all duration-300 shadow-[0_4px_12px_rgba(0,0,0,0.5)] hover:shadow-[0_0_12px_rgba(57,255,20,0.25)] group/btn"
                     >
                       <span className="opacity-0 group-hover/btn:opacity-100 transition-opacity -mr-1 hidden md:inline-block">⚡ </span>
                       <span className="group-hover/btn:hidden">[ LOG ]</span>
