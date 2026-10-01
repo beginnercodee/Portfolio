@@ -152,7 +152,8 @@ export default function TerminalOverlay() {
         newLogs.push({ id: Date.now() + 1, text: "AVAILABLE COMMANDS:", type: "output" });
         newLogs.push({ id: Date.now() + 2, text: "  whoami           - display current user identity", type: "output" });
         newLogs.push({ id: Date.now() + 3, text: "  skills           - list core technical competencies", type: "output" });
-        newLogs.push({ id: Date.now() + 4, text: "  projects         - inspect production software & live demos", type: "output" });
+        newLogs.push({ id: Date.now() + 4, text: "  services         - explore core architectural services & capabilities", type: "output" });
+        newLogs.push({ id: Date.now() + 5, text: "  projects         - inspect production software & live demos", type: "output" });
         newLogs.push({ id: Date.now() + 5, text: "  case-studies     - explore enterprise ROI architectures & metrics", type: "output" });
         newLogs.push({ id: Date.now() + 6, text: "  contact          - initialize direct connection protocols", type: "output" });
         newLogs.push({ id: Date.now() + 7, text: "  resume / cv      - view & print official curriculum vitae", type: "output" });
@@ -405,6 +406,34 @@ export default function TerminalOverlay() {
         newLogs.push({ id: Date.now() + 3, text: "> Python, PostgreSQL, Supabase, MongoDB, Docker", type: "output" });
         newLogs.push({ id: Date.now() + 4, text: "> Agentic AI, Voice Agents, n8n, GoHighLevel, LLM APIs", type: "output" });
         break;
+
+      case "services":
+      case "capabilities":
+      case "service":
+        const serviceLines = [
+          "=============================================================",
+          "CORE ARCHITECTURAL SERVICES & CAPABILITIES",
+          "=============================================================",
+          "1. AI Automation & Autonomous Agents",
+          "   • Custom LLM integrations, n8n workflows, autonomous voice agents",
+          "   • Eliminating operational bottlenecks & high-friction workflows",
+          "",
+          "2. Full-Stack Engineering & Microservices",
+          "   • High-performance APIs, database architectures & real-time sockets",
+          "   • Stack: Next.js, NestJS, Python, PostgreSQL, Supabase, Docker",
+          "",
+          "3. Frontend Architecture & Design Systems",
+          "   • Motion-rich, responsive, performance-obsessed interfaces",
+          "   • Stack: React, Next.js App Router, Tailwind CSS, Framer Motion",
+          "=============================================================",
+          "> Navigating to #services section..."
+        ];
+        setLogs(newLogs);
+        printLinesSlowly(serviceLines);
+        setTimeout(() => {
+          document.getElementById("services")?.scrollIntoView({ behavior: "smooth" });
+        }, 1200);
+        return;
 
       case "projects":
       case "work":

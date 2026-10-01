@@ -65,8 +65,9 @@ export default function NavigationBar() {
             : "bg-transparent border-transparent"
         )}>
           {/* Desktop Left Links */}
-          <div className="hidden md:flex flex-1 justify-start gap-5 lg:gap-8 font-sans text-nav lowercase text-secondary transition-colors duration-300 items-center">
+          <div className="hidden md:flex flex-1 justify-start gap-4 lg:gap-7 font-sans text-nav lowercase text-secondary transition-colors duration-300 items-center">
             <Link href="/#about" className="hover:text-primary transition-colors">about</Link>
+            <Link href="/#services" className="hover:text-primary transition-colors">services</Link>
             <Link href="/#experience" className="hover:text-primary transition-colors">experience</Link>
             <Link href="/logs" className="hover:text-glow-green text-glow-green/80 flex items-center gap-1 transition-colors group">
               <span className="w-1.5 h-1.5 rounded-full bg-glow-green/50 group-hover:bg-glow-green animate-pulse" />
@@ -137,6 +138,7 @@ export default function NavigationBar() {
       >
         <div className="absolute inset-0 bg-glow-green/5 blur-3xl opacity-20 pointer-events-none" />
         <Link href="/#about" onClick={closeMenu} className="font-display uppercase tracking-[0.2em] text-2xl text-secondary hover:text-glow-green transition-all">About</Link>
+        <Link href="/#services" onClick={closeMenu} className="font-display uppercase tracking-[0.2em] text-2xl text-secondary hover:text-glow-green transition-all">Services</Link>
         <Link href="/#experience" onClick={closeMenu} className="font-display uppercase tracking-[0.2em] text-2xl text-secondary hover:text-glow-green transition-all">Experience</Link>
         <Link href="/#projects" onClick={closeMenu} className="font-display uppercase tracking-[0.2em] text-2xl text-secondary hover:text-glow-green transition-all">Projects</Link>
         <Link href="/#case-studies" onClick={closeMenu} className="font-display uppercase tracking-[0.2em] text-2xl text-secondary hover:text-glow-green transition-all">Case Studies</Link>

@@ -117,6 +117,16 @@ export default function CommandPalette() {
       },
     },
     {
+      id: "services",
+      name: "cd ./services",
+      desc: "Explore AI automations, full-stack, and engineering services",
+      icon: <Terminal className="w-4 h-4 text-glow-green" />,
+      action: () => {
+        document.getElementById("services")?.scrollIntoView({ behavior: "smooth" });
+        setIsOpen(false);
+      },
+    },
+    {
       id: "experience",
       name: "cd ./experience",
       desc: "Scroll to professional history and education",
@@ -133,6 +143,16 @@ export default function CommandPalette() {
       icon: <Terminal className="w-4 h-4" />,
       action: () => {
         document.getElementById("projects")?.scrollIntoView({ behavior: "smooth" });
+        setIsOpen(false);
+      },
+    },
+    {
+      id: "skills",
+      name: "cd ./skills",
+      desc: "Inspect technical competencies & interactive radar telemetry",
+      icon: <Terminal className="w-4 h-4 text-glow-green" />,
+      action: () => {
+        document.getElementById("skills")?.scrollIntoView({ behavior: "smooth" });
         setIsOpen(false);
       },
     },
@@ -177,6 +197,7 @@ export default function CommandPalette() {
       const macros = [
         { name: "projects", desc: "Inspect production software & live demos" },
         { name: "case-studies", desc: "Explore enterprise ROI architectures & metrics" },
+        { name: "services", desc: "Explore AI automations & full-stack capabilities" },
         { name: "contact", desc: "Initialize direct connection protocols" },
         { name: "resume", desc: "View & download official CV" },
         { name: "cv", desc: "Print full resume in CLI terminal" },
