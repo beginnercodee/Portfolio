@@ -87,18 +87,50 @@ export default function SystemStatusFooter() {
 
     // fetchBuildData will be called in deferred timeout below
 
-    // Fetch User IP Geolocation (Easter Egg)
-    const fetchLocation = async () => {
+    // Helper to derive a clean cyber region/node code from client timezone
+    const getClientTimezoneFallback = () => {
       try {
-        const res = await fetch("https://ipapi.co/json/");
-        const data = await res.json();
-        if (data.city && data.country_code) {
-          setLocation(`${data.city.toUpperCase()}, ${data.country_code}`);
-        } else {
-          setLocation("SECURE_NODE");
+        const tz = Intl.DateTimeFormat().resolvedOptions().timeZone;
+        if (tz) {
+          // e.g. "Asia/Karachi" -> "KARACHI (PKT)" or clean city name
+          const parts = tz.split("/");
+          const city = parts[parts.length - 1].replace(/_/g, " ").toUpperCase();
+          
+          // Compute GMT offset string e.g. "GMT+5" or "GMT-4"
+          const offsetMinutes = -new Date().getTimezoneOffset();
+          const sign = offsetMinutes >= 0 ? "+" : "-";
+          const hours = Math.floor(Math.abs(offsetMinutes) / 60);
+          const mins = Math.abs(offsetMinutes) % 60;
+          const offsetStr = mins > 0 ? `GMT${sign}${hours}:${mins.toString().padStart(2, "0")}` : `GMT${sign}${hours}`;
+
+          return `${city} [${offsetStr}]`;
         }
       } catch {
-        setLocation("ENCRYPTED");
+        // Fallback below
+      }
+      return "NODE_SECURE";
+    };
+
+    // Fetch User IP Geolocation (Easter Egg with ad-blocker fallback)
+    const fetchLocation = async () => {
+      try {
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), 2500);
+        const res = await fetch("https://ipapi.co/json/", { signal: controller.signal });
+        clearTimeout(timeoutId);
+
+        if (res.ok) {
+          const data = await res.json();
+          if (data.city && data.country_code) {
+            setLocation(`${data.city.toUpperCase()}, ${data.country_code}`);
+            return;
+          }
+        }
+        setLocation(getClientTimezoneFallback());
+      } catch {
+        // Ad-blockers (uBlock Origin, Brave Shields) frequently block ipapi.co
+        // Gracefully resolve to the browser's native timezone node
+        setLocation(getClientTimezoneFallback());
       }
     };
     
