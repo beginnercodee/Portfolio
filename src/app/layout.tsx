@@ -77,9 +77,71 @@ export const viewport: import("next").Viewport = {
   themeColor: "#000000",
 };
 
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Person",
+      "@id": "https://jamalnadeem.com/#person",
+      "name": "Jamal Nadeem",
+      "givenName": "Jamal",
+      "familyName": "Nadeem",
+      "url": "https://jamalnadeem.com",
+      "image": "https://jamalnadeem.com/og-image.jpg",
+      "jobTitle": "Full-Stack & AI Automation Engineer",
+      "description": "Full-stack developer and AI automation engineer specializing in autonomous agent workflows, distributed microservices, and high-performance web systems.",
+      "email": "jamalnadeem2004@gmail.com",
+      "alumniOf": {
+        "@type": "CollegeOrUniversity",
+        "name": "Sir Syed University of Engineering and Technology",
+        "alternateName": "SSUET"
+      },
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Karachi",
+        "addressCountry": "PK"
+      },
+      "sameAs": [
+        "https://github.com/beginnercodee",
+        "https://linkedin.com/in/jamal-nadeem",
+        "https://x.com/Nadeem7Jamal"
+      ],
+      "knowsAbout": [
+        "Full-Stack Engineering",
+        "AI Agents & Autonomous Workflows",
+        "Next.js",
+        "TypeScript",
+        "React",
+        "Python",
+        "Node.js",
+        "FastAPI",
+        "Docker",
+        "PostgreSQL",
+        "Tailwind CSS",
+        "Headless Automation & Selenium"
+      ]
+    },
+    {
+      "@type": "ProfilePage",
+      "@id": "https://jamalnadeem.com/#profilepage",
+      "url": "https://jamalnadeem.com",
+      "name": "Jamal Nadeem | Full-Stack & AI Automation Engineer",
+      "isPartOf": {
+        "@type": "WebSite",
+        "@id": "https://jamalnadeem.com/#website",
+        "url": "https://jamalnadeem.com",
+        "name": "Jamal Nadeem Portfolio"
+      },
+      "mainEntity": {
+        "@id": "https://jamalnadeem.com/#person"
+      }
+    }
+  ]
+};
+
 /**
  * Root HTML layout structure configuring Google Font CSS variables (Inter, Space Grotesk, JetBrains Mono),
- * SEO metadata, Vercel Analytics/Speed Insights, and client-only overlay wrappers.
+ * SEO metadata, JSON-LD structured data, Vercel Analytics/Speed Insights, and client-only overlay wrappers.
  */
 export default function RootLayout({
   children,
@@ -88,6 +150,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+      </head>
       <body className={`${inter.variable} ${spaceGrotesk.variable} ${jetbrainsMono.variable} antialiased bg-background text-primary`}>
         <ClientOnlyOverlays />
         {children}
