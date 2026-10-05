@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import ThankYouOverlay from "./ThankYouOverlay";
-import { Github, Linkedin, Twitter } from "lucide-react";
+import { Github, Linkedin, Twitter, Copy, Check } from "lucide-react";
 
 /**
  * Renders the Contact section featuring a form integrated with Web3Forms API,
@@ -13,6 +13,17 @@ export default function Contact() {
   const [isOverlayOpen, setIsOverlayOpen] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState("");
+  const [emailCopied, setEmailCopied] = useState(false);
+
+  const handleCopyEmail = async () => {
+    try {
+      await navigator.clipboard.writeText("jamalnadeem2004@gmail.com");
+      setEmailCopied(true);
+      setTimeout(() => setEmailCopied(false), 2000);
+    } catch (err) {
+      console.error("Failed to copy email:", err);
+    }
+  };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -144,8 +155,30 @@ export default function Contact() {
             <div className="text-secondary mt-2">
               System ready. Awaiting input...
             </div>
-            <div className="mt-2 text-secondary opacity-70 flex flex-wrap gap-1 leading-[1.8]">
-              # You can also reach me directly at <a href="mailto:jamalnadeem2004@gmail.com" className="text-glow-green underline hover:text-white break-all">jamalnadeem2004@gmail.com</a>
+            <div className="mt-2 text-secondary opacity-80 flex flex-wrap items-center gap-2 leading-[1.8]">
+              <span># Reach me directly:</span>
+              <a href="mailto:jamalnadeem2004@gmail.com" className="text-glow-green underline hover:text-white break-all">
+                jamalnadeem2004@gmail.com
+              </a>
+              <button
+                type="button"
+                onClick={handleCopyEmail}
+                className="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[10px] uppercase font-mono tracking-wider bg-white/5 border border-white/10 hover:border-glow-green hover:text-glow-green hover:bg-glow-green/10 transition-all select-none"
+                title="Copy email address to clipboard"
+                aria-label="Copy email address"
+              >
+                {emailCopied ? (
+                  <>
+                    <Check className="w-3 h-3 text-glow-green animate-scale" />
+                    <span className="text-glow-green font-bold">[ COPIED! ]</span>
+                  </>
+                ) : (
+                  <>
+                    <Copy className="w-3 h-3 opacity-70" />
+                    <span>[ COPY ]</span>
+                  </>
+                )}
+              </button>
             </div>
             <div className="mt-4 flex flex-wrap gap-1 items-center">
               <div>
