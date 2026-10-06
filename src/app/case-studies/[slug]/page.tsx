@@ -46,7 +46,11 @@ export default async function CaseStudyDetailPage({
 
   const allCaseStudies = getAllCaseStudies();
   const currentIndex = allCaseStudies.findIndex((item) => item.slug === slug);
-  const nextCaseStudy = allCaseStudies[(currentIndex + 1) % allCaseStudies.length];
+  const prevIndex = (currentIndex - 1 + allCaseStudies.length) % allCaseStudies.length;
+  const nextIndex = (currentIndex + 1) % allCaseStudies.length;
+  
+  const prevCaseStudy = allCaseStudies.length > 1 ? allCaseStudies[prevIndex] : null;
+  const nextCaseStudy = allCaseStudies.length > 1 ? allCaseStudies[nextIndex] : null;
 
   return (
     <main className="min-h-screen bg-background text-primary pt-28 md:pt-36 pb-24 px-6 md:px-12 relative overflow-hidden">
@@ -360,46 +364,95 @@ export default async function CaseStudyDetailPage({
           </div>
         </section>
 
-        {/* Next Case Study Navigation Card */}
-        {nextCaseStudy && nextCaseStudy.slug !== cs.slug && (
-          <section className="flex flex-col gap-3">
-            <span className="font-mono text-xs uppercase tracking-widest text-secondary flex items-center gap-2">
-              <Terminal className="w-3.5 h-3.5 text-glow-green" />
-              <span>CONTINUE EXPLORING ARCHITECTURES // NEXT_CASE_STUDY</span>
-            </span>
+        {/* Next & Previous Case Study Navigation Block */}
+        {(prevCaseStudy || nextCaseStudy) && (
+          <section className="flex flex-col gap-4">
+            <div className="flex items-center justify-between border-b border-surface pb-3">
+              <span className="font-mono text-xs uppercase tracking-widest text-secondary flex items-center gap-2">
+                <Terminal className="w-3.5 h-3.5 text-glow-green" />
+                <span>EXPLORE ARCHITECTURES // POST_NAVIGATION</span>
+              </span>
+              <Link
+                href="/#case-studies"
+                className="font-mono text-xs text-glow-silver/70 hover:text-glow-green transition-colors"
+              >
+                [ VIEW ALL ARCHITECTURES ]
+              </Link>
+            </div>
 
-            <Link
-              href={`/case-studies/${nextCaseStudy.slug}`}
-              className="group p-6 sm:p-8 bg-black/40 border border-white/10 hover:border-glow-green/60 rounded-2xl transition-all duration-300 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 relative overflow-hidden backdrop-blur-md hover:bg-white/[0.03] shadow-[0_4px_30px_rgba(0,0,0,0.4)]"
-            >
-              <div className="absolute top-0 right-0 w-48 h-48 bg-glow-green/10 rounded-full blur-[60px] opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
+              {/* Previous Case Study */}
+              {prevCaseStudy ? (
+                <Link
+                  href={`/case-studies/${prevCaseStudy.slug}`}
+                  className="group p-5 sm:p-6 bg-black/40 border border-white/10 hover:border-glow-green/60 rounded-xl transition-all duration-300 flex flex-col justify-between gap-4 relative overflow-hidden backdrop-blur-md hover:bg-white/[0.03] shadow-[0_4px_20px_rgba(0,0,0,0.3)] hover:shadow-[0_0_20px_rgba(57,255,20,0.1)]"
+                >
+                  <div className="absolute top-0 left-0 w-32 h-32 bg-glow-green/5 rounded-full blur-[40px] opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
+                  
+                  <div className="flex items-center justify-between gap-2 text-secondary font-mono text-[11px]">
+                    <span className="inline-flex items-center gap-1.5 text-glow-green group-hover:-translate-x-1 transition-transform">
+                      <ArrowLeft className="w-3.5 h-3.5" />
+                      <span>PREVIOUS CASE STUDY</span>
+                    </span>
+                    <span className="px-2 py-0.5 rounded bg-white/5 border border-white/10 text-[10px] uppercase">
+                      {prevCaseStudy.clientContext.industry}
+                    </span>
+                  </div>
 
-              <div className="flex flex-col gap-2 z-10 max-w-2xl">
-                <div className="flex items-center gap-3 font-mono text-[11px]">
-                  <span className="px-2.5 py-0.5 rounded bg-glow-green/10 border border-glow-green/30 text-glow-green font-bold uppercase tracking-wider">
-                    {nextCaseStudy.badge}
-                  </span>
-                  <span className="text-secondary/60">•</span>
-                  <span className="text-glow-silver">{nextCaseStudy.clientContext.industry}</span>
-                </div>
-                <h3 className="font-display text-xl sm:text-2xl text-white font-bold group-hover:text-glow-green transition-colors">
-                  {nextCaseStudy.title}
-                </h3>
-                <p className="font-sans text-xs sm:text-sm text-secondary line-clamp-2 leading-relaxed">
-                  {nextCaseStudy.synopsis}
-                </p>
-              </div>
+                  <div className="flex flex-col gap-1.5">
+                    <h3 className="font-display text-lg sm:text-xl text-white font-bold group-hover:text-glow-green transition-colors line-clamp-2">
+                      {prevCaseStudy.title}
+                    </h3>
+                    <p className="font-sans text-xs text-secondary/80 line-clamp-2 leading-relaxed">
+                      {prevCaseStudy.synopsis}
+                    </p>
+                  </div>
 
-              <div className="flex items-center gap-4 z-10 shrink-0 self-end sm:self-center">
-                <div className="text-right hidden md:block">
-                  <div className="font-mono text-[10px] text-secondary uppercase tracking-wider">Verified Impact</div>
-                  <div className="font-display text-lg text-glow-green font-bold">{nextCaseStudy.heroMetric}</div>
-                </div>
-                <div className="w-12 h-12 rounded-full border border-white/20 bg-black/60 group-hover:border-glow-green group-hover:bg-glow-green group-hover:text-black flex items-center justify-center text-white transition-all duration-300 shadow-[0_0_15px_rgba(57,255,20,0.1)]">
-                  <ChevronRight className="w-5 h-5 group-hover:translate-x-0.5 transition-transform" />
-                </div>
-              </div>
-            </Link>
+                  <div className="flex items-center justify-between pt-2 border-t border-white/5 font-mono text-[10px] text-secondary">
+                    <span>VERIFIED IMPACT</span>
+                    <span className="text-glow-green font-bold text-xs">{prevCaseStudy.heroMetric}</span>
+                  </div>
+                </Link>
+              ) : (
+                <div />
+              )}
+
+              {/* Next Case Study */}
+              {nextCaseStudy ? (
+                <Link
+                  href={`/case-studies/${nextCaseStudy.slug}`}
+                  className="group p-5 sm:p-6 bg-black/40 border border-white/10 hover:border-glow-green/60 rounded-xl transition-all duration-300 flex flex-col justify-between gap-4 relative overflow-hidden backdrop-blur-md hover:bg-white/[0.03] shadow-[0_4px_20px_rgba(0,0,0,0.3)] hover:shadow-[0_0_20px_rgba(57,255,20,0.1)]"
+                >
+                  <div className="absolute top-0 right-0 w-32 h-32 bg-glow-green/5 rounded-full blur-[40px] opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
+                  
+                  <div className="flex items-center justify-between gap-2 text-secondary font-mono text-[11px]">
+                    <span className="px-2 py-0.5 rounded bg-white/5 border border-white/10 text-[10px] uppercase">
+                      {nextCaseStudy.clientContext.industry}
+                    </span>
+                    <span className="inline-flex items-center gap-1.5 text-glow-green group-hover:translate-x-1 transition-transform">
+                      <span>NEXT CASE STUDY</span>
+                      <ChevronRight className="w-3.5 h-3.5" />
+                    </span>
+                  </div>
+
+                  <div className="flex flex-col gap-1.5">
+                    <h3 className="font-display text-lg sm:text-xl text-white font-bold group-hover:text-glow-green transition-colors line-clamp-2">
+                      {nextCaseStudy.title}
+                    </h3>
+                    <p className="font-sans text-xs text-secondary/80 line-clamp-2 leading-relaxed">
+                      {nextCaseStudy.synopsis}
+                    </p>
+                  </div>
+
+                  <div className="flex items-center justify-between pt-2 border-t border-white/5 font-mono text-[10px] text-secondary">
+                    <span>VERIFIED IMPACT</span>
+                    <span className="text-glow-green font-bold text-xs">{nextCaseStudy.heroMetric}</span>
+                  </div>
+                </Link>
+              ) : (
+                <div />
+              )}
+            </div>
           </section>
         )}
 
