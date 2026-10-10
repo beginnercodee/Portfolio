@@ -1,11 +1,15 @@
+"use client";
+
+import { useState, useMemo } from "react";
 import Image from "next/image";
 import { ScrollScale } from "./animations/ScrollScale";
 import ProjectCursor from "./animations/ProjectCursor";
 import Link from "next/link";
-import { Github } from "lucide-react";
+import { Github, Filter, Sparkles, Layers } from "lucide-react";
 
 interface Project {
   title: string;
+  category: "ai-automation" | "full-stack";
   tech: string;
   desc: string;
   image: string;
@@ -16,6 +20,7 @@ interface Project {
 const projects: Project[] = [
   {
     title: "CodeSprint.",
+    category: "full-stack",
     tech: "Next.js, NestJS, Postgres, Judge0, Gemini API",
     desc: "AI-powered competitive programming and learning platform featuring real-time code evaluation with Judge0 CE, BullMQ, and Socket.IO. Selected as Finalist at ASPIRE Pakistan Startup Hub.",
     image: "/projects/codesprint.jpg",
@@ -24,6 +29,7 @@ const projects: Project[] = [
   },
   {
     title: "AI Resume Tailor.",
+    category: "ai-automation",
     tech: "Next.js 16, TypeScript, Gemini API, Tailwind CSS, jsPDF",
     desc: "AI-powered ATS resume optimization engine that parses candidate resumes and dynamically aligns keywords, experience, and quantifiable metrics with job descriptions for instant formatted PDF export.",
     image: "/projects/ai-resumetailor.jpg",
@@ -32,6 +38,7 @@ const projects: Project[] = [
   },
   {
     title: "Nexium Blog Summarizer.",
+    category: "full-stack",
     tech: "Next.js, Supabase, MongoDB, Tailwind CSS",
     desc: "Full-stack blog summarization platform enabling persistent AI summary retrieval with dual-database architecture storing metadata in MongoDB and content in Supabase.",
     image: "/projects/nexium-blog.jpg",
@@ -40,6 +47,7 @@ const projects: Project[] = [
   },
   {
     title: "NexiumQuotes AI Engine.",
+    category: "ai-automation",
     tech: "Next.js, Gemini API, Supabase, Tailwind CSS",
     desc: "Architected an AI-powered content generation engine using the Google Gemini API and Next.js, replacing legacy static datasets with real-time, context-aware dynamic generation.",
     image: "/projects/nexium-quotes.jpg",
@@ -53,17 +61,66 @@ const projects: Project[] = [
  * tech stack labels, custom hover cursors, and routing links to external repos or logs.
  */
 export default function Projects() {
+  const [selectedCategory, setSelectedCategory] = useState<"all" | "ai-automation" | "full-stack">("all");
+
+  const categories = [
+    { id: "all", label: "ALL WORK", icon: Layers, count: projects.length },
+    { id: "ai-automation", label: "AI & AUTOMATION", icon: Sparkles, count: projects.filter(p => p.category === "ai-automation").length },
+    { id: "full-stack", label: "FULL-STACK / WEB APPS", icon: Filter, count: projects.filter(p => p.category === "full-stack").length },
+  ] as const;
+
+  const filteredProjects = useMemo(() => {
+    if (selectedCategory === "all") return projects;
+    return projects.filter((p) => p.category === selectedCategory);
+  }, [selectedCategory]);
+
   return (
     <section id="projects" className="px-6 md:px-12 py-16 md:py-24 max-w-[1440px] mx-auto z-30 relative">
       <ProjectCursor />
-      <h2 className="font-display text-3xl md:text-4xl text-primary mb-12 md:mb-16 opacity-80 uppercase tracking-widest text-center md:text-left hover:text-glow-green hover:opacity-100 transition-all duration-500 cursor-pointer">
-        SELECTED WORKS /
-      </h2>
+      
+      <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12 md:mb-16">
+        <div>
+          <span className="font-mono text-xs uppercase tracking-widest text-glow-green block mb-2">
+            // PORTFOLIO_INDEX
+          </span>
+          <h2 className="font-display text-3xl md:text-4xl text-primary opacity-90 uppercase tracking-widest hover:text-glow-green hover:opacity-100 transition-all duration-500 cursor-pointer">
+            SELECTED WORKS /
+          </h2>
+        </div>
+
+        {/* Cyber Category Tab Switcher */}
+        <div className="flex flex-wrap items-center gap-2 p-1.5 rounded-xl bg-black/50 border border-white/10 backdrop-blur-md">
+          {categories.map((tab) => {
+            const isActive = selectedCategory === tab.id;
+            const Icon = tab.icon;
+            return (
+              <button
+                key={tab.id}
+                onClick={() => setSelectedCategory(tab.id)}
+                className={`group px-3.5 py-1.5 rounded-lg font-mono text-xs transition-all duration-300 flex items-center gap-2 border select-none ${
+                  isActive
+                    ? "bg-glow-green/15 border-glow-green text-glow-green shadow-[0_0_20px_rgba(57,255,20,0.25)] font-bold"
+                    : "bg-transparent border-transparent text-secondary hover:text-white hover:bg-white/5"
+                }`}
+                aria-label={`Filter by ${tab.label}`}
+              >
+                <Icon className={`w-3.5 h-3.5 transition-colors ${isActive ? "text-glow-green" : "text-secondary group-hover:text-white"}`} />
+                <span>[ {tab.label} ]</span>
+                <span className={`text-[10px] px-1.5 py-0.2 rounded-full font-sans ${
+                  isActive ? "bg-glow-green/20 text-glow-green font-bold" : "bg-white/5 text-secondary/60 group-hover:text-secondary"
+                }`}>
+                  {tab.count}
+                </span>
+              </button>
+            );
+          })}
+        </div>
+      </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-8">
-        {projects.map((proj, idx) => (
+        {filteredProjects.map((proj, idx) => (
           <ScrollScale
-            key={idx}
+            key={proj.title}
             delay={idx * 0.1}
             duration={0.5}
             className="w-full h-full"
