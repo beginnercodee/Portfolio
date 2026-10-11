@@ -128,9 +128,15 @@ The application is engineered using **Next.js 16 (App Router)**, **React 19**, *
 - **Dynamic Routing & SSG**: Uses Next.js `generateStaticParams` to pre-render static HTML paths for all Markdown files in `content/logs/`.
 - **Internal REST API Route**: `/api/logs` endpoint returns serialized JSON log data consumed by the terminal and command palette.
 - **Stylized Markdown Class Mapper**: Automatically transforms markdown headings, bold/italic tokens, blockquotes, and code blocks with CRT scanline animations.
+- **Real-Time Cyber Tag Filtering**: Client-side interactive tag pills (`ALL_LOGS`, `#Python`, `#LLMs`, `#Selenium`, etc.) with dynamic count badges and instantaneous zero-reload filtering.
+- **Bidirectional Post Navigation**: Dual previous and next article navigation blocks (`← PREVIOUS LOG` / `NEXT LOG →`) with reading times and deployment status.
 
 ### 🎨 Cyberpunk Visual Design & Custom Motion Physics
 - **Tailwind CSS 4 Design Tokens**: Custom color tokens including `--color-glow-green: #39ff14`, `--color-glow-silver: #C0C0C0`, `--color-accent-orange: #FF5E00`, and `--color-surface: rgba(255, 255, 255, 0.05)`.
+- **Project Category Switcher**: Interactive cyber filter tabs (`[ ALL WORK ]`, `[ AI & AUTOMATION ]`, `[ FULL-STACK / WEB APPS ]`) with real-time count badges.
+- **Minimalist Cyber Scroll-To-Top**: Sleek floating `[ ↑ TOP ]` action button with Framer Motion scroll progress trigger (30% threshold).
+- **Dual Resume Action Center**: Direct browser viewer (`[ VIEW RESUME ]`) and 1-click ATS downloader (`[ DOWNLOAD PDF ]`) in Hero.
+- **Timezone-Aware Geolocation Fallback**: Resilient regional telemetry probe in `SystemStatusFooter` that gracefully handles ad-blocker IP restrictions.
 - **Custom Selection & Scrollbar**: Neon green selection background (`::selection`) and dark glassmorphic scrollbar tracks.
 - **Project Cursor Physics**: Custom `useSpring` cursor that expands into an interactive `EXPLORE SYS` badge when hovering over portfolio project cards (`[data-project-id]`).
 - **Hacker Text Scrambler**: Letter-by-letter random character decoder (`HackerText`) that safely executes upon scroll intersection.
