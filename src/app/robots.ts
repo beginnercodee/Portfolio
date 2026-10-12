@@ -13,5 +13,6 @@ export default function robots(): MetadataRoute.Robots {
       disallow: ['/private/'],
     },
     sitemap: 'https://jamalnadeem.com/sitemap.xml',
+    host: 'https://jamalnadeem.com',
   };
 }
