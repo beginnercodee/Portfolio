@@ -68,7 +68,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Jamal Nadeem | Full-Stack & AI Automation Engineer",
-    description: "Full-stack developer and AI integration specialist.",
+    description: "Full-stack developer and AI integration specialist. Building intelligent, scalable systems that eliminate manual work.",
     site: "@Nadeem7Jamal",
     creator: "@Nadeem7Jamal",
     images: ["/og-image.jpg"],
