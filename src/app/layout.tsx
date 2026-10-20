@@ -139,7 +139,9 @@ const jsonLd = {
         "Docker",
         "PostgreSQL",
         "Tailwind CSS",
-        "Headless Automation & Selenium"
+        "Headless Automation & Selenium",
+        "n8n Workflow Automation",
+        "Distributed Systems Architecture"
       ]
     },
     {
