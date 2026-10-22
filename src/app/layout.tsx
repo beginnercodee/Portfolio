@@ -96,6 +96,9 @@ export const metadata: Metadata = {
 
 export const viewport: import("next").Viewport = {
   themeColor: "#000000",
+  colorScheme: "dark",
+  width: "device-width",
+  initialScale: 1,
 };
 
 const jsonLd = {
