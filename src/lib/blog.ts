@@ -56,11 +56,13 @@ function parseFrontmatter(fileContent: string) {
 }
 
 /**
- * Calculates estimated reading time in minutes based on ~200 words per minute.
+ * Calculates estimated reading time in minutes based on ~238 words per minute
+ * (industry-standard average adult silent reading speed).
+ * Always returns at least "1 MIN READ" to avoid empty or zero-minute labels.
  */
 export function calculateReadingTime(text: string): string {
   const words = text.trim().split(/\s+/).filter(Boolean).length;
-  const minutes = Math.max(1, Math.ceil(words / 200));
+  const minutes = Math.max(1, Math.ceil(words / 238));
   return `${minutes} MIN READ`;
 }
 
