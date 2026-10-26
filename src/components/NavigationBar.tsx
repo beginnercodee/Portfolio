@@ -120,6 +120,7 @@ export default function NavigationBar() {
               className="flex flex-col justify-center items-center w-6 h-6 gap-1.5"
               onClick={toggleMenu}
               aria-label="Toggle Menu"
+              aria-expanded={isOpen}
             >
               <div className={cn("w-6 h-0.5 bg-primary rounded-full transition-transform duration-300 origin-center", isOpen ? "translate-y-[8px] rotate-45" : "")} />
               <div className={cn("w-6 h-0.5 bg-primary rounded-full transition-opacity duration-300", isOpen ? "opacity-0" : "opacity-100")} />
