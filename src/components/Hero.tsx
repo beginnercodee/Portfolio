@@ -67,7 +67,7 @@ export default function Hero() {
         style={{ y: yText, opacity: opacityText, perspective: 1000 }}
         className="z-10 text-center flex flex-col items-center"
       >
-        <h1 className="font-display text-hero uppercase tracking-tighter leading-none font-extrabold mix-blend-lighten flex flex-col items-center cursor-default">
+        <h1 aria-label="Engineer. Automate." className="font-display text-hero uppercase tracking-tighter leading-none font-extrabold mix-blend-lighten flex flex-col items-center cursor-default">
           <div className="flex flex-nowrap inline-flex min-w-max whitespace-nowrap">
             {ENGINEER_CHARS.map((char, i) => (
               <span
