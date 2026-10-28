@@ -167,6 +167,7 @@ export default function Hero() {
             href="/resume.pdf"
             target="_blank"
             rel="noopener noreferrer"
+            aria-label="View resume in browser"
             className="group px-4 py-2 rounded-full border border-white/10 bg-white/5 hover:bg-white/10 hover:border-glow-green/60 text-secondary hover:text-white font-mono text-xs tracking-wider uppercase transition-all duration-300 flex items-center gap-2 shadow-[0_4px_15px_rgba(0,0,0,0.3)] hover:shadow-[0_0_20px_rgba(57,255,20,0.15)] select-none"
             title="View Resume / CV in Browser"
           >
@@ -179,6 +180,7 @@ export default function Hero() {
           <a
             href="/resume.pdf"
             download="Jamal_Nadeem_Resume.pdf"
+            aria-label="Download resume as PDF"
             className="group px-4 py-2 rounded-full border border-glow-green/30 bg-glow-green/10 hover:bg-glow-green hover:text-black text-glow-green font-mono text-xs font-semibold tracking-wider uppercase transition-all duration-300 flex items-center gap-2 shadow-[0_0_15px_rgba(57,255,20,0.15)] hover:shadow-[0_0_25px_rgba(57,255,20,0.4)] select-none"
             title="Download PDF directly for ATS"
           >
