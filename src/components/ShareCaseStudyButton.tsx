@@ -75,6 +75,7 @@ export default function ShareCaseStudyButton({
     return (
       <button
         onClick={handleShare}
+        aria-label={copied ? "Link copied to clipboard" : "Share or copy link"}
         className={cn(
           "inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border font-mono text-[11px] font-bold uppercase tracking-wider transition-all duration-300 cursor-pointer",
           copied
@@ -101,6 +102,7 @@ export default function ShareCaseStudyButton({
   return (
     <button
       onClick={handleShare}
+      aria-label={copied ? "Link copied to clipboard" : "Share or copy link"}
       className={cn(
         "group relative inline-flex items-center gap-2 px-3.5 sm:px-4 py-2.5 rounded-full border font-mono text-xs sm:text-sm font-semibold tracking-wider uppercase transition-all duration-300 cursor-pointer overflow-hidden backdrop-blur-md",
         copied
