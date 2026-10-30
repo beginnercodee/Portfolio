@@ -3,6 +3,8 @@ import { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: '404 - Memory Address Not Found',
+  description: 'The page you requested could not be found. Navigate back to the portfolio home.',
+  robots: { index: false, follow: false },
 };
 
 /**
