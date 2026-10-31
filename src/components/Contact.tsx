@@ -83,6 +83,7 @@ export default function Contact() {
           <input 
             type="text" 
             name="name"
+            aria-label="Your name"
             placeholder="your.name" 
             className="w-full bg-transparent border-b border-surface !text-glow-green font-sans p-3 md:p-4 focus:outline-none focus:border-glow-green focus:shadow-[0_4px_15px_-3px_rgba(57,255,20,0.3)] transition-all placeholder:text-secondary/50 text-sm md:text-base disabled:opacity-50" 
             required
@@ -91,6 +92,7 @@ export default function Contact() {
           <input 
             type="email" 
             name="email"
+            aria-label="Your email address"
             placeholder="your.email@domain.com" 
             className="w-full bg-transparent border-b border-surface !text-glow-green font-sans p-3 md:p-4 focus:outline-none focus:border-glow-green focus:shadow-[0_4px_15px_-3px_rgba(57,255,20,0.3)] transition-all placeholder:text-secondary/50 text-sm md:text-base disabled:opacity-50" 
             required
@@ -98,6 +100,7 @@ export default function Contact() {
           />
           <textarea 
             name="message"
+            aria-label="Your message"
             placeholder="[enter_message]" 
             rows={4}
             className="w-full bg-transparent border-b border-surface !text-glow-green font-sans p-3 md:p-4 focus:outline-none focus:border-glow-green focus:shadow-[0_4px_15px_-3px_rgba(57,255,20,0.3)] transition-all resize-none placeholder:text-secondary/50 text-sm md:text-base disabled:opacity-50" 
