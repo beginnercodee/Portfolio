@@ -2,21 +2,25 @@ import { ScrollFade } from "./animations/ScrollFade";
 
 const experiences = [
   {
+    id: "team-lead-crm-ai",
     role: "Team Lead, CRM & Agentic AI Department",
     meta: "[master] EditVista Ltd // Mar 2026 — Present",
     desc: "Lead a department building intelligent agentic workflows and CRM pipelines. Built 50+ production automations using n8n and GoHighLevel (GHL), and direct voice agent projects integrating OpenAI, Gemini, OpenRouter, and Nvidia open-source models.",
   }, 
   {
+    id: "agentic-ai-intern",
     role: "Agentic AI & Automation Intern",
     meta: "[v1.1.0] EditVista Ltd // Jan 2026 — Feb 2026",
     desc: "Designed and prototyped intelligent agentic systems, integrating LLMs to automate high-friction business processes and operational pipelines.",
   },
   {
+    id: "ai-web-dev-intern",
     role: "AI-Enhanced Web Development Intern",
     meta: "[v1.0.0] Nexium // Jul 2025 — Aug 2025",
     desc: "Built and maintained full-stack web applications using Next.js, Tailwind CSS, and Supabase. Designed scalable database architectures with Supabase & MongoDB and automated backend workflows.",
   },
   {
+    id: "bs-computer-science",
     role: "BS in Computer Science (CGPA: 3.26)",
     meta: "[academics] Sir Syed University of Engineering & Technology (SSUET)",
     desc: "Graduated with honors in algorithmic systems and distributed software. Architected CodeSprint (AI Competitive Programming Platform) as Final Year Project, selected as an ASPIRE Pakistan Startup Hub finalist.",
@@ -38,9 +42,10 @@ export default function Experience() {
         {/* Timeline line - pushed further left on mobile to save space */}
         <div className="w-px bg-gradient-to-b from-transparent via-glow-green/50 to-transparent absolute left-4 md:left-1/2 top-0 bottom-0 -translate-x-1/2 before:content-[''] before:absolute before:inset-0 before:bg-glow-green before:blur-[8px] before:opacity-30" />
         
+        <ol className="list-none m-0 p-0">
         {experiences.map((exp, idx) => (
+          <li key={exp.id}>
           <ScrollFade
-            key={idx}
             y={30}
             viewportMargin="-100px"
             duration={0.6}
@@ -68,7 +73,9 @@ export default function Experience() {
               </p>
             </div>
           </ScrollFade>
+          </li>
         ))}
+        </ol>
       </div>
     </section>
   );
