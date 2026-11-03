@@ -69,8 +69,7 @@ export default function ShareCaseStudyButton({
     } catch (err) {
       console.error("Failed to copy link:", err);
     }
-  };
-
+  }; 
   if (variant === "compact") {
     return (
       <button
