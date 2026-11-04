@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { getCaseStudyBySlug, getAllCaseStudies } from "@/data/caseStudies";
-import { ArrowLeft, CheckCircle2, Layers, Cpu, Database, Mail, ShieldCheck, Zap, Server, ChevronRight, Terminal, BarChart3 } from "lucide-react";
+import { ArrowLeft, CheckCircle2, Layers, Cpu, ShieldCheck, Zap, Server, ChevronRight, Terminal, BarChart3 } from "lucide-react";
 import DownloadCaseStudyPdfButton from "@/components/DownloadCaseStudyPdfButton";
 import ShareCaseStudyButton from "@/components/ShareCaseStudyButton";
 import type { Metadata } from "next";

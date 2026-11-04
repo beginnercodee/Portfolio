@@ -81,7 +81,7 @@ export default function Projects() {
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12 md:mb-16">
         <div>
           <span className="font-mono text-xs uppercase tracking-widest text-glow-green block mb-2">
-            // PORTFOLIO_INDEX
+            {"// PORTFOLIO_INDEX"}
           </span>
           <h2 className="font-display text-3xl md:text-4xl text-primary opacity-90 uppercase tracking-widest hover:text-glow-green hover:opacity-100 transition-all duration-500 cursor-pointer">
             SELECTED WORKS /

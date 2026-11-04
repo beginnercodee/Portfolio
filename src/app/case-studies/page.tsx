@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { getAllCaseStudies } from "@/data/caseStudies";
-import { ArrowLeft, ArrowUpRight, Terminal, BarChart3, Zap } from "lucide-react";
+import { ArrowLeft, ArrowUpRight, Terminal } from "lucide-react";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
