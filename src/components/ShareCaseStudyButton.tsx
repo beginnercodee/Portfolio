@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Share2, Check } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -22,6 +22,15 @@ export default function ShareCaseStudyButton({
   variant = "header",
 }: ShareCaseStudyButtonProps) {
   const [copied, setCopied] = useState(false);
+  const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  useEffect(() => {
+    return () => {
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current);
+      }
+    };
+  }, []);
 
   const handleShare = async () => {
     const shareUrl =
@@ -62,14 +71,17 @@ export default function ShareCaseStudyButton({
         document.body.removeChild(textarea);
       }
 
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current);
+      }
       setCopied(true);
-      setTimeout(() => {
+      timeoutRef.current = setTimeout(() => {
         setCopied(false);
       }, 3000);
     } catch (err) {
       console.error("Failed to copy link:", err);
     }
-  }; 
+  };
   if (variant === "compact") {
     return (
       <button

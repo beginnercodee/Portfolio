@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import ThankYouOverlay from "./ThankYouOverlay";
 import { Github, Linkedin, Twitter, Copy, Check } from "lucide-react";
@@ -14,12 +14,24 @@ export default function Contact() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState("");
   const [emailCopied, setEmailCopied] = useState(false);
+  const copyTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  useEffect(() => {
+    return () => {
+      if (copyTimeoutRef.current) {
+        clearTimeout(copyTimeoutRef.current);
+      }
+    };
+  }, []);
 
   const handleCopyEmail = async () => {
     try {
       await navigator.clipboard.writeText("jamalnadeem2004@gmail.com");
+      if (copyTimeoutRef.current) {
+        clearTimeout(copyTimeoutRef.current);
+      }
       setEmailCopied(true);
-      setTimeout(() => setEmailCopied(false), 2000);
+      copyTimeoutRef.current = setTimeout(() => setEmailCopied(false), 2000);
     } catch (err) {
       console.error("Failed to copy email:", err);
     }
