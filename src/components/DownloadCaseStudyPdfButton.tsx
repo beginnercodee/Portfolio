@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { FileDown, Check, Loader2 } from "lucide-react";
 import type { CaseStudy } from "@/data/caseStudies";
 import { generateCaseStudyPdf } from "@/lib/generateCaseStudyPdf";
@@ -16,6 +16,15 @@ export default function DownloadCaseStudyPdfButton({
 }: DownloadCaseStudyPdfButtonProps) {
   const [isGenerating, setIsGenerating] = useState(false);
   const [isDownloaded, setIsDownloaded] = useState(false);
+  const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  useEffect(() => {
+    return () => {
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current);
+      }
+    };
+  }, []);
 
   const handleDownload = async () => {
     if (isGenerating) return;
@@ -25,8 +34,11 @@ export default function DownloadCaseStudyPdfButton({
       // Small timeout to allow UI to render the loading state smoothly
       await new Promise((resolve) => setTimeout(resolve, 80));
       generateCaseStudyPdf(caseStudy);
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current);
+      }
       setIsDownloaded(true);
-      setTimeout(() => {
+      timeoutRef.current = setTimeout(() => {
         setIsDownloaded(false);
       }, 3500);
     } catch (err) {
@@ -39,8 +51,16 @@ export default function DownloadCaseStudyPdfButton({
   if (variant === "compact") {
     return (
       <button
+        type="button"
         onClick={handleDownload}
         disabled={isGenerating}
+        aria-label={
+          isGenerating
+            ? "Exporting case study PDF"
+            : isDownloaded
+            ? "Case study PDF downloaded"
+            : "Download Case Study as PDF"
+        }
         title="Download Case Study as PDF"
         className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-glow-green/40 bg-glow-green/10 text-glow-green hover:bg-glow-green hover:text-black font-mono text-[11px] font-bold uppercase tracking-wider transition-all duration-300 shadow-[0_0_12px_rgba(57,255,20,0.15)] hover:shadow-[0_0_20px_rgba(57,255,20,0.4)] disabled:opacity-50 cursor-pointer"
       >
@@ -66,8 +86,17 @@ export default function DownloadCaseStudyPdfButton({
 
   return (
     <button
+      type="button"
       onClick={handleDownload}
       disabled={isGenerating}
+      aria-label={
+        isGenerating
+          ? "Exporting case study PDF briefing"
+          : isDownloaded
+          ? "Case study PDF saved"
+          : "Download PDF briefing"
+      }
+      title="Download Case Study as PDF"
       className="group relative inline-flex items-center gap-2.5 px-4 sm:px-5 py-2.5 rounded-full border border-glow-green/40 bg-black/60 backdrop-blur-md text-glow-green hover:bg-glow-green hover:text-black font-mono text-xs sm:text-sm font-bold tracking-widest uppercase transition-all duration-300 shadow-[0_0_20px_rgba(57,255,20,0.15)] hover:shadow-[0_0_25px_rgba(57,255,20,0.5)] disabled:opacity-60 cursor-pointer overflow-hidden"
     >
       <div className="absolute inset-0 bg-gradient-to-r from-glow-green/10 via-glow-green/20 to-glow-green/10 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none" />

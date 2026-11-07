@@ -85,6 +85,7 @@ export default function ShareCaseStudyButton({
   if (variant === "compact") {
     return (
       <button
+        type="button"
         onClick={handleShare}
         aria-label={copied ? "Link copied to clipboard" : "Share or copy link"}
         className={cn(
@@ -112,6 +113,7 @@ export default function ShareCaseStudyButton({
 
   return (
     <button
+      type="button"
       onClick={handleShare}
       aria-label={copied ? "Link copied to clipboard" : "Share or copy link"}
       className={cn(
