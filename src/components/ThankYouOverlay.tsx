@@ -74,10 +74,12 @@ export default function ThankYouOverlay({ isOpen, onClose }: Props) {
           </motion.p>
 
           <motion.button
+            type="button"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 2 }}
             onClick={onClose}
+            aria-label="Close session"
             className="uppercase tracking-widest text-xs font-mono font-bold text-glow-green border border-glow-green/30 px-6 py-4 rounded hover:bg-glow-green hover:text-black transition-all"
           >
             [ CLOSE_SESSION ]

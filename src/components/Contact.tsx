@@ -180,7 +180,7 @@ export default function Contact() {
                 onClick={handleCopyEmail}
                 className="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[10px] uppercase font-mono tracking-wider bg-white/5 border border-white/10 hover:border-glow-green hover:text-glow-green hover:bg-glow-green/10 transition-all select-none"
                 title="Copy email address to clipboard"
-                aria-label="Copy email address"
+                aria-label={emailCopied ? "Email address copied to clipboard" : "Copy email address to clipboard"}
               >
                 {emailCopied ? (
                   <>
