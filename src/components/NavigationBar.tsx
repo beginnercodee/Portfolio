@@ -91,13 +91,16 @@ export default function NavigationBar() {
               href="/resume.pdf"
               target="_blank"
               rel="noopener noreferrer"
+              aria-label="View and download Curriculum Vitae (PDF)"
               className="px-3 py-1.5 rounded-md border border-glow-green/40 bg-glow-green/10 text-glow-green hover:bg-glow-green hover:text-black font-mono text-[10px] tracking-widest uppercase transition-all shadow-[0_0_12px_rgba(57,255,20,0.15)] hover:shadow-[0_0_20px_rgba(57,255,20,0.4)]"
               title="View & Download Curriculum Vitae"
             >
               [ CV ]
             </a>
             <button 
+              type="button"
               onClick={openCommandPalette}
+              aria-label="Open command palette search"
               className="flex items-center gap-2 px-3 py-1.5 rounded-md border border-white/10 bg-white/5 hover:bg-glow-green/10 hover:border-glow-green/30 hover:text-glow-green transition-all"
             >
               <span className="font-mono text-[10px] tracking-widest opacity-70">SEARCH</span>
@@ -110,6 +113,7 @@ export default function NavigationBar() {
           {/* Mobile Hamburger Toggle (Hardware Accelerated O(1) Rendering) */}
           <div className="md:hidden flex items-center gap-4 z-50 absolute right-6">
             <button 
+              type="button"
               onClick={openCommandPalette}
               className="flex items-center justify-center p-2 rounded-md border border-white/10 bg-white/5 text-secondary hover:text-glow-green transition-colors"
               aria-label="Search"
@@ -117,6 +121,7 @@ export default function NavigationBar() {
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
             </button>
             <button 
+              type="button"
               className="flex flex-col justify-center items-center w-6 h-6 gap-1.5"
               onClick={toggleMenu}
               aria-label="Toggle Menu"

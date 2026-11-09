@@ -22,7 +22,7 @@ export default function SystemStatusFooter() {
       setCpu(Math.floor(Math.random() * 10 + 5).toString());
     }, 0);
     
-    // Clock
+    // Clock (Synced to UTC)
     const updateTime = () => {
       const date = new Date();
       setTime(
@@ -30,6 +30,7 @@ export default function SystemStatusFooter() {
           hour12: false,
           hour: "2-digit",
           minute: "2-digit",
+          timeZone: "UTC",
         })
       );
     };
@@ -191,6 +192,7 @@ export default function SystemStatusFooter() {
             href={buildInfo.url} 
             target="_blank" 
             rel="noopener noreferrer"
+            aria-label={`View live deployment commit ${buildInfo.hash} on GitHub`}
             className="hidden sm:inline-flex items-center gap-2 opacity-70 hover:opacity-100 hover:text-white transition-opacity border-l border-white/10 pl-4 whitespace-nowrap"
             title="View Live Deployment Commit"
           >
