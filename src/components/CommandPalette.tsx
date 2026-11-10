@@ -48,24 +48,31 @@ export default function CommandPalette() {
 
   // Fetch dynamic logs on mount
   useEffect(() => {
+    let isMounted = true;
     async function fetchLogs() {
       try {
         const response = await fetch("/api/logs");
-        if (response.ok) {
+        if (response.ok && isMounted) {
           const data = await response.json();
           setAvailableLogs(data);
         }
       } catch (err) {
-        console.error("Error fetching logs for command palette:", err);
+        if (isMounted) {
+          console.error("Error fetching logs for command palette:", err);
+        }
       }
     }
     fetchLogs();
+    return () => {
+      isMounted = false;
+    };
   }, []);
 
   // Auto-focus input when opened
   useEffect(() => {
     if (isOpen) {
-      setTimeout(() => inputRef.current?.focus(), 50);
+      const handle = setTimeout(() => inputRef.current?.focus(), 50);
+      return () => clearTimeout(handle);
     } else {
       const handle = setTimeout(() => {
         setQuery("");
@@ -335,6 +342,7 @@ export default function CommandPalette() {
                 }}
                 onKeyDown={handleInputKeyDown}
                 placeholder="Type a command or search..."
+                aria-label="Search commands or case studies"
                 className="flex-1 bg-transparent text-primary placeholder:text-secondary/50 font-mono text-sm focus:outline-none"
                 autoComplete="off"
                 spellCheck="false"
@@ -349,6 +357,7 @@ export default function CommandPalette() {
               {filteredCommands.length > 0 ? (
                 filteredCommands.map((cmd, index) => (
                   <button
+                    type="button"
                     key={cmd.id}
                     onClick={cmd.action}
                     className={cn(
