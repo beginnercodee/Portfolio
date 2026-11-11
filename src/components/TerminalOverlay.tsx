@@ -34,24 +34,31 @@ export default function TerminalOverlay() {
 
   // Load dynamic logs from API route via useEffect
   useEffect(() => {
+    let isMounted = true;
     async function fetchLogs() {
       try {
         const response = await fetch("/api/logs");
-        if (response.ok) {
+        if (response.ok && isMounted) {
           const data = await response.json();
           setAvailableLogs(data);
         }
       } catch (err) {
-        console.error("Error fetching logs for CLI:", err);
+        if (isMounted) {
+          console.error("Error fetching logs for CLI:", err);
+        }
       }
     }
     fetchLogs();
+    return () => {
+      isMounted = false;
+    };
   }, []);
 
   // Auto-focus when opened
   useEffect(() => {
     if (isOpen) {
-      setTimeout(() => inputRef.current?.focus(), 100);
+      const handle = setTimeout(() => inputRef.current?.focus(), 100);
+      return () => clearTimeout(handle);
     }
   }, [isOpen]);
 
@@ -112,18 +119,22 @@ export default function TerminalOverlay() {
   const executeCommandRef = useRef<((cmd: string) => void) | null>(null);
 
   useEffect(() => {
+    let timeoutId: ReturnType<typeof setTimeout> | null = null;
     const handleRunCommand = (e: Event) => {
       const customEvent = e as CustomEvent<{ command: string }>;
       const cmd = customEvent.detail.command;
       setIsOpen(true);
-      setTimeout(() => {
+      timeoutId = setTimeout(() => {
         if (executeCommandRef.current) {
           executeCommandRef.current(cmd);
         }
       }, 150);
     };
     window.addEventListener("run-terminal-command", handleRunCommand);
-    return () => window.removeEventListener("run-terminal-command", handleRunCommand);
+    return () => {
+      window.removeEventListener("run-terminal-command", handleRunCommand);
+      if (timeoutId) clearTimeout(timeoutId);
+    };
   }, []);
 
   const executeCommand = (cmd: string) => {
@@ -560,6 +571,7 @@ export default function TerminalOverlay() {
     <>
       {/* Easter Egg Trigger Button */}
       <button
+        type="button"
         onClick={() => setIsOpen(true)}
         className="fixed bottom-16 md:bottom-14 right-6 md:right-8 z-[60] bg-black/80 backdrop-blur-md border border-surface p-3 rounded-full hover:border-glow-green hover:text-glow-green hover:shadow-[0_0_20px_rgba(57,255,20,0.3)] transition-all group"
         aria-label="Open Terminal OS"
@@ -592,7 +604,12 @@ export default function TerminalOverlay() {
                 <div className="font-mono text-xs text-secondary font-bold tracking-widest">
                   JN_OS_TERMINAL
                 </div>
-                <button onClick={() => setIsOpen(false)} className="text-secondary hover:text-white">
+                <button
+                  type="button"
+                  onClick={() => setIsOpen(false)}
+                  aria-label="Close Terminal OS"
+                  className="text-secondary hover:text-white"
+                >
                   <X className="w-4 h-4" />
                 </button>
               </div>
@@ -623,6 +640,7 @@ export default function TerminalOverlay() {
                     type="text"
                     value={isPrinting ? "processing data stream..." : inputMessage}
                     onChange={(e) => setInputMessage(e.target.value)}
+                    aria-label="Terminal command input"
                     className="flex-1 bg-transparent border-none outline-none text-white font-mono disabled:opacity-50 disabled:cursor-not-allowed"
                     spellCheck={false}
                     autoComplete="off"
