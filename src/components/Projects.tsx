@@ -95,8 +95,10 @@ export default function Projects() {
             const Icon = tab.icon;
             return (
               <button
+                type="button"
                 key={tab.id}
                 onClick={() => setSelectedCategory(tab.id)}
+                aria-pressed={isActive}
                 className={`group px-3.5 py-1.5 rounded-lg font-mono text-xs transition-all duration-300 flex items-center gap-2 border select-none ${
                   isActive
                     ? "bg-glow-green/15 border-glow-green text-glow-green shadow-[0_0_20px_rgba(57,255,20,0.25)] font-bold"

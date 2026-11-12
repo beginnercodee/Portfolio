@@ -55,8 +55,11 @@ export default function LogsListClient({ initialLogs }: LogsListClientProps) {
 
             return (
               <button
+                type="button"
                 key={tag}
                 onClick={() => setSelectedTag(tag)}
+                aria-pressed={isActive}
+                aria-label={`Filter logs by ${tag === "ALL" ? "all" : tag} tag`}
                 className={`group px-3 py-1.5 rounded-lg font-mono text-xs transition-all duration-200 flex items-center gap-1.5 border select-none ${
                   isActive
                     ? "bg-glow-green/15 border-glow-green text-glow-green shadow-[0_0_15px_rgba(57,255,20,0.25)] font-bold"
@@ -85,6 +88,7 @@ export default function LogsListClient({ initialLogs }: LogsListClientProps) {
           <Terminal className="w-6 h-6 text-glow-green/60" />
           <span>No logs found matching tag #{selectedTag}.</span>
           <button
+            type="button"
             onClick={() => setSelectedTag("ALL")}
             className="text-xs text-glow-green hover:underline mt-2 font-mono"
           >
