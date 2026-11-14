@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 /**
@@ -9,6 +9,13 @@ import { motion, AnimatePresence } from "framer-motion";
  */
 export default function KonamiCode() {
   const [unlocked, setUnlocked] = useState(false);
+  const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  useEffect(() => {
+    return () => {
+      if (timerRef.current) clearTimeout(timerRef.current);
+    };
+  }, []);
 
   useEffect(() => {
     // Standard Konami Code Sequence: Up, Up, Down, Down, Left, Right, Left, Right, B, A
@@ -26,11 +33,12 @@ export default function KonamiCode() {
       if (key === konamiSequence[konamiIndex]) {
         konamiIndex++;
         if (konamiIndex === konamiSequence.length) {
+          if (timerRef.current) clearTimeout(timerRef.current);
           setUnlocked(true);
           konamiIndex = 0; // Reset sequence
           
           // Auto-hide the God Mode overlay after 5 seconds
-          setTimeout(() => setUnlocked(false), 5000);
+          timerRef.current = setTimeout(() => setUnlocked(false), 5000);
         }
       } else {
         // Reset sequence if broken, but allow immediate restart
@@ -44,8 +52,9 @@ export default function KonamiCode() {
 
   useEffect(() => {
     const handleTriggerGodMode = () => {
+      if (timerRef.current) clearTimeout(timerRef.current);
       setUnlocked(true);
-      setTimeout(() => setUnlocked(false), 5000);
+      timerRef.current = setTimeout(() => setUnlocked(false), 5000);
     };
     window.addEventListener("trigger-god-mode", handleTriggerGodMode);
     return () => window.removeEventListener("trigger-god-mode", handleTriggerGodMode);
