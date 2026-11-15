@@ -13,6 +13,7 @@ export default function LiveGitHubActivityClient() {
   useEffect(() => {
     let active = true;
     let intervalId: NodeJS.Timeout | null = null;
+    const abortController = new AbortController();
 
     const streamEvents = (events: string[]) => {
       if (!active || events.length === 0) return;
@@ -55,7 +56,9 @@ export default function LiveGitHubActivityClient() {
 
     async function fetchGitHubActivity() {
       try {
-        const response = await fetch("https://api.github.com/users/beginnercodee/events/public?per_page=10");
+        const response = await fetch("https://api.github.com/users/beginnercodee/events/public?per_page=10", {
+          signal: abortController.signal,
+        });
         if (!response.ok) throw new Error("Rate limit or connection issue");
         
         const data = await response.json();
@@ -108,6 +111,7 @@ export default function LiveGitHubActivityClient() {
 
     return () => {
       active = false;
+      abortController.abort();
       if (intervalId) clearInterval(intervalId);
     };
   }, []);
@@ -127,7 +131,11 @@ export default function LiveGitHubActivityClient() {
         <span className="w-1.5 h-1.5 md:w-2 md:h-2 rounded-full bg-glow-green animate-pulse" />
       </h3>
       
-      <div className="font-mono text-[10px] md:text-[11px] lg:text-xs text-glow-green flex flex-col gap-2 min-h-[140px] md:min-h-[120px] overflow-hidden w-full relative">
+      <div 
+        role="log"
+        aria-live="polite"
+        className="font-mono text-[10px] md:text-[11px] lg:text-xs text-glow-green flex flex-col gap-2 min-h-[140px] md:min-h-[120px] overflow-hidden w-full relative"
+      >
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-glow-green/5 to-transparent h-[10px] w-full animate-[scan_2s_linear_infinite] pointer-events-none" />
         
         {logs.map((log, i) => (

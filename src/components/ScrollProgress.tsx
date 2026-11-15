@@ -11,6 +11,7 @@ export default function ScrollProgress() {
 
   return (
     <motion.div
+      aria-hidden="true"
       className="fixed top-0 left-0 right-0 h-[2px] bg-glow-green z-[100] origin-left drop-shadow-[0_0_8px_rgba(57,255,20,0.8)] pointer-events-none"
       style={{ scaleX: scrollYProgress }}
     />
