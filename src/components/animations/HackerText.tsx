@@ -68,6 +68,7 @@ export default function HackerText({ text }: { text: string }) {
   return (
     <h3 
       ref={containerRef}
+      aria-label={text}
       className="font-sans text-xl font-bold text-primary mb-3 group-hover:text-glow-green transition-colors"
     >
       {displayText}

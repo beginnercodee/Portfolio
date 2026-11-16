@@ -59,6 +59,7 @@ export default function ProjectCursor() {
 
   return (
     <motion.div
+      aria-hidden="true"
       style={{
         x: springX,
         y: springY,
