@@ -45,6 +45,7 @@ export default function CaseStudies() {
         
         <Link
           href="/case-studies"
+          aria-label="View all case studies"
           className="font-mono text-xs text-secondary hover:text-glow-green flex items-center gap-1 transition-colors w-max"
         >
           <span>view_all_case_studies</span>
@@ -55,7 +56,7 @@ export default function CaseStudies() {
       <div className="flex flex-col gap-8 md:gap-10">
         {caseStudies.map((cs, idx) => (
           <ScrollFade
-            key={idx}
+            key={cs.slug}
             y={20}
             duration={0.6}
             delay={idx * 0.2}
@@ -63,6 +64,7 @@ export default function CaseStudies() {
           >
             <Link
               href={`/case-studies/${cs.slug}`}
+              aria-label={`Read case study: ${cs.title}`}
               className="group block bg-surface/70 border border-glow-green/30 rounded-2xl p-6 sm:p-8 md:p-10 transition-all duration-500 hover:border-glow-green hover:shadow-[0_0_35px_rgba(57,255,20,0.15)] hover:bg-white/[0.03] relative overflow-hidden"
             >
               {/* Subtle ambient hover flare */}
@@ -88,9 +90,9 @@ export default function CaseStudies() {
 
                   {/* Tech stack badges */}
                   <div className="flex flex-wrap gap-1.5 pt-2">
-                    {cs.tags.map((tag, tIdx) => (
+                    {cs.tags.map((tag) => (
                       <span
-                        key={tIdx}
+                        key={tag}
                         className="font-mono text-[10px] px-2 py-0.5 bg-black/40 border border-white/10 text-glow-silver rounded uppercase tracking-wider"
                       >
                         {tag}

@@ -48,7 +48,7 @@ export default function Services() {
             <ul className="flex flex-col gap-2 relative z-10">
               {service.features.map(f => (
                 <li key={f} className="font-mono text-xs text-secondary flex items-center gap-2 group-hover:text-primary transition-colors">
-                  <span className="text-glow-green">▹</span> {f}
+                  <span aria-hidden="true" className="text-glow-green">▹</span> {f}
                 </li>
               ))}
             </ul>
