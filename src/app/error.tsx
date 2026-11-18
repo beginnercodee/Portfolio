@@ -17,10 +17,10 @@ export default function ErrorBoundary({
   return (
     <div className="min-h-screen bg-[#020202] flex flex-col items-center justify-center p-6 relative overflow-hidden font-mono antialiased">
       {/* Scanline Effect */}
-      <div className="absolute inset-0 pointer-events-none z-10 opacity-5 bg-[linear-gradient(transparent_50%,rgba(0,0,0,1)_50%)] bg-[length:100%_4px] mix-blend-overlay" />
+      <div aria-hidden="true" className="absolute inset-0 pointer-events-none z-10 opacity-5 bg-[linear-gradient(transparent_50%,rgba(0,0,0,1)_50%)] bg-[length:100%_4px] mix-blend-overlay" />
       
       {/* Dark Grid Pattern */}
-      <div className="absolute inset-0 pointer-events-none opacity-20 bg-[radial-gradient(rgba(255,10,10,0.15)_1px,transparent_1px)] [background-size:32px_32px]" />
+      <div aria-hidden="true" className="absolute inset-0 pointer-events-none opacity-20 bg-[radial-gradient(rgba(255,10,10,0.15)_1px,transparent_1px)] [background-size:32px_32px]" />
       
       <div className="max-w-2xl w-full z-20 border border-red-600/40 bg-[#0A0A0A] p-6 md:p-10 rounded-lg shadow-[0_0_80px_rgba(255,0,0,0.15)] relative mt-[-10vh]">
         {/* Top Warning Strip */}
@@ -50,12 +50,14 @@ export default function ErrorBoundary({
             
             <div className="flex gap-4 items-center">
               <button 
+                type="button"
                 onClick={() => reset()}
+                aria-label="Restart frontend and recover from error"
                 className="group inline-flex items-center gap-3 bg-red-950/20 hover:bg-red-900/40 text-red-400 border border-red-500/30 hover:border-red-500/80 px-5 py-3 rounded-md transition-all text-sm hover:shadow-[0_0_20px_rgba(255,0,0,0.2)]"
               >
                 <span className="opacity-60 group-hover:opacity-100 transition-opacity">systemctl</span> 
                 restart frontend
-                <span className="w-2 h-4 bg-red-500 animate-pulse inline-block" />
+                <span aria-hidden="true" className="w-2 h-4 bg-red-500 animate-pulse inline-block" />
               </button>
             </div>
           </div>

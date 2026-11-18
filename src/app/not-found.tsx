@@ -15,10 +15,10 @@ export default function NotFound() {
   return (
     <div className="min-h-screen bg-[#020202] flex flex-col items-center justify-center p-6 relative overflow-hidden font-mono antialiased">
       {/* Scanline Effect */}
-      <div className="absolute inset-0 pointer-events-none z-10 opacity-5 bg-[linear-gradient(transparent_50%,rgba(0,0,0,1)_50%)] bg-[length:100%_4px] mix-blend-overlay" />
+      <div aria-hidden="true" className="absolute inset-0 pointer-events-none z-10 opacity-5 bg-[linear-gradient(transparent_50%,rgba(0,0,0,1)_50%)] bg-[length:100%_4px] mix-blend-overlay" />
       
       {/* Grid Pattern Override */}
-      <div className="absolute inset-0 pointer-events-none opacity-20 bg-[radial-gradient(rgba(255,255,255,0.1)_1px,transparent_1px)] [background-size:32px_32px]" />
+      <div aria-hidden="true" className="absolute inset-0 pointer-events-none opacity-20 bg-[radial-gradient(rgba(255,255,255,0.1)_1px,transparent_1px)] [background-size:32px_32px]" />
       
       <div className="max-w-xl w-full z-20 border border-red-500/30 bg-[#0A0A0A] p-6 md:p-10 rounded-lg shadow-[0_0_50px_rgba(255,0,0,0.1)] relative mt-[-10vh]">
         {/* Top Warning Strip */}
@@ -51,6 +51,7 @@ export default function NotFound() {
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
               <Link 
                 href="/"
+                aria-label="Navigate to root home"
                 className="group flex items-center justify-between bg-[#111] hover:bg-[#1A1A1A] text-glow-green border border-glow-green/20 hover:border-glow-green/60 px-4 py-2.5 rounded-md transition-all text-xs sm:text-sm hover:shadow-[0_0_15px_rgba(57,255,20,0.15)]"
               >
                 <div className="flex items-center gap-2">
@@ -62,6 +63,7 @@ export default function NotFound() {
 
               <Link 
                 href="/case-studies"
+                aria-label="Navigate to case studies"
                 className="group flex items-center justify-between bg-[#111] hover:bg-[#1A1A1A] text-glow-green border border-glow-green/20 hover:border-glow-green/60 px-4 py-2.5 rounded-md transition-all text-xs sm:text-sm hover:shadow-[0_0_15px_rgba(57,255,20,0.15)]"
               >
                 <div className="flex items-center gap-2">
@@ -73,6 +75,7 @@ export default function NotFound() {
 
               <Link 
                 href="/#projects"
+                aria-label="Navigate to selected projects"
                 className="group flex items-center justify-between bg-[#111] hover:bg-[#1A1A1A] text-glow-green border border-glow-green/20 hover:border-glow-green/60 px-4 py-2.5 rounded-md transition-all text-xs sm:text-sm hover:shadow-[0_0_15px_rgba(57,255,20,0.15)]"
               >
                 <div className="flex items-center gap-2">
@@ -84,6 +87,7 @@ export default function NotFound() {
 
               <Link 
                 href="/logs"
+                aria-label="Navigate to execution logs"
                 className="group flex items-center justify-between bg-[#111] hover:bg-[#1A1A1A] text-glow-green border border-glow-green/20 hover:border-glow-green/60 px-4 py-2.5 rounded-md transition-all text-xs sm:text-sm hover:shadow-[0_0_15px_rgba(57,255,20,0.15)]"
               >
                 <div className="flex items-center gap-2">
