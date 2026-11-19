@@ -14,7 +14,7 @@ export default function CaseStudiesIndexPage() {
   return (
     <main className="min-h-screen bg-background text-primary pt-28 md:pt-36 pb-24 px-6 md:px-12 relative overflow-hidden">
       {/* Background Ambient Glows */}
-      <div className="absolute inset-0 z-0 pointer-events-none flex items-start justify-center">
+      <div aria-hidden="true" className="absolute inset-0 z-0 pointer-events-none flex items-start justify-center">
         <div className="absolute top-[10%] left-1/4 w-[60vw] md:w-[40vw] h-[60vw] md:h-[40vw] bg-glow-green rounded-full blur-[180px] opacity-10 mix-blend-screen" />
       </div>
 
@@ -23,6 +23,7 @@ export default function CaseStudiesIndexPage() {
         <header className="flex flex-col gap-4 border-b border-surface pb-8">
           <Link
             href="/"
+            aria-label="Navigate back to home"
             className="font-mono text-xs text-secondary hover:text-glow-green transition-colors inline-flex items-center gap-1.5 w-max mb-2"
           >
             <ArrowLeft className="w-3.5 h-3.5 text-glow-green" />
@@ -46,6 +47,7 @@ export default function CaseStudiesIndexPage() {
             <Link
               key={cs.slug}
               href={`/case-studies/${cs.slug}`}
+              aria-label={`Read case study: ${cs.title}`}
               className="group p-6 sm:p-8 md:p-10 border border-white/10 bg-black/40 backdrop-blur-md rounded-2xl hover:border-glow-green/60 hover:bg-white/[0.03] transition-all duration-300 flex flex-col lg:flex-row gap-8 justify-between items-start lg:items-center relative overflow-hidden shadow-[0_4px_30px_rgba(0,0,0,0.4)]"
             >
               <div className="absolute top-0 right-0 w-48 h-48 bg-glow-green/10 rounded-full blur-[50px] opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
@@ -68,9 +70,9 @@ export default function CaseStudiesIndexPage() {
                 </p>
 
                 <div className="flex flex-wrap gap-2 pt-2">
-                  {cs.techStack.flatMap((ts) => ts.technologies).slice(0, 5).map((tech, idx) => (
+                  {cs.techStack.flatMap((ts) => ts.technologies).slice(0, 5).map((tech) => (
                     <span
-                      key={idx}
+                      key={tech}
                       className="font-mono text-[10px] px-2 py-0.5 bg-surface border border-white/5 text-glow-silver rounded uppercase tracking-wider"
                     >
                       {tech}

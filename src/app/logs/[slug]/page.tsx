@@ -62,14 +62,18 @@ export default async function LogPost({ params }: { params: Promise<{ slug: stri
   return (
     <main className="min-h-screen bg-background text-primary pt-32 pb-24 px-6 md:px-12 relative overflow-hidden">
       {/* Background aesthetics */}
-      <div className="absolute inset-0 z-0 pointer-events-none flex items-start justify-center">
+      <div aria-hidden="true" className="absolute inset-0 z-0 pointer-events-none flex items-start justify-center">
         <div className="absolute top-[10%] w-[80vw] md:w-[60vw] h-[80vw] md:h-[60vw] bg-glow-green rounded-full blur-[200px] opacity-5 mix-blend-screen" />
       </div>
 
       <div className="max-w-[800px] mx-auto relative z-10 flex flex-col gap-16">
         <header className="flex flex-col gap-6 border-b border-surface pb-12">
           <div className="flex flex-wrap items-center justify-between gap-4 mb-2">
-            <Link href="/logs" className="font-mono text-xs text-secondary hover:text-white transition-colors inline-flex items-center gap-2 w-max">
+            <Link 
+              href="/logs" 
+              aria-label="Navigate back to execution logs"
+              className="font-mono text-xs text-secondary hover:text-white transition-colors inline-flex items-center gap-2 w-max"
+            >
               <span className="text-glow-green">&lt;</span> cd ../logs
             </Link>
             <ShareCaseStudyButton title={post.title} slug={post.slug} basePath="logs" variant="compact" />
