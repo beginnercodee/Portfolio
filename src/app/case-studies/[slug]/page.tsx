@@ -55,7 +55,7 @@ export default async function CaseStudyDetailPage({
   return (
     <main className="min-h-screen bg-background text-primary pt-28 md:pt-36 pb-24 px-6 md:px-12 relative overflow-hidden">
       {/* Background Ambient Glows */}
-      <div className="absolute inset-0 z-0 pointer-events-none flex items-start justify-center">
+      <div aria-hidden="true" className="absolute inset-0 z-0 pointer-events-none flex items-start justify-center">
         <div className="absolute top-[8%] left-1/4 w-[70vw] md:w-[45vw] h-[70vw] md:h-[45vw] bg-glow-green rounded-full blur-[200px] opacity-10 mix-blend-screen" />
         <div className="absolute top-[40%] right-10 w-[50vw] md:w-[35vw] h-[50vw] md:h-[35vw] bg-accent-orange rounded-full blur-[250px] opacity-5 mix-blend-screen" />
       </div>
@@ -68,6 +68,7 @@ export default async function CaseStudyDetailPage({
             <div className="flex items-center gap-3 font-mono text-xs text-secondary">
               <Link
                 href="/#case-studies"
+                aria-label="Navigate back to case studies overview"
                 className="hover:text-glow-green transition-colors inline-flex items-center gap-1.5"
               >
                 <ArrowLeft className="w-3.5 h-3.5 text-glow-green" />
@@ -374,6 +375,7 @@ export default async function CaseStudyDetailPage({
               </span>
               <Link
                 href="/#case-studies"
+                aria-label="View all architectures"
                 className="font-mono text-xs text-glow-silver/70 hover:text-glow-green transition-colors"
               >
                 [ VIEW ALL ARCHITECTURES ]
@@ -385,6 +387,7 @@ export default async function CaseStudyDetailPage({
               {prevCaseStudy ? (
                 <Link
                   href={`/case-studies/${prevCaseStudy.slug}`}
+                  aria-label={`Navigate to previous case study: ${prevCaseStudy.title}`}
                   className="group p-5 sm:p-6 bg-black/40 border border-white/10 hover:border-glow-green/60 rounded-xl transition-all duration-300 flex flex-col justify-between gap-4 relative overflow-hidden backdrop-blur-md hover:bg-white/[0.03] shadow-[0_4px_20px_rgba(0,0,0,0.3)] hover:shadow-[0_0_20px_rgba(57,255,20,0.1)]"
                 >
                   <div className="absolute top-0 left-0 w-32 h-32 bg-glow-green/5 rounded-full blur-[40px] opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
@@ -421,6 +424,7 @@ export default async function CaseStudyDetailPage({
               {nextCaseStudy ? (
                 <Link
                   href={`/case-studies/${nextCaseStudy.slug}`}
+                  aria-label={`Navigate to next case study: ${nextCaseStudy.title}`}
                   className="group p-5 sm:p-6 bg-black/40 border border-white/10 hover:border-glow-green/60 rounded-xl transition-all duration-300 flex flex-col justify-between gap-4 relative overflow-hidden backdrop-blur-md hover:bg-white/[0.03] shadow-[0_4px_20px_rgba(0,0,0,0.3)] hover:shadow-[0_0_20px_rgba(57,255,20,0.1)]"
                 >
                   <div className="absolute top-0 right-0 w-32 h-32 bg-glow-green/5 rounded-full blur-[40px] opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
@@ -468,6 +472,7 @@ export default async function CaseStudyDetailPage({
           <div className="flex flex-wrap items-center justify-center gap-4 pt-2">
             <Link
               href="/#contact"
+              aria-label="Initiate architecture audit contact request"
               className="px-6 py-3 rounded-full bg-glow-green text-black font-mono text-xs md:text-sm font-bold tracking-widest uppercase hover:bg-white transition-all shadow-[0_0_20px_rgba(57,255,20,0.5)] flex items-center gap-2"
             >
               <span>[ INITIATE ARCHITECTURE AUDIT ]</span>
@@ -478,6 +483,7 @@ export default async function CaseStudyDetailPage({
             {nextCaseStudy && nextCaseStudy.slug !== cs.slug && (
               <Link
                 href={`/case-studies/${nextCaseStudy.slug}`}
+                aria-label={`Navigate to next case study: ${nextCaseStudy.title}`}
                 className="px-6 py-3 rounded-full border border-glow-green/40 bg-glow-green/10 text-glow-green hover:bg-glow-green hover:text-black font-mono text-xs md:text-sm tracking-widest uppercase transition-all flex items-center gap-1.5"
               >
                 <span>Next Case Study</span>
@@ -486,6 +492,7 @@ export default async function CaseStudyDetailPage({
             )}
             <Link
               href="/#case-studies"
+              aria-label="Navigate back to case studies overview"
               className="px-6 py-3 rounded-full border border-white/20 bg-black/40 text-secondary hover:text-white hover:border-white font-mono text-xs md:text-sm tracking-widest uppercase transition-all"
             >
               &lt; Back to Overview
