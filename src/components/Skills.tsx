@@ -110,10 +110,10 @@ export default function Skills() {
         duration={0.7}
         className="relative w-full aspect-square flex items-center justify-center p-4 md:p-8 bg-[#0D0D0D] border border-surface rounded-3xl group overflow-hidden mt-8 md:mt-0 shadow-2xl"
       >
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(57,255,20,0.08),transparent_70%)] opacity-0 group-hover:opacity-100 transition-opacity duration-1000" />
+        <div aria-hidden="true" className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(57,255,20,0.08),transparent_70%)] opacity-0 group-hover:opacity-100 transition-opacity duration-1000" />
         
         {/* SVG Radar Chart Abstract Representation */}
-        <svg viewBox="0 0 400 400" className="w-full h-full text-surface z-10 select-none">
+        <svg viewBox="0 0 400 400" className="w-full h-full text-surface z-10 select-none" role="img" aria-label="Interactive skills radar telemetry chart">
           <circle cx="200" cy="200" r="150" fill="none" stroke="currentColor" strokeWidth="1" strokeDasharray="4 4" opacity="0.4" />
           <circle cx="200" cy="200" r="100" fill="none" stroke="currentColor" strokeWidth="1" strokeDasharray="4 4" opacity="0.4" />
           <circle cx="200" cy="200" r="50" fill="none" stroke="currentColor" strokeWidth="1" strokeDasharray="4 4" opacity="0.4" />
@@ -136,10 +136,20 @@ export default function Skills() {
             return (
               <g
                 key={node.id}
-                className="cursor-pointer"
+                role="button"
+                tabIndex={0}
+                aria-label={`${node.name}: ${node.level}, ${node.score}% proficiency. Stack: ${node.stack}`}
+                aria-pressed={activeNode?.id === node.id}
+                className="cursor-pointer focus:outline-none"
                 onMouseEnter={() => setActiveNode(node)}
                 onMouseLeave={() => setActiveNode(null)}
                 onClick={() => setActiveNode(activeNode?.id === node.id ? null : node)}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter" || e.key === " ") {
+                    e.preventDefault();
+                    setActiveNode(activeNode?.id === node.id ? null : node);
+                  }
+                }}
               >
                 {/* Invisible hit target for smooth mobile & mouse interaction */}
                 <circle cx={node.x} cy={node.y} r="22" fill="transparent" />
@@ -178,33 +188,45 @@ export default function Skills() {
         </svg>
 
         {/* Labels with Dynamic Active State Highlight */}
-        <div 
+        <button
+          type="button"
+          aria-label={`Inspect ${radarNodes[0].name}`}
+          aria-pressed={activeNode?.id === "frontend"}
           onClick={() => setActiveNode(activeNode?.id === "frontend" ? null : radarNodes[0])}
-          className={`absolute top-2 md:top-4 left-1/2 -translate-x-1/2 font-mono text-[8px] md:text-[10px] uppercase tracking-widest text-center cursor-pointer transition-colors duration-300 ${activeNode?.id === "frontend" ? "text-white font-bold drop-shadow-[0_0_8px_#39ff14]" : "text-glow-green hover:text-white"}`}
+          className={`absolute top-2 md:top-4 left-1/2 -translate-x-1/2 font-mono text-[8px] md:text-[10px] uppercase tracking-widest text-center cursor-pointer transition-colors duration-300 focus:outline-none focus-visible:ring-1 focus-visible:ring-glow-green rounded ${activeNode?.id === "frontend" ? "text-white font-bold drop-shadow-[0_0_8px_#39ff14]" : "text-glow-green hover:text-white"}`}
         >
           Frontend<br/>Frameworks
-        </div>
-        <div 
+        </button>
+        <button
+          type="button"
+          aria-label={`Inspect ${radarNodes[2].name}`}
+          aria-pressed={activeNode?.id === "backend"}
           onClick={() => setActiveNode(activeNode?.id === "backend" ? null : radarNodes[2])}
-          className={`absolute bottom-16 md:bottom-20 left-1/2 -translate-x-1/2 font-mono text-[8px] md:text-[10px] uppercase tracking-widest text-center cursor-pointer transition-colors duration-300 ${activeNode?.id === "backend" ? "text-white font-bold drop-shadow-[0_0_8px_#39ff14]" : "text-glow-green hover:text-white"}`}
+          className={`absolute bottom-16 md:bottom-20 left-1/2 -translate-x-1/2 font-mono text-[8px] md:text-[10px] uppercase tracking-widest text-center cursor-pointer transition-colors duration-300 focus:outline-none focus-visible:ring-1 focus-visible:ring-glow-green rounded ${activeNode?.id === "backend" ? "text-white font-bold drop-shadow-[0_0_8px_#39ff14]" : "text-glow-green hover:text-white"}`}
         >
           Backend<br/>Architecture
-        </div>
-        <div 
+        </button>
+        <button
+          type="button"
+          aria-label={`Inspect ${radarNodes[3].name}`}
+          aria-pressed={activeNode?.id === "ai"}
           onClick={() => setActiveNode(activeNode?.id === "ai" ? null : radarNodes[3])}
-          className={`absolute left-2 md:left-4 top-1/2 -translate-y-1/2 font-mono text-[8px] md:text-[10px] uppercase tracking-widest text-center rotate-[-90deg] origin-center cursor-pointer transition-colors duration-300 ${activeNode?.id === "ai" ? "text-white font-bold drop-shadow-[0_0_8px_#39ff14]" : "text-glow-green hover:text-white"}`}
+          className={`absolute left-2 md:left-4 top-1/2 -translate-y-1/2 font-mono text-[8px] md:text-[10px] uppercase tracking-widest text-center rotate-[-90deg] origin-center cursor-pointer transition-colors duration-300 focus:outline-none focus-visible:ring-1 focus-visible:ring-glow-green rounded ${activeNode?.id === "ai" ? "text-white font-bold drop-shadow-[0_0_8px_#39ff14]" : "text-glow-green hover:text-white"}`}
         >
           LLMs &<br/>Agents
-        </div>
-        <div 
+        </button>
+        <button
+          type="button"
+          aria-label={`Inspect ${radarNodes[1].name}`}
+          aria-pressed={activeNode?.id === "automation"}
           onClick={() => setActiveNode(activeNode?.id === "automation" ? null : radarNodes[1])}
-          className={`absolute right-2 md:right-4 top-1/2 -translate-y-1/2 font-mono text-[8px] md:text-[10px] uppercase tracking-widest text-center rotate-[90deg] origin-center cursor-pointer transition-colors duration-300 ${activeNode?.id === "automation" ? "text-white font-bold drop-shadow-[0_0_8px_#39ff14]" : "text-glow-green hover:text-white"}`}
+          className={`absolute right-2 md:right-4 top-1/2 -translate-y-1/2 font-mono text-[8px] md:text-[10px] uppercase tracking-widest text-center rotate-[90deg] origin-center cursor-pointer transition-colors duration-300 focus:outline-none focus-visible:ring-1 focus-visible:ring-glow-green rounded ${activeNode?.id === "automation" ? "text-white font-bold drop-shadow-[0_0_8px_#39ff14]" : "text-glow-green hover:text-white"}`}
         >
           Data &<br/>Automation
-        </div>
+        </button>
 
         {/* Bottom Interactive HUD Telemetry Readout */}
-        <div className="absolute bottom-3 left-4 right-4 md:bottom-4 md:left-6 md:right-6 z-20">
+        <div className="absolute bottom-3 left-4 right-4 md:bottom-4 md:left-6 md:right-6 z-20" role="status" aria-live="polite">
           <AnimatePresence mode="wait">
             {activeNode ? (
               <motion.div
