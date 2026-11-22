@@ -58,12 +58,12 @@ export default function AboutTerminal() {
 
   return (
     <div className="relative border border-white/10 p-6 md:p-10 bg-white/5 backdrop-blur-sm rounded-xl shadow-inner overflow-hidden flex flex-col justify-between min-h-[350px] md:min-h-[450px]">
-      <div className="absolute inset-0 bg-glow-green/10 blur-3xl opacity-20 pointer-events-none" />
+      <div aria-hidden="true" className="absolute inset-0 bg-glow-green/10 blur-3xl opacity-20 pointer-events-none" />
       
       {/* Terminal Execution Overlay */}
-      <div className="relative z-30 font-mono text-xs md:text-base leading-relaxed md:leading-loose flex-grow">
+      <div role="region" aria-label="Terminal automation simulation" className="relative z-30 font-mono text-xs md:text-base leading-relaxed md:leading-loose flex-grow">
         {/* Mac window dots */}
-        <div className="flex items-center gap-2 mb-4 md:mb-6 opacity-40">
+        <div aria-hidden="true" className="flex items-center gap-2 mb-4 md:mb-6 opacity-40">
           <div className="w-2.5 h-2.5 md:w-3 md:h-3 rounded-full bg-red-500" />
           <div className="w-2.5 h-2.5 md:w-3 md:h-3 rounded-full bg-yellow-500" />
           <div className="w-2.5 h-2.5 md:w-3 md:h-3 rounded-full bg-green-500" />
@@ -72,22 +72,22 @@ export default function AboutTerminal() {
         {/* Fixed height container to completely eliminate layout shifts during typing animation */}
         <div className="h-[140px] md:h-[180px] w-full">
           {displayedLines.map((line, i) => (
-            <div key={i} className={i === terminalLines.length - 1 && line === terminalLines[i] ? "text-glow-green font-bold drop-shadow-[0_0_8px_rgba(57,255,20,0.8)] mt-2" : "text-gray-300 font-medium"}>
+            <div key={`terminal-line-${i}`} className={i === terminalLines.length - 1 && line === terminalLines[i] ? "text-glow-green font-bold drop-shadow-[0_0_8px_rgba(57,255,20,0.8)] mt-2" : "text-gray-300 font-medium"}>
               {line}
               {i === currentLineIndex && (
-                <span className="inline-block w-1.5 h-3 md:w-2 md:h-4 bg-white animate-pulse ml-1 align-middle" />
+                <span aria-hidden="true" className="inline-block w-1.5 h-3 md:w-2 md:h-4 bg-white animate-pulse ml-1 align-middle" />
               )}
             </div>
           ))}
           {/* Blinking cursor when finished typing */}
           {currentLineIndex >= terminalLines.length && (
-            <div className="mt-2"><span className="inline-block w-1.5 h-3 md:w-2 md:h-4 bg-glow-green animate-pulse align-middle" /></div>
+            <div className="mt-2"><span aria-hidden="true" className="inline-block w-1.5 h-3 md:w-2 md:h-4 bg-glow-green animate-pulse align-middle" /></div>
           )}
         </div>
       </div>
 
       {/* Huge Watermark Text */}
-      <h2 className="font-display text-4xl sm:text-5xl md:text-7xl lg:text-8xl text-glow-green uppercase font-bold opacity-15 tracking-tighter text-right leading-none mt-8 md:mt-12 w-full pointer-events-none">
+      <h2 aria-hidden="true" className="font-display text-4xl sm:text-5xl md:text-7xl lg:text-8xl text-glow-green uppercase font-bold opacity-15 tracking-tighter text-right leading-none mt-8 md:mt-12 w-full pointer-events-none">
         THE /<br />MINDSET
       </h2>
     </div>
