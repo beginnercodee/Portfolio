@@ -7,7 +7,7 @@ import { ScrollFade } from "./animations/ScrollFade";
  */
 export default function About() {
   return (
-    <section id="about" className="max-w-[1440px] mx-auto px-6 md:px-12 py-16 md:py-24 grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16 relative z-30">
+    <section id="about" aria-label="About Jamal Nadeem" className="max-w-[1440px] mx-auto px-6 md:px-12 py-16 md:py-24 grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16 relative z-30">
       <AboutTerminal />
       
       <div className="flex flex-col justify-center font-sans text-body-sm text-secondary space-y-6 leading-relaxed">
