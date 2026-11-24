@@ -27,11 +27,11 @@ export default function Hero() {
   const opacityText = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
 
   return (
-    <section ref={containerRef} className="relative min-h-screen flex flex-col justify-center items-center overflow-hidden pt-24 pb-16 px-12 z-10">
+    <section ref={containerRef} aria-label="Hero Introduction" className="relative min-h-screen flex flex-col justify-center items-center overflow-hidden pt-24 pb-16 px-12 z-10">
       <HeroMatrix />
       {/* Background Glows (Static rendering, O(1) scroll execution) */}
-      <div className="absolute top-[-10%] left-[-10%] w-[50vw] h-[50vw] bg-glow-green rounded-full blur-[120px] opacity-30 z-0 pointer-events-none translate-z-0 will-change-transform" />
-      <div className="absolute bottom-[-10%] right-[-10%] w-[50vw] h-[50vw] bg-glow-silver rounded-full blur-[120px] opacity-20 z-0 pointer-events-none translate-z-0 will-change-transform" />
+      <div aria-hidden="true" className="absolute top-[-10%] left-[-10%] w-[50vw] h-[50vw] bg-glow-green rounded-full blur-[120px] opacity-30 z-0 pointer-events-none translate-z-0 will-change-transform" />
+      <div aria-hidden="true" className="absolute bottom-[-10%] right-[-10%] w-[50vw] h-[50vw] bg-glow-silver rounded-full blur-[120px] opacity-20 z-0 pointer-events-none translate-z-0 will-change-transform" />
 
       {/* Profile Picture Placeholder */}
       <motion.div style={{ y: yText, opacity: opacityText }} className="mb-8 md:mb-12 z-30">
@@ -68,7 +68,7 @@ export default function Hero() {
         className="z-10 text-center flex flex-col items-center"
       >
         <h1 aria-label="Engineer. Automate." className="font-display text-hero uppercase tracking-tighter leading-none font-extrabold mix-blend-lighten flex flex-col items-center cursor-default">
-          <div className="flex flex-nowrap inline-flex min-w-max whitespace-nowrap">
+          <div aria-hidden="true" className="flex flex-nowrap inline-flex min-w-max whitespace-nowrap">
             {ENGINEER_CHARS.map((char, i) => (
               <span
                 key={`eng-${i}`}
@@ -79,7 +79,7 @@ export default function Hero() {
               </span>
             ))}
           </div>
-          <div className="flex flex-nowrap inline-flex min-w-max whitespace-nowrap md:mt-[-0.5rem]">
+          <div aria-hidden="true" className="flex flex-nowrap inline-flex min-w-max whitespace-nowrap md:mt-[-0.5rem]">
             {AUTOMATE_CHARS.map((char, i) => (
               <span
                 key={`auto-${i}`}
@@ -138,7 +138,7 @@ export default function Hero() {
             className="relative w-28 h-28 md:w-36 md:h-36 flex items-center justify-center rounded-full border border-white/10 bg-black/40 backdrop-blur-sm hover:border-glow-green hover:shadow-[0_0_40px_rgba(57,255,20,0.15)] transition-all duration-500 cursor-pointer"
             aria-label="View Selected Projects"
           >
-            <svg className="absolute w-[120%] h-[120%] animate-spin-slow opacity-60 group-hover:opacity-100 transition-opacity duration-500" viewBox="0 0 100 100">
+            <svg aria-hidden="true" className="absolute w-[120%] h-[120%] animate-spin-slow opacity-60 group-hover:opacity-100 transition-opacity duration-500" viewBox="0 0 100 100">
               <path
                 id="curve"
                 fill="transparent"
@@ -150,7 +150,7 @@ export default function Hero() {
                 </textPath>
               </text>
             </svg>
-            <div className="text-primary group-hover:text-glow-green transition-colors text-2xl md:text-3xl font-light translate-y-[-2px] group-hover:translate-x-1 group-hover:-translate-y-1 transform duration-300">
+            <div aria-hidden="true" className="text-primary group-hover:text-glow-green transition-colors text-2xl md:text-3xl font-light translate-y-[-2px] group-hover:translate-x-1 group-hover:-translate-y-1 transform duration-300">
               ↗
             </div>
           </a>
@@ -171,9 +171,9 @@ export default function Hero() {
             className="group px-4 py-2 rounded-full border border-white/10 bg-white/5 hover:bg-white/10 hover:border-glow-green/60 text-secondary hover:text-white font-mono text-xs tracking-wider uppercase transition-all duration-300 flex items-center gap-2 shadow-[0_4px_15px_rgba(0,0,0,0.3)] hover:shadow-[0_0_20px_rgba(57,255,20,0.15)] select-none"
             title="View Resume / CV in Browser"
           >
-            <FileText className="w-3.5 h-3.5 text-glow-green group-hover:scale-110 transition-transform" />
+            <FileText aria-hidden="true" className="w-3.5 h-3.5 text-glow-green group-hover:scale-110 transition-transform" />
             <span>[ VIEW RESUME ]</span>
-            <ExternalLink className="w-3 h-3 opacity-50 group-hover:opacity-100 transition-opacity" />
+            <ExternalLink aria-hidden="true" className="w-3 h-3 opacity-50 group-hover:opacity-100 transition-opacity" />
           </a>
 
           {/* Direct ATS Download button */}
@@ -184,7 +184,7 @@ export default function Hero() {
             className="group px-4 py-2 rounded-full border border-glow-green/30 bg-glow-green/10 hover:bg-glow-green hover:text-black text-glow-green font-mono text-xs font-semibold tracking-wider uppercase transition-all duration-300 flex items-center gap-2 shadow-[0_0_15px_rgba(57,255,20,0.15)] hover:shadow-[0_0_25px_rgba(57,255,20,0.4)] select-none"
             title="Download PDF directly for ATS"
           >
-            <Download className="w-3.5 h-3.5 group-hover:translate-y-0.5 transition-transform" />
+            <Download aria-hidden="true" className="w-3.5 h-3.5 group-hover:translate-y-0.5 transition-transform" />
             <span>[ DOWNLOAD PDF ]</span>
           </a>
         </motion.div>
