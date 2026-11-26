@@ -53,7 +53,7 @@ export default async function CaseStudyDetailPage({
   const nextCaseStudy = allCaseStudies.length > 1 ? allCaseStudies[nextIndex] : null;
 
   return (
-    <main className="min-h-screen bg-background text-primary pt-28 md:pt-36 pb-24 px-6 md:px-12 relative overflow-hidden">
+    <main id="main-content" className="min-h-screen bg-background text-primary pt-28 md:pt-36 pb-24 px-6 md:px-12 relative overflow-hidden">
       {/* Background Ambient Glows */}
       <div aria-hidden="true" className="absolute inset-0 z-0 pointer-events-none flex items-start justify-center">
         <div className="absolute top-[8%] left-1/4 w-[70vw] md:w-[45vw] h-[70vw] md:h-[45vw] bg-glow-green rounded-full blur-[200px] opacity-10 mix-blend-screen" />

@@ -60,7 +60,7 @@ export default async function LogPost({ params }: { params: Promise<{ slug: stri
   };
 
   return (
-    <main className="min-h-screen bg-background text-primary pt-32 pb-24 px-6 md:px-12 relative overflow-hidden">
+    <main id="main-content" className="min-h-screen bg-background text-primary pt-32 pb-24 px-6 md:px-12 relative overflow-hidden">
       {/* Background aesthetics */}
       <div aria-hidden="true" className="absolute inset-0 z-0 pointer-events-none flex items-start justify-center">
         <div className="absolute top-[10%] w-[80vw] md:w-[60vw] h-[80vw] md:h-[60vw] bg-glow-green rounded-full blur-[200px] opacity-5 mix-blend-screen" />

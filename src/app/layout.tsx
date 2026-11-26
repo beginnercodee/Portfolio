@@ -185,6 +185,12 @@ export default function RootLayout({
         />
       </head>
       <body className={`${inter.variable} ${spaceGrotesk.variable} ${jetbrainsMono.variable} antialiased bg-background text-primary`}>
+        <a
+          href="#main-content"
+          className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-glow-green focus:text-black focus:font-mono focus:text-xs focus:font-bold focus:rounded-md focus:shadow-[0_0_20px_rgba(57,255,20,0.5)] focus:outline-none"
+        >
+          Skip to main content
+        </a>
         <ClientOnlyOverlays />
         {children}
         <Analytics />

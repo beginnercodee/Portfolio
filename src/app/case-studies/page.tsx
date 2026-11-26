@@ -12,7 +12,7 @@ export default function CaseStudiesIndexPage() {
   const caseStudies = getAllCaseStudies();
 
   return (
-    <main className="min-h-screen bg-background text-primary pt-28 md:pt-36 pb-24 px-6 md:px-12 relative overflow-hidden">
+    <main id="main-content" className="min-h-screen bg-background text-primary pt-28 md:pt-36 pb-24 px-6 md:px-12 relative overflow-hidden">
       {/* Background Ambient Glows */}
       <div aria-hidden="true" className="absolute inset-0 z-0 pointer-events-none flex items-start justify-center">
         <div className="absolute top-[10%] left-1/4 w-[60vw] md:w-[40vw] h-[60vw] md:h-[40vw] bg-glow-green rounded-full blur-[180px] opacity-10 mix-blend-screen" />

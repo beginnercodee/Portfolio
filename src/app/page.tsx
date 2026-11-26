@@ -19,7 +19,7 @@ const SystemStatusFooter = dynamic(() => import("@/components/SystemStatusFooter
  */
 export default function Home() {
   return (
-    <main className="min-h-screen bg-background text-foreground mb-[32px]">
+    <main id="main-content" className="min-h-screen bg-background text-foreground mb-[32px]">
       <NavigationBar />
       <Hero />
       <About />

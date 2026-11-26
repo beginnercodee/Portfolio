@@ -15,7 +15,7 @@ export default async function LogsIndex() {
   const logs = await getLogs();
 
   return (
-    <main className="min-h-screen bg-background text-primary pt-32 pb-24 px-6 md:px-12 relative overflow-hidden">
+    <main id="main-content" className="min-h-screen bg-background text-primary pt-32 pb-24 px-6 md:px-12 relative overflow-hidden">
       {/* Background aesthetics */}
       <div aria-hidden="true" className="absolute inset-0 z-0 pointer-events-none">
         <div className="absolute top-1/4 left-1/4 w-[60vw] h-[60vw] md:w-[40vw] md:h-[40vw] bg-glow-green rounded-full blur-[150px] opacity-10 mix-blend-screen" />
