@@ -1,11 +1,12 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { ReactNode } from "react";
 
 /**
  * A reusable scroll-triggered scaling and fade animation component powered by Framer Motion.
  * Triggers once when scrolled into view with configurable scale factors, duration, and delay.
+ * Respects user OS and browser reduced motion preferences for accessibility (WCAG 2.3.3).
  */
 export function ScrollScale({
   children,
@@ -18,12 +19,20 @@ export function ScrollScale({
   duration?: number;
   className?: string;
 }) {
+  const shouldReduceMotion = useReducedMotion();
+
   return (
     <motion.div
-      initial={{ opacity: 0, scale: 0.95 }}
+      initial={{
+        opacity: 0,
+        scale: shouldReduceMotion ? 1 : 0.95,
+      }}
       whileInView={{ opacity: 1, scale: 1 }}
       viewport={{ once: true }}
-      transition={{ duration, delay }}
+      transition={{
+        duration: shouldReduceMotion ? 0.1 : duration,
+        delay: shouldReduceMotion ? 0 : delay,
+      }}
       className={className}
     >
       {children}
