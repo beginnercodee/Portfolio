@@ -17,6 +17,7 @@ export default function HeroMatrix() {
     if (!ctx) return;
 
     let animationFrameId: number;
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     
     // Matrix configuration
     const fontSize = 14;
@@ -33,12 +34,12 @@ export default function HeroMatrix() {
       columns = Math.floor(canvas.width / fontSize);
       drops = [];
       for (let x = 0; x < columns; x++) {
-        drops[x] = Math.random() * -100; // Random starting stagger
+        drops[x] = prefersReducedMotion ? Math.floor(Math.random() * (canvas.height / fontSize)) : Math.random() * -100;
+      }
+      if (prefersReducedMotion) {
+        draw();
       }
     };
-
-    resizeCanvas();
-    window.addEventListener("resize", resizeCanvas);
 
     // Mouse tracking for proximity-based glow interaction
     let mouseX = canvas.width / 2;
@@ -47,15 +48,21 @@ export default function HeroMatrix() {
     const handleMouseMove = (e: MouseEvent) => {
       mouseX = e.clientX;
       mouseY = e.clientY;
+      if (prefersReducedMotion) {
+        draw();
+      }
     };
-    window.addEventListener("mousemove", handleMouseMove);
+
+    resizeCanvas();
+    window.addEventListener("resize", resizeCanvas);
+    window.addEventListener("mousemove", handleMouseMove, { passive: true });
 
     const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%.";
 
     // Animation Loop
     const draw = () => {
-      // Semi-transparent black to create trailing effect
-      ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
+      // Semi-transparent black to create trailing effect (opaque when static)
+      ctx.fillStyle = prefersReducedMotion ? "rgba(0, 0, 0, 1)" : "rgba(0, 0, 0, 0.05)";
       ctx.fillRect(0, 0, canvas.width, canvas.height);
 
       ctx.font = `${fontSize}px monospace`;
@@ -86,15 +93,19 @@ export default function HeroMatrix() {
 
         ctx.fillText(text, dropX, dropY);
 
-        // Reset drop to top randomly
-        if (dropY > canvas.height && Math.random() > 0.975) {
-          drops[i] = 0;
-        }
+        if (!prefersReducedMotion) {
+          // Reset drop to top randomly
+          if (dropY > canvas.height && Math.random() > 0.975) {
+            drops[i] = 0;
+          }
 
-        drops[i]++;
+          drops[i]++;
+        }
       }
 
-      animationFrameId = requestAnimationFrame(draw);
+      if (!prefersReducedMotion) {
+        animationFrameId = requestAnimationFrame(draw);
+      }
     };
 
     draw();
@@ -102,7 +113,9 @@ export default function HeroMatrix() {
     return () => {
       window.removeEventListener("resize", resizeCanvas);
       window.removeEventListener("mousemove", handleMouseMove);
-      cancelAnimationFrame(animationFrameId);
+      if (animationFrameId) {
+        cancelAnimationFrame(animationFrameId);
+      }
     };
   }, []);
 

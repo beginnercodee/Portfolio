@@ -1,18 +1,20 @@
 "use client";
 
 import { useEffect, useState, useRef } from "react";
-import { useInView } from "framer-motion";
+import { useInView, useReducedMotion } from "framer-motion";
 
 const LETTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%&*";
 
 /**
  * Renders text with an interactive, scrolling matrix-scrambler text decoding animation.
  * Safely initializes to avoid Next.js hydration mismatches before mounting.
+ * Bypasses rapid character flickering if reduced motion is requested.
  */
 export default function HackerText({ text }: { text: string }) {
   // Initialize with plain text to match SSR and prevent Hydration #418 Error
   const [displayText, setDisplayText] = useState(text);
   const [isEncrypted, setIsEncrypted] = useState(false);
+  const shouldReduceMotion = useReducedMotion();
   
   const containerRef = useRef<HTMLHeadingElement>(null);
   const isInView = useInView(containerRef, { once: true, margin: "0px 0px -50px 0px" });
@@ -23,6 +25,8 @@ export default function HackerText({ text }: { text: string }) {
    * followed by an animated matrix decoding sequence once scrolled into viewport.
    */
   useEffect(() => {
+    if (shouldReduceMotion) return;
+
     // Stage 1: Fast-encrypt on Client Mount (safely bypasses SSR Hydration checks)
     if (!isEncrypted) {
       const handle = setTimeout(() => {
@@ -63,7 +67,7 @@ export default function HackerText({ text }: { text: string }) {
     }, 30);
 
     return () => clearInterval(interval);
-  }, [isInView, text, isEncrypted]);
+  }, [isInView, text, isEncrypted, shouldReduceMotion]);
 
   return (
     <h3 

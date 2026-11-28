@@ -1,13 +1,15 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { motion, useMotionValue, useSpring } from "framer-motion";
+import { motion, useMotionValue, useSpring, useReducedMotion } from "framer-motion";
 
 /**
  * Renders a custom green glow mouse cursor overlay with spring damping physics
  * that activates when hovering over specific interactive project sections.
+ * Automatically disabled on touch screens and when reduced motion is preferred.
  */
 export default function ProjectCursor() {
+  const shouldReduceMotion = useReducedMotion();
   const [isHovering, setIsHovering] = useState(false);
 
   const mouseX = useMotionValue(-100);
@@ -21,6 +23,9 @@ export default function ProjectCursor() {
    * and updates Framer Motion spring target coordinates aligned with browser rAF ticks.
    */
   useEffect(() => {
+    if (shouldReduceMotion) return;
+    if (window.matchMedia("(pointer: coarse)").matches) return;
+
     let animationFrameId: number;
     let targetX = -100;
     let targetY = -100;
@@ -55,7 +60,11 @@ export default function ProjectCursor() {
       window.removeEventListener("mousemove", handleMouseMove);
       cancelAnimationFrame(animationFrameId);
     };
-  }, [mouseX, mouseY]);
+  }, [mouseX, mouseY, shouldReduceMotion]);
+
+  if (shouldReduceMotion) {
+    return null;
+  }
 
   return (
     <motion.div
